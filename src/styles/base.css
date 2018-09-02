@@ -1,0 +1,13 @@
+html, body {
+    width: 100%;
+    font-size: 14px;
+    font-family: "sans-serif";
+    box-sizing: border-box; 
+}
+li {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+    color: #2d8cf0;
+}

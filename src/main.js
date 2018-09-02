@@ -6,13 +6,14 @@ import VueAxios from 'vue-axios'
 
 import { routes } from './routes';
 import App from './App';
+import '@/styles/base.css';
 
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
 const RouterConfig = {
-    // mode: 'history',
+    mode: 'history',
     routes: routes
 }
 const router = new VueRouter(RouterConfig);
