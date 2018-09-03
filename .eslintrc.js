@@ -1,5 +1,15 @@
 module.exports = {
-    "extends": "eslint:recommended",
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "parser": 'babel-eslint'
+    },
+    "extends": [
+        "standard",
+        "plugin:vue/essential"
+    ],
+    "plugins": [
+        "vue"
+    ],
     "rules": {
         // enable additional rules
         "indent": ["warn", 4],

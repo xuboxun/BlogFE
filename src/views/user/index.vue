@@ -1,7 +1,7 @@
 <template>
     <div class="v-index">
         <div class="background">
-            <img :src="indexbg">
+            <img src={{indexbg}} />
         </div>
         <div class="content">
             <h1 class="name">徐博勋的博客</h1>
