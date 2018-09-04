@@ -23,13 +23,15 @@ export default {
 .m-userwrapper {
     width: 100%;
     .head {
-
+        height: 56px;
     }
     .body {
 
     }
     .foot {
-
+        height: 150px;
+        padding-top: 20px;
+        padding-bottom: 50px;
     }
 }
 </style>

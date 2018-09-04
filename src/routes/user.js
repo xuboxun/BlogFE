@@ -3,6 +3,8 @@ import Home from '@/views/user/home';
 import Tech from '@/views/user/tech';
 import Culture from '@/views/user/culture';
 import Blog from '@/views/user/blog';
+import Tag from '@/views/user/tag';
+import Archives from '@/views/user/archives';
 import About from '@/views/user/about';
 
 
@@ -31,6 +33,16 @@ const userRoutes = [
         path: '/blog', name: 'blog',
         meta: { title: '博客' },
         component: Blog
+    },
+    {
+        path: '/archives', name: 'archives',
+        meta: { title: '归档' },
+        component: Archives
+    },
+    {
+        path: '/tag', name: 'tag',
+        meta: { title: '标签' },
+        component: Tag
     },
     {
         path: '/about', name: 'about',
