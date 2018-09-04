@@ -1,7 +1,7 @@
 <template>
     <div>
         home 2333
-        <router-link to="/home">home</router-link><br>
+        <router-link to="/home">home</router-link><br />
         <router-link to="/blog">blog</router-link>
     </div>
 </template>
@@ -11,9 +11,9 @@ export default {
     data() {
         return {
             
-        }
-    }
-}
+        };
+    },
+};
 </script>
 
 <style lang="scss">

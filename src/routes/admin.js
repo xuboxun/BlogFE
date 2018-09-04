@@ -1,6 +1,6 @@
 import Admin from '@/views/admin/admin';
 
-export const adminRoutes = [
+const adminRoutes = [
     {
         path: '/admin', name: 'admin',
         meta: { title: '后台' },
@@ -8,5 +8,7 @@ export const adminRoutes = [
         children: [
 
         ]
-    }
-]
+    },
+];
+
+export default adminRoutes;

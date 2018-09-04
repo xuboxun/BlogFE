@@ -1,27 +1,29 @@
 module.exports = {
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "parser": 'babel-eslint'
+    "env": {
+        "browser": true,
     },
     "extends": [
-        "standard",
-        "plugin:vue/essential"
+        "eslint:recommended",
+        'plugin:vue/essential'
     ],
+    "parserOptions": {
+        "parser": 'babel-eslint',
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2015,
+        "sourceType": "module"
+    },
     "plugins": [
         "vue"
     ],
     "rules": {
-        // enable additional rules
         "indent": ["warn", 4],
         "linebreak-style": ["error", "unix"],
-        "quotes": ["error", "double"],
+        "quotes": ["error", "single"],
         "semi": ["error", "always"],
-
-        // override default options for rules from base configurations
-        "comma-dangle": ["error", "always"],
+        "comma-dangle": "off",
         "no-cond-assign": ["error", "always"],
-
-        // disable rules from base configurations
-        "no-console": "off",
+        "no-unused-vars": ["warn"]
     }
-}
+};

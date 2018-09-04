@@ -3,7 +3,7 @@ import Home from '@/views/user/home';
 import Blog from '@/views/user/blog';
 
 
-export const userRoutes = [
+const userRoutes = [
     {
         path: '/', name: 'index',
         meta: { title: '欢迎页' },
@@ -20,3 +20,5 @@ export const userRoutes = [
         component: Blog
     }
 ];
+
+export default userRoutes;
