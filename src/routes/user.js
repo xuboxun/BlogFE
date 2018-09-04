@@ -1,6 +1,9 @@
-import Index from '@/views/user/index';
+import Index from '@/views/index';
 import Home from '@/views/user/home';
+import Tech from '@/views/user/tech';
+import Culture from '@/views/user/culture';
 import Blog from '@/views/user/blog';
+import About from '@/views/user/about';
 
 
 const userRoutes = [
@@ -15,10 +18,25 @@ const userRoutes = [
         component: Home
     },
     {
+        path: '/tech', name: 'tech',
+        meta: { title: '技术博客' },
+        component: Tech
+    },
+    {
+        path: '/culture', name: 'culture',
+        meta: { title: '文艺青年' },
+        component: Culture
+    },
+    {
         path: '/blog', name: 'blog',
         meta: { title: '博客' },
         component: Blog
-    }
+    },
+    {
+        path: '/about', name: 'about',
+        meta: { title: '关于我' },
+        component: About
+    },
 ];
 
 export default userRoutes;

@@ -1,7 +1,7 @@
 <template>
     <UserWrapper>
         <div>
-            blog 233
+            about
         </div>
     </UserWrapper>
 </template>
@@ -15,3 +15,4 @@ export default {
     
 };
 </script>
+

@@ -6,9 +6,10 @@
         <div class="content">
             <h1 class="name">徐博勋的博客</h1>
             <div class="entry">
-                <li><router-link to="/home">技术博客</router-link></li>
-                <li><router-link to="/blog">文艺青年</router-link></li>
-                <li><router-link to="/blog">关于你想知道的我</router-link></li>
+                <li><router-link to="/home">首页</router-link></li>
+                <li><router-link to="/tech">技术博客</router-link></li>
+                <li><router-link to="/culture">文艺青年</router-link></li>
+                <li><router-link to="/about">关于你想知道的我</router-link></li>
             </div>
             <div class="link">
                 <p class="title">快捷链接</p>

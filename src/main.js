@@ -13,7 +13,7 @@ Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
 const RouterConfig = {
-    mode: 'history',
+    // mode: 'history',
     routes: routes
 };
 const router = new VueRouter(RouterConfig);

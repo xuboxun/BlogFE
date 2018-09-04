@@ -1,7 +1,7 @@
 <template>
     <UserWrapper>
         <div>
-            blog 233
+            tech
         </div>
     </UserWrapper>
 </template>
