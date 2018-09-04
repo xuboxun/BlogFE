@@ -8,9 +8,13 @@ import { routes } from './routes';
 import App from './App';
 import '@/styles/base.css';
 
+import 'vue-awesome/icons';
+import Icon from 'vue-awesome/components/Icon';
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
+
+Vue.component('Icon', Icon);
 
 const RouterConfig = {
     // mode: 'history',

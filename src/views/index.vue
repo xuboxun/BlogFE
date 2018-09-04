@@ -6,10 +6,10 @@
         <div class="content">
             <h1 class="name">徐博勋的博客</h1>
             <div class="entry">
-                <li><router-link to="/home">首页</router-link></li>
-                <li><router-link to="/tech">技术博客</router-link></li>
-                <li><router-link to="/culture">文艺青年</router-link></li>
-                <li><router-link to="/about">关于你想知道的我</router-link></li>
+                <li><router-link to="/home"><Icon name="angle-right" class="icon" />首页</router-link></li>
+                <li><router-link to="/tech"><Icon name="angle-right" class="icon" />技术博客</router-link></li>
+                <li><router-link to="/culture"><Icon name="angle-right" class="icon" />文艺青年</router-link></li>
+                <li><router-link to="/about"><Icon name="angle-right" class="icon" />关于你想知道的我</router-link></li>
             </div>
             <div class="link">
                 <p class="title">快捷链接</p>
@@ -75,10 +75,15 @@ export default {
                 margin-bottom: 15px;
                 padding: 5px 10px;
                 font-size: 1.1rem;
-
-                &::before {
-                    content: '>';
-                    margin-right: 5px;
+                a {
+                    position: relative;
+                    padding-left: 15px;
+                }
+                .icon {
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
                 }
             }
         }
