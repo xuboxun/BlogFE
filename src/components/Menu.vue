@@ -7,14 +7,12 @@
         <button @click="toggleMenu" class="mbbtn">
             <Icon :name="!showMenu ? 'bars' : 'times'" width="16" class="icon" />
         </button>
-        <!-- <transition name="slide-fade"> -->
-            <div class="menu" :class="!showMenu ? 'menu-hide' : ''">
-                <li class="menu-items"><router-link to="/home">首页</router-link></li>
-                <li class="menu-items"><router-link to="/tech">技术</router-link></li>
-                <li class="menu-items"><router-link to="/culture">随笔</router-link></li>
-                <li class="menu-items"><router-link to="/about">关于</router-link></li>
-            </div>
-        <!-- </transition> -->
+        <div class="menu" :style="!showMenu ? 'height: 0;' : ''">
+            <li class="menu-items"><router-link to="/home">首页</router-link></li>
+            <li class="menu-items"><router-link to="/tech">技术</router-link></li>
+            <li class="menu-items"><router-link to="/culture">随笔</router-link></li>
+            <li class="menu-items"><router-link to="/about">关于</router-link></li>
+        </div>
     </div>
 </template>
 
@@ -128,7 +126,7 @@ export default {
         .menu-hide {
             // transform: translateY(60px);
             height: 0px;
-            opacity: 0;
+            // opacity: 0;
         }
     }
 }
