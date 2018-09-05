@@ -1,17 +1,11 @@
 <template>
-    <UserWrapper>
-        <div>
-            about
-        </div>
-    </UserWrapper>
+    <div class="v-about">
+        about
+    </div>
 </template>
 
 <script>
-import UserWrapper from '@/components/UserWrapper';
 export default {
-    components: {
-        UserWrapper,
-    },
     
 };
 </script>

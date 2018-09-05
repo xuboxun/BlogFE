@@ -1,17 +1,11 @@
 <template>
-    <UserWrapper>
-        <div>
-            blog 233
-        </div>
-    </UserWrapper>
+    <div class="v-blog">
+        blog 233
+    </div>
 </template>
 
 <script>
-import UserWrapper from '@/components/UserWrapper';
 export default {
-    components: {
-        UserWrapper,
-    },
     
 };
 </script>

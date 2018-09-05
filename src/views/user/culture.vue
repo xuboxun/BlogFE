@@ -1,17 +1,11 @@
 <template>
-    <UserWrapper>
-        <div>
-            culture
-        </div>
-    </UserWrapper>
+    <div class="v-culture">
+        culture
+    </div>
 </template>
 
 <script>
-import UserWrapper from '@/components/UserWrapper';
-export default {
-    components: {
-        UserWrapper,
-    },
-    
+export default{
+
 };
 </script>

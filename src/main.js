@@ -6,8 +6,8 @@ import VueAxios from 'vue-axios';
 
 import store from './store';
 import { routes } from './routes';
-import App from './App';
 import '@/styles/base.css';
+import App from './App';
 
 import 'vue-awesome/icons';
 import Icon from 'vue-awesome/components/Icon';

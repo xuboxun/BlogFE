@@ -1,4 +1,4 @@
-import Index from '@/views/index';
+
 import Home from '@/views/user/home';
 import Tech from '@/views/user/tech';
 import Culture from '@/views/user/culture';
@@ -9,11 +9,6 @@ import About from '@/views/user/about';
 
 
 const userRoutes = [
-    {
-        path: '/', name: 'index',
-        meta: { title: '欢迎页' },
-        component: Index
-    },
     {
         path: '/home', name: 'home',
         meta: { title: '首页' },
@@ -48,7 +43,7 @@ const userRoutes = [
         path: '/about', name: 'about',
         meta: { title: '关于我' },
         component: About
-    },
+    }
 ];
 
 export default userRoutes;

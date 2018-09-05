@@ -1,10 +1,10 @@
 <template>
     <div class="m-userwrapper">
         <div class="head">
-
+            <Menu></Menu>
         </div>
         <div class="body">
-            <slot></slot>
+            <router-view></router-view>
         </div>
         <div class="foot">
             
@@ -13,9 +13,12 @@
 </template>
 
 <script>
+import Menu from '@/components/Menu';
 export default {
     name: 'UserWrapper',
-    
+    components: {
+        Menu,
+    }
 };
 </script>
 

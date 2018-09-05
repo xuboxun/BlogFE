@@ -1,26 +1,20 @@
 <template>
-    <UserWrapper>
-        <div class="v-home">
-            home 2333
-            <p>{{items}}</p>
-            <br />
-            <button @click="add">添加</button>
-            <br />
+    <div class="v-home">
+        home 2333
+        <p>{{items}}</p>
+        <br />
+        <button @click="add">添加</button>
+        <br />
 
-            <router-link to="/home">home</router-link><br />
-            <router-link to="/tech">tech</router-link><br />
-            <router-link to="/culture">culture</router-link><br />
-            <router-link to="/about">about</router-link><br />
-        </div>
-    </UserWrapper>
+        <router-link to="/home">home</router-link><br />
+        <router-link to="/tech">tech</router-link><br />
+        <router-link to="/culture">culture</router-link><br />
+        <router-link to="/about">about</router-link><br />
+    </div>
 </template>
 
 <script>
-import UserWrapper from '@/components/UserWrapper';
 export default {
-    components: {
-        UserWrapper,
-    },
     data() {
         return {
             
