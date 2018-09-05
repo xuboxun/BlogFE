@@ -24,6 +24,7 @@ module.exports = {
         "semi": ["error", "always"],
         "comma-dangle": "off",
         "no-cond-assign": ["error", "always"],
-        "no-unused-vars": ["warn"]
+        "no-unused-vars": ["warn"],
+        "no-console": "off"
     }
 };
