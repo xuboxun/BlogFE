@@ -1,23 +1,26 @@
 <template>
     <div class="m-userwrapper">
         <div class="head">
-            <Menu></Menu>
+            <TopMenu></TopMenu>
         </div>
         <div class="body">
             <router-view></router-view>
         </div>
         <div class="foot">
-            
+            <div>
+                <p></p>
+                <p class="content">Power by Xu boxun</p>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-import Menu from '@/components/Menu';
+import TopMenu from '@/components/Menu';
 export default {
     name: 'UserWrapper',
     components: {
-        Menu,
+        TopMenu,
     }
 };
 </script>
@@ -35,6 +38,12 @@ export default {
         height: 150px;
         padding-top: 20px;
         padding-bottom: 50px;
+        text-align: center;
+
+        .content {
+            font-size: 1.1rem;
+            color: #515a6e;
+        }
     }
 }
 </style>

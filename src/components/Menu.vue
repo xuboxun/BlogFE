@@ -1,13 +1,11 @@
 <template>
     <div class="m-menu">
         <div class="title">
-            <img :src="logo" alt="logo" class="logo">
-            <font class="name">博客名</font>
+            <img src="" alt="logo" class="logo">
+            <font class="name">名字</font>
         </div>
-        <button @click="toggleMenu" class="mbbtn">
-            <Icon :name="!showMenu ? 'bars' : 'times'" width="16" class="icon" />
-        </button>
-        <div class="menu" :style="!showMenu ? 'height: 0;' : ''">
+        <Icon @click.native="toggleMenu" class="mbbtn icon" :name="!showMenu ? 'bars' : 'times'" />
+        <div class="menu" :class="!showMenu ? 'menu-hide' : ''">
             <li class="menu-items"><router-link to="/home">首页</router-link></li>
             <li class="menu-items"><router-link to="/tech">技术</router-link></li>
             <li class="menu-items"><router-link to="/culture">随笔</router-link></li>
@@ -68,13 +66,14 @@ export default {
 
     .mbbtn {
         display: none;
-        width: 40px;
-        height: 40px;
-        background: transparent;
-        border: 0;
+        width: 20px;
+        height: 20px;
         color: #666;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
 
-        transition: all 0.5s ease;
+        transition: all 1.0s ease;
     }
 
     @media screen and (max-width: 480px) {
@@ -102,7 +101,7 @@ export default {
 
     @media screen and (max-width: 480px) {
         .menu {
-            height: auto;
+            height: 160px;
             width: 100%;
             position: absolute;
             left: 0;
@@ -111,6 +110,7 @@ export default {
             background: #fff;
             box-shadow: 5px 0px 5px #ddd;
             transition: all 0.5s ease;
+            opacity: 1;
             
 
             .menu-items {
@@ -124,9 +124,9 @@ export default {
         }
 
         .menu-hide {
-            // transform: translateY(60px);
+            transform: translateY(-80px);
             height: 0px;
-            // opacity: 0;
+            opacity: 0;
         }
     }
 }
