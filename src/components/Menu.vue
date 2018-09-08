@@ -1,7 +1,7 @@
 <template>
     <div class="m-menu">
         <div class="title">
-            <img src="" alt="logo" class="logo">
+            <img :src="logo" alt="logo" class="logo">
             <font class="name">名字</font>
         </div>
         <Icon @click.native="toggleMenu" class="mbbtn icon" :name="!showMenu ? 'bars' : 'times'" />
@@ -9,6 +9,8 @@
             <li class="menu-items"><router-link to="/home">首页</router-link></li>
             <li class="menu-items"><router-link to="/tech">技术</router-link></li>
             <li class="menu-items"><router-link to="/culture">随笔</router-link></li>
+            <li class="menu-items"><router-link to="/tag">标签</router-link></li>
+            <li class="menu-items"><router-link to="/archives">归档</router-link></li>
             <li class="menu-items"><router-link to="/about">关于</router-link></li>
         </div>
     </div>
@@ -20,7 +22,7 @@ export default {
     data() {
         return {
             logo,
-            showMenu: true,
+            showMenu: false,
             activeMenu: '',
         };
     },
@@ -41,7 +43,7 @@ export default {
 .m-menu {
     width: 100%;
     height: 56px;
-    padding: 8px 20px;
+    padding: 8px 50px;
     background: #fff;
     box-shadow: 5px 0px 5px #e0e0e0;
 
@@ -101,7 +103,7 @@ export default {
 
     @media screen and (max-width: 480px) {
         .menu {
-            height: 160px;
+            height: 240px;
             width: 100%;
             position: absolute;
             left: 0;
@@ -128,6 +130,11 @@ export default {
             height: 0px;
             opacity: 0;
         }
+    }
+}
+@media screen and (max-width: 480px) {
+    .m-menu {
+        padding: 8px 20px;
     }
 }
 </style>

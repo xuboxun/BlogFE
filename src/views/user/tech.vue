@@ -1,12 +1,15 @@
 <template>
     <div class="v-tech">
-        tech
-        <p>{{$store.state.tmp.items}}</p>
+        <TechItem></TechItem>
     </div>
 </template>
 
 <script>
+import TechItem from '@/components/techItem';
 export default {
+    components: {
+        TechItem,
+    },
     data() {
         return {
 

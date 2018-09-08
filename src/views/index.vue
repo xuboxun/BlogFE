@@ -48,8 +48,8 @@ export default {
         left: 0;
     }
     .content {
-        width: 500px;
-        height: 350px;
+        width: 580px;
+        height: 400px;
         padding: 20px;
         border-radius: 5px;
         position: absolute;
@@ -59,9 +59,8 @@ export default {
         background: rgba(225, 225, 225, 0.4);
 
         .name {
-            height: 80px;
-            line-height: 80px;
-            margin-bottom: 20px;
+            height: 70px;
+            line-height: 70px;
             margin-bottom: 20px;
             text-align: center;
             font-size: 1.8rem;
