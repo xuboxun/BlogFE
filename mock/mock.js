@@ -1,5 +1,5 @@
-import techApi from './tech';
-import tagApi from './tag';
+const techApi = require('./tech');
+const tagApi = require('./tag');
 
 let apis = [
     ...techApi,

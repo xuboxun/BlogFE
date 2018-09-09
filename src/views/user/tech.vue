@@ -1,6 +1,6 @@
 <template>
     <div class="v-tech">
-        <TechItem></TechItem>
+        <TechItem v-for="(tech, index) in techs" :tech="tech" :key="index"></TechItem>
     </div>
 </template>
 
@@ -12,9 +12,13 @@ export default {
     },
     data() {
         return {
-
+            techs: [],
         };
     },
-    
+    mounted() {
+        this.$http.get('/api/tech/list').then(res => {
+            this.techs = res.data.data.items;
+        })
+    },
 };
 </script>

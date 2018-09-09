@@ -14,7 +14,6 @@ module.exports = merge(base, {
         proxy: {
             '/api': 'http://localhost:3000/api'
         },
-        open: true,
         before: mock,
     },
     plugins: [

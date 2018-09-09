@@ -1,6 +1,6 @@
 <template>
-    <div class="v-tag">
-
+    <div class="v-tagdetail">
+        tagdetail
     </div>
 </template>
 
@@ -8,13 +8,10 @@
 export default {
     data() {
         return {
-            data: []
+            
         }
-    },
-    mounted() {
-        
     }
-};
+}
 </script>
 
 <style>

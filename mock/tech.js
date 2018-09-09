@@ -1,22 +1,46 @@
-import mockData from './data';
+const mockData = require('./data');
+const response = require('./response');
 
 const techApi = [
     {
         method: 'get',
         url: '/api/tech/list',
         handle: function (req, res) {
-            let data = [];
-            res.json(data);
+            let query = {
+                page: req.query.page || 1,
+                pageSize: req.query.pageSize || 10,
+            };
+            let techs = mockData.techs.filter((item, index) => {
+                return index < query.page * query.pageSize &&
+                        index >= (query.page - 1) * query.pageSize;
+            });
+            techs = techs.map(item => {
+                return {
+                    name: item.name,
+                    title: item.title,
+                    tagNames: item.tagNames,
+                    createTime: item.createTime
+                };
+            });
+            res.json(response({
+                items: techs,
+                total: mockData.techs.length
+            }));
         }
     },
     {
         method: 'get',
         url: '/api/tech/detail',
         handle: function(req, res) {
-            let data = {};
-            res.json(data);
+            let query = {
+                name: req.query.name
+            };
+            let data = mockData.techs.find(item => {
+                return item.name = query.name;
+            });
+            res.json((response(data)));
         }
     },
 ];
 
-export default techApi;
+module.exports = techApi;

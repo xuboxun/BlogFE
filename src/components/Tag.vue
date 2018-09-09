@@ -1,6 +1,6 @@
 <template>
     <span class="m-tag">
-        <router-link to='/tag'>标签</router-link>
+        <router-link :to="'/tag/' + name">{{title}}</router-link>
     </span>
 </template>
 
@@ -9,12 +9,14 @@ export default {
     name: 'Tag',
     props: {
         name: String,
-        link: String
     },
     data() {
         return {
-
+            title: '',
         }
+    },
+    created() {
+        this.title = this.$store.getters['tag/title'](this.name);
     }
 }
 </script>

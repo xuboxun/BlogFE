@@ -1,23 +1,22 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
 const devMode = process.env.NODE_ENV !== 'production';
-console.log(devMode)
+console.log(devMode);
 
 if (process.env.NODE_ENV === 'production') {
-    console.log('production')
+    console.log('production');
 } else if (process.env.NODE_ENV === 'development') {
-    console.log('development')
+    console.log('development');
 } else if (process.env.NODE_ENV === 'none') {
-    console.log('none')
+    console.log('none');
 } else {
-    console.log('unknown')
+    console.log('unknown');
 }
 
 
@@ -76,7 +75,7 @@ module.exports = {
         }),
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
-            filename: "bundle.css"
+            filename: 'bundle.css'
         })
     ],
     optimization: {
@@ -113,4 +112,4 @@ module.exports = {
             'vue': 'vue/dist/vue.esm.js'
         }
     }
-}
+};

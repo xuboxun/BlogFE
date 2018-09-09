@@ -4,6 +4,7 @@ import Tech from '@/views/user/tech';
 import Culture from '@/views/user/culture';
 import Blog from '@/views/user/blog';
 import Tag from '@/views/user/tag';
+import TagDetail from '@/views/user/tagDetail';
 import Archives from '@/views/user/archives';
 import About from '@/views/user/about';
 
@@ -38,6 +39,11 @@ const userRoutes = [
         path: '/tag', name: 'tag',
         meta: { title: '标签' },
         component: Tag
+    },
+    {
+        path: '/tag/:name', name: 'tagDetail',
+        meta: { title: '标签详情' },
+        component: TagDetail
     },
     {
         path: '/about', name: 'about',

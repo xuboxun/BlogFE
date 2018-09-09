@@ -10,4 +10,4 @@ module.exports = merge(base, {
             root: path.resolve(__dirname, '../'),
         })
     ]
-})
+});

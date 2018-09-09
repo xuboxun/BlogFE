@@ -1,11 +1,11 @@
 import userRoutes from './user';
 import adminRoutes from './admin';
-import Index from '@/views/index';
 
 import UserWrapper from '@/components/UserWrapper';
 import Admin from '@/views/admin/admin';
 
-
+import Index from '@/views/index';
+import Error404 from '@/views/404';
 
 export const routes = [
     {
@@ -28,5 +28,9 @@ export const routes = [
         children: [
             ...adminRoutes
         ]
+    },
+    {
+        path: '*',
+        component: Error404
     }
 ];

@@ -1,18 +1,17 @@
 <template>
     <div class="m-techitem">
-        <div class="time">2018-09-07</div>
+        <div class="time">{{moment(tech.createTime).format('YYYY-MM-DD')}}</div>
         <div class="info">
-            <h3 class="title">题目题目题目题目题目题目题目题目题目题目题目题目题目题目</h3>
+            <h3 class="title">{{tech.title}}</h3>
             <p class="tags">
-                <Tag />
-                <Tag />
-                <Tag />
+                <Tag v-for="(name, index) in tech.tagNames" :key="index" :name="name" />
             </p>
         </div>
     </div>
 </template>
 
 <script>
+import moment from 'moment';
 import Tag from '@/components/Tag';
 export default {
     name: 'TechItem',
@@ -20,11 +19,11 @@ export default {
         Tag,
     },
     props: {
-
+        tech: Object
     },
     data() {
         return {
-
+            moment: moment,
         }
     },
 }

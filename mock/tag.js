@@ -1,27 +1,35 @@
-import Mock from 'mockjs';
-import mockData from './data';
+const mockData = require('./data');
+const response = require('./response');
 
 const tagApi = [
     {
         method: 'get',
         url: '/api/tag/list',
-        handle: function (req, res) {
-            let data = {
-                items: [],
-                total: 0   
-            };
-            res.json(data);
+        handle: function (req, res) {            
+            res.json(response({
+                items: mockData.tags,
+                total: mockData.tags.length
+            }));
         }
     },
     {
         method: 'get',
-        url: 'api/tag/find',
+        url: '/api/tag/find',
         handle: function (req, res) {
-            let query = [1, 2, 3];
-            let data = query;
-            res.json(data);
+            let query = {
+                name: req.query.name.split(',')
+            };
+            let find = mockData.tags.filter(item => {
+                return query.name.find(name => {
+                    return name === item.name;
+                });
+            });
+            res.json(response({
+                items: find,
+                total: find.length
+            }));
         }
     }
 ];
 
-export default tagApi;
+module.exports = tagApi;
