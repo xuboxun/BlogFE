@@ -36,11 +36,13 @@ export default {
     }
     .foot {
         height: 150px;
-        padding-top: 20px;
-        padding-bottom: 50px;
+        padding-top: 50px;
+        padding-bottom: 30px;
         text-align: center;
 
         .content {
+            height: 50px;
+            line-height: 50px;
             font-size: 1.1rem;
             color: #515a6e;
         }

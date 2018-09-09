@@ -33,6 +33,7 @@ export default {
 .m-techitem {
     width: 100%;
     display: flex;
+    flex-direction: row;
     padding: 10px 20px;
 
     .time {
@@ -47,11 +48,23 @@ export default {
             line-height: 30px;
             font-weight: 400;
             font-size: 1.4rem;
-            color: #1c2438;
+            color: #333;
         }
         .tags {
             margin-top: 10px;
             color: #80848f;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        & {
+            flex-direction: column;
+        }
+        .time, .info {
+            width: 100%;
+        }
+        .time {
+            font-size: 1.2rem;
         }
     }
 

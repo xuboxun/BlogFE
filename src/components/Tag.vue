@@ -28,15 +28,20 @@ export default {
         line-height: 25px;
         border-radius: 3px;
         background: #fafafa;
+        margin-right: 8px;
+        margin-bottom: 5px;
         padding: 0 10px;
 
         a {
             width: 100%;
             color: #80848f;
         }
-        
-        & + .m-tag {
-            margin-left: 8px;
+
+        @media screen and (max-width: 480px){
+            a {
+                font-size: 0.9rem;
+            }
         }
+        
     }
 </style>

@@ -50,6 +50,8 @@ export default {
     display: flex;
     justify-content: space-between;
 
+    position: fixed;
+
 
     .title {
         .logo {
