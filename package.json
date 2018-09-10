@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./build/webpack.dev.config.js --progress --hot --inline",
-    "mock": "webpack-dev-server --config ./build/webpack.mock.config.js --progress --hot --inline",
+    "mock": "nodemon --watch mock --exec 'webpack-dev-server --config ./build/webpack.mock.config.js --progress --hot --inline'",
     "build": "NODE_ENV=production webpack --config ./build/webpack.prod.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -44,6 +44,7 @@
     "mini-css-extract-plugin": "^0.4.1",
     "mockjs": "^1.0.1-beta3",
     "node-sass": "^4.9.3",
+    "nodemon": "^1.18.4",
     "optimize-css-assets-webpack-plugin": "^5.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.22.1",
