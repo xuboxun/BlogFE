@@ -13,12 +13,12 @@ export default {
     data() {
         return {
             title: '',
-        }
+        };
     },
     created() {
         this.title = this.$store.getters['tag/title'](this.name);
     }
-}
+};
 </script>
 
 <style lang="scss">

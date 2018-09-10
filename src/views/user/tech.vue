@@ -18,7 +18,7 @@ export default {
     mounted() {
         this.$http.get('/api/tech/list').then(res => {
             this.techs = res.data.data.items;
-        })
+        });
     },
 };
 </script>

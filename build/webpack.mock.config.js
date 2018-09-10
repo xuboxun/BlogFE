@@ -8,7 +8,7 @@ module.exports = merge(base, {
     mode: 'development',
     devtool: 'source-map',
     devServer: {
-        host: '0.0.0.0',
+        host: 'localhost',
         port: 8000,
         contentBase: '../dist',
         proxy: {
