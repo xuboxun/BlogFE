@@ -4,10 +4,12 @@ import Tech from '@/views/user/tech';
 import Culture from '@/views/user/culture';
 import Blog from '@/views/user/blog';
 import Tag from '@/views/user/tag';
-import TagDetail from '@/views/user/tagDetail';
 import Archives from '@/views/user/archives';
 import About from '@/views/user/about';
 
+import TagDetail from '@/views/user/tagDetail';
+import TecBlog from '@/views/user/techBlog';
+import CultureBlog from '@/views/user/cultureBlog';
 
 const userRoutes = [
     {
@@ -21,9 +23,19 @@ const userRoutes = [
         component: Tech
     },
     {
+        path: '/tech/:name', name: 'techBlog',
+        meta: { title: '技术博客' },
+        component: TecBlog
+    },
+    {
         path: '/culture', name: 'culture',
         meta: { title: '文艺青年' },
         component: Culture
+    },
+    {
+        path: '/culture/:name', name: 'cultureBlog',
+        meta: { title: '文艺青年' },
+        component: CultureBlog
     },
     {
         path: '/blog', name: 'blog',
