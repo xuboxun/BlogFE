@@ -1,12 +1,11 @@
 const Mock = require('mockjs');
 const Random = Mock.Random;
 
-const tagMock = Mock.mock({
-    'tags|20-50': [{
-        name: '@word',
-        title: '@cword(3, 7)'
-    }]
-});
+const getRandomType = function() {
+    const types = ['tech', 'culture'];
+    let index = Math.random() > 0.5 ? 1 : 0;
+    return types[index];
+};
 
 const getRandomTagName = function() {
     let count = Random.integer(1, 5);
@@ -25,29 +24,30 @@ const getTimeStamp = function() {
 };
 
 
-let techMock = Mock.mock({
-    'techs|20-50': [{
+
+
+const tagMock = Mock.mock({
+    'tags|5-15': [{
+        name: '@word',
+        title: '@cword(3, 7)',
+        intro: '@cparagraph(20, 50)',
+        createTime: getTimeStamp
+    }]
+});
+
+
+let blogMock = Mock.mock({
+    'blogs|50-100': [{
         name: '@word(10, 20)',
         title: '@ctitle(5, 20)',
+        type: getRandomType,
         content: '@cparagraph(10, 20)',
         tagNames: getRandomTagName,
         createTime: getTimeStamp
     }]
 });
-
-let cultureMock = Mock.mock({
-    'cultures|20-50': [{
-        name: '@word(10, 20)',
-        title: '@ctitle(5, 20)',
-        content: '@cparagraph(10, 20)',
-        tagNames: getRandomTagName,
-        createTime: getTimeStamp
-    }]
-});
-
 
 module.exports = {
     ...tagMock,
-    ...techMock,
-    ...cultureMock,
+    ...blogMock,
 };

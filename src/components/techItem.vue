@@ -1,6 +1,6 @@
 <template>
     <div class="m-techitem">
-        <div class="time">{{moment(tech.createTime).format('YYYY-MM-DD')}}</div>
+        <div class="time">{{Filter.time(tech.createTime)}}</div>
         <div class="info">
             <h3 class="title">{{tech.title}}</h3>
             <p class="tags">
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import moment from 'moment';
+import Filter from '@/utils/filter.js';
 import Tag from '@/components/Tag';
 export default {
     name: 'TechItem',
@@ -23,10 +23,10 @@ export default {
     },
     data() {
         return {
-            moment: moment,
-        }
+            Filter: Filter,
+        };
     },
-}
+};
 </script>
 
 <style lang="scss">

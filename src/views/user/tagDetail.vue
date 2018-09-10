@@ -1,14 +1,14 @@
 <template>
     <div class="v-tagdetail">
         <div class="tag">
-            <h3 class="name">{{tagName}}</h3>
-            <p class="desc">{{tagDesc}}</p>
+            <h3 class="name">{{title}}</h3>
+            <p class="desc">{{intro}}</p>
         </div>
         <div class="blogs">
             <h4>列表</h4>
             <ul class="list">
-                <li class="item" v-for="(item, index) in blogList" :key="index">
-                    <router-link to=""><font>2018</font>content title</router-link>
+                <li class="item" v-for="(blog, index) in blogList" :key="index">
+                    <router-link :to="'/' + blog.type + '/' + blog.name"><font>{{Filter.time(blog.createTime)}}</font>{{blog.title}}</router-link>
                 </li>
             </ul>
         </div>
@@ -16,16 +16,35 @@
 </template>
 
 <script>
+import Filter from '@/utils/filter';
 export default {
     data() {
         return {
-            tagName: '',
-            tagDesc: '',
+            Filter: Filter,
+            name: '',
+            title: '',
+            intro: '',
+            createTime: '',
             blogList: []
         };
     },
     methods: {
-
+        getTagDetail() {
+            this.$http('/api/tag/detail', {
+                params: {
+                    name: this.name,
+                }
+            }).then(res => {
+                let data = res.data.data;
+                this.title = data.title;
+                this.intro = data.intro;
+                this.blogList = data.blogs;
+            });
+        }
+    },
+    created() {
+        this.name = this.$route.params.name;
+        this.getTagDetail();
     }
 };
 </script>
@@ -34,11 +53,15 @@ export default {
 .v-tagdetail {
     .tag {
         .name {
-            font-size: 1.4rem;
+            height: 100px;
+            line-height: 100px;
+            font-size: 1.5rem;
             font-weight: 400;
             color: #17233d;
         }
         .desc {
+            text-indent: 2.2rem;
+            line-height: 30px;
             font-size: 1.1rem;
             color: #515a6e;
         }
@@ -46,17 +69,23 @@ export default {
     .blogs {
         margin-top: 50px;
         h4 {
+            line-height: 50px;
             border-bottom: 1px solid #e8eaec;
             font-weight: 400;
             font-size: 1.1rem;
         }
         .item {
-            height: 30px;
-            line-height: 30px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 1.15rem;
             a {
                 display: inline-block;
-                width: 100%;
                 height: 100%;
+                color: #515a6e;
+
+                &:hover {
+                    color: #2d8cf0;
+                }
             }
         }
         

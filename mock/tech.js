@@ -10,7 +10,10 @@ const techApi = [
                 page: req.query.page || 1,
                 pageSize: req.query.pageSize || 10,
             };
-            let techs = mockData.techs.filter((item, index) => {
+            let allTechs = mockData.blogs.filter((item) => {
+                return item.type === 'tech';
+            });
+            let techs = allTechs.filter((item, index) => {
                 return index < query.page * query.pageSize &&
                         index >= (query.page - 1) * query.pageSize;
             });
@@ -18,13 +21,14 @@ const techApi = [
                 return {
                     name: item.name,
                     title: item.title,
+                    type: item.type,
                     tagNames: item.tagNames,
                     createTime: item.createTime
                 };
             });
             res.json(response({
                 items: techs,
-                total: mockData.techs.length
+                total: allTechs.length
             }));
         }
     },
@@ -35,7 +39,7 @@ const techApi = [
             let query = {
                 name: req.query.name
             };
-            let data = mockData.techs.find(item => {
+            let data = mockData.blogs.find(item => {
                 return item.name = query.name;
             });
             res.json((response(data)));
