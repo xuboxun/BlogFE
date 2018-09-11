@@ -9,6 +9,7 @@
             <li class="menu-items"><router-link to="/home">首页</router-link></li>
             <li class="menu-items"><router-link to="/tech">技术</router-link></li>
             <li class="menu-items"><router-link to="/culture">随笔</router-link></li>
+            <li class="menu-items"><router-link to="/serial">专栏</router-link></li>
             <li class="menu-items"><router-link to="/tag">标签</router-link></li>
             <li class="menu-items"><router-link to="/archives">归档</router-link></li>
             <li class="menu-items"><router-link to="/about">关于</router-link></li>
@@ -105,7 +106,7 @@ export default {
 
     @media screen and (max-width: 480px) {
         .menu {
-            height: 240px;
+            height: 280px;
             width: 100%;
             position: absolute;
             left: 0;

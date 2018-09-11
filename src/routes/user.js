@@ -16,6 +16,8 @@ import TagDetail from '@/views/user/tag/tagDetail';
 
 import Archives from '@/views/user/archives';
 
+import Search from '@/views/user/search';
+
 import About from '@/views/user/about';
 
 import Content from '@/components/Content';
@@ -104,6 +106,11 @@ const userRoutes = [
         path: '/archives', name: 'archives',
         meta: { title: '归档' },
         component: Archives
+    },
+    {
+        path: '/search', name: 'search',
+        meta: { title: '搜索' },
+        component: Search
     },
     {
         path: '/about', name: 'about',

@@ -1,6 +1,6 @@
 <template>
     <span class="m-tag">
-        <router-link :to="'/tag/detail/' + name">{{title}}</router-link>
+        <router-link :to="'/tag/detail/' + name">{{innerTitle}}</router-link>
     </span>
 </template>
 
@@ -9,14 +9,19 @@ export default {
     name: 'Tag',
     props: {
         name: String,
+        title: String,
     },
     data() {
         return {
-            title: '',
+            innerTitle: '',
         };
     },
     created() {
-        this.title = this.$store.getters['tag/title'](this.name);
+        if (this.title) {
+            this.innerTitle = this.title;
+        } else {
+            this.innerTitle = this.$store.getters['tag/title'](this.name);
+        }
     }
 };
 </script>
