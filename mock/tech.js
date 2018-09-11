@@ -11,7 +11,7 @@ const techApi = [
                 pageSize: req.query.pageSize || 10,
             };
             let allTechs = mockData.blogs.filter((item) => {
-                return item.type === 'tech';
+                return item.type === 'techList';
             });
             let techs = allTechs.filter((item, index) => {
                 return index < query.page * query.pageSize &&

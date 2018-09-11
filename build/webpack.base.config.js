@@ -28,7 +28,7 @@ module.exports = {
     },
     output: {
         publicPath: '/', // 文件路径
-        path: path.join(__dirname, '../dist'), // 打包路径
+        path: path.resolve(__dirname, '../dist'), // 打包路径
         filename: '[name].bundle.[hash].js'
     },
     module: {
@@ -108,7 +108,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.vue'],
         alias: {
-            '@': path.join(__dirname, '../src'),
+            '@': path.resolve(__dirname, '../src'),
             'vue': 'vue/dist/vue.esm.js'
         }
     }

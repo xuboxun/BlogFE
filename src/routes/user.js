@@ -1,15 +1,19 @@
 
 import Home from '@/views/user/home';
-import Tech from '@/views/user/tech';
-import Culture from '@/views/user/culture';
-import Blog from '@/views/user/blog';
-import Tag from '@/views/user/tag';
+
+import TechList from '@/views/user/tech/techList';
+import TecBlog from '@/views/user/tech/techBlog';
+
+import CultureList from '@/views/user/culture/cultureList';
+import CultureBlog from '@/views/user/culture/cultureBlog';
+
+import TagList from '@/views/user/tag/tagList';
+import TagDetail from '@/views/user/tag/tagDetail';
+
 import Archives from '@/views/user/archives';
+
 import About from '@/views/user/about';
 
-import TagDetail from '@/views/user/tagDetail';
-import TecBlog from '@/views/user/techBlog';
-import CultureBlog from '@/views/user/cultureBlog';
 
 const userRoutes = [
     {
@@ -18,9 +22,9 @@ const userRoutes = [
         component: Home
     },
     {
-        path: '/tech', name: 'tech',
+        path: '/tech', name: 'techList',
         meta: { title: '技术博客' },
-        component: Tech
+        component: TechList
     },
     {
         path: '/tech/:name', name: 'techBlog',
@@ -30,17 +34,12 @@ const userRoutes = [
     {
         path: '/culture', name: 'culture',
         meta: { title: '文艺青年' },
-        component: Culture
+        component: CultureList
     },
     {
         path: '/culture/:name', name: 'cultureBlog',
         meta: { title: '文艺青年' },
         component: CultureBlog
-    },
-    {
-        path: '/blog', name: 'blog',
-        meta: { title: '博客' },
-        component: Blog
     },
     {
         path: '/archives', name: 'archives',
@@ -50,7 +49,7 @@ const userRoutes = [
     {
         path: '/tag', name: 'tag',
         meta: { title: '标签' },
-        component: Tag
+        component: TagList
     },
     {
         path: '/tag/:name', name: 'tagDetail',

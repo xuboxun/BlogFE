@@ -1,6 +1,6 @@
 <template>
     <div class="v-tech">
-        <TechItem v-for="(tech, index) in techs" :tech="tech" :key="index"></TechItem>
+        <TechItem v-for="(tech, index) in techs" :tech="techList" :key="index"></TechItem>
     </div>
 </template>
 

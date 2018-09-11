@@ -2,7 +2,7 @@ const Mock = require('mockjs');
 const Random = Mock.Random;
 
 const getRandomType = function() {
-    const types = ['tech', 'culture'];
+    const types = ['techList', 'culture'];
     let index = Math.random() > 0.5 ? 1 : 0;
     return types[index];
 };
