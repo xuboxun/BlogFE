@@ -1,5 +1,5 @@
 <template>
-    <div class="v-techblog">
+    <div class="v-tech-blog">
         techblog
     </div>
 </template>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss">
-.v-techblog {
+.v-tech-blog {
 
 }
 </style>

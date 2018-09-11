@@ -1,5 +1,5 @@
 <template>
-    <div class="v-tag">
+    <div class="v-tag-list">
 
     </div>
 </template>
@@ -17,6 +17,8 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="scss">
+.v-tag-list {
+    
+}
 </style>

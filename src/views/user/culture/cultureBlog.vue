@@ -1,5 +1,5 @@
 <template>
-    <div class="v-cultureblog">
+    <div class="v-culture-blog">
         cultureblog
     </div>
 </template>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss">
-.v-cultureblog {
+.v-culture-blog {
 
 }
 </style>

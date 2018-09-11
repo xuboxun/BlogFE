@@ -1,6 +1,6 @@
 <template>
     <span class="m-tag">
-        <router-link :to="'/tag/' + name">{{title}}</router-link>
+        <router-link :to="'/tag/detail/' + name">{{title}}</router-link>
     </span>
 </template>
 

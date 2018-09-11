@@ -1,6 +1,6 @@
 <template>
-    <div class="v-culture">
-        culture
+    <div class="v-culture-list">
+        culture list
     </div>
 </template>
 
@@ -9,3 +9,9 @@ export default{
 
 };
 </script>
+
+<style lang="scss">
+.v-culture-list {
+
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="v-tagdetail">
+    <div class="v-tag-detail">
         <div class="tag">
             <h3 class="name">{{title}}</h3>
             <p class="desc">{{intro}}</p>
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss">
-.v-tagdetail {
+.v-tag-detail {
     .tag {
         .name {
             height: 100px;
