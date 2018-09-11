@@ -1,35 +1,43 @@
 <template>
     <div class="v-tag-list">
         <div class="search">
-            <input class="query-input" type="text" v-model="query">
-            <button class="btn-search"><Icon name="search" /></button>
+            <input class="query-input" type="text" v-model="query" @keyup.enter="search">
+            <button class="btn-search" @click="search"><Icon name="search" /></button>
         </div>
         <div class="tags">
-            <Tag v-for="(tag, index) in tags" :key="index" v-show="tag.title.indexOf(query) > -1"
-                :name="tag.name" :title="tag.title" 
-            />
+            <Tag v-for="(tag, index) in filterTags" :key="index" :name="tag.name" :title="tag.title" />
+            <NoResult v-if="filterTags.length === 0" />
         </div>
     </div>
 </template>
 
 <script>
 import Tag from '@/components/Tag';
+import NoResult from '@/components/NoResult';
 export default {
     components: {
         Tag,
+        NoResult,
     },
     data() {
         return {
             query: '',
+            tags: [],
+            filterTags: []
         };
     },
-    computed: {
-        'tags': function() {
-            return this.$store.state.tag.tags;
-        },
+    watch: {
+        '$store.state.tag.tags': function() {
+            this.tags = this.$store.state.tag.tags;
+            this.filterTags = this.tags;
+        }
     },
     methods: {
-        
+        search() {
+            this.filterTags = this.tags.filter(tag => {
+                return tag.title.indexOf(this.query) > -1;
+            });
+        }
     },
 };
 </script>
@@ -44,12 +52,13 @@ export default {
         border: 1px solid #eee;
         border-radius: 3px;
         box-shadow: 1px 2px 5px #ddd;
+
         .query-input {
             width: 100%;
             height: 30px;
             line-height: 30px;
             border: none;
-            font-size: 1.4rem;
+            font-size: 1.15rem;
             color: #808695;
         }
         .btn-search {
@@ -61,6 +70,7 @@ export default {
             background: transparent;
             border: none;
             color: #4285f4;
+            cursor: pointer;
         }
     }
     .tags {
