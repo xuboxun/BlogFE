@@ -1,5 +1,5 @@
 <template>
-    <span class="m-tag">
+    <span class="m-tag" :class="innerSize === 'large' ? 'm-tag-large' : '' ">
         <router-link :to="'/tag/detail/' + name">{{innerTitle}}</router-link>
     </span>
 </template>
@@ -10,10 +10,12 @@ export default {
     props: {
         name: String,
         title: String,
+        size: String, // default large
     },
     data() {
         return {
             innerTitle: '',
+            innerSize: this.size || 'default',
         };
     },
     created() {
@@ -47,6 +49,14 @@ export default {
                 font-size: 0.9rem;
             }
         }
-        
+    }
+    .m-tag-large {
+        height: 35px;
+        line-height: 35px;
+        font-size: 1.05rem;
+        padding: 0 20px;
+        border: 1px solid #e8eaec;
+        margin-right: 15px;
+        margin-bottom: 20px;
     }
 </style>

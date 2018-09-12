@@ -12,7 +12,6 @@ import App from './App';
 import 'vue-awesome/icons';
 import Icon from 'vue-awesome/components/Icon';
 
-
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
