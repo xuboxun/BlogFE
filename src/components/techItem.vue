@@ -64,7 +64,13 @@ export default {
             width: 100%;
         }
         .time {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+        }
+        .info {
+            .title {
+                font-size: 1.2rem;
+                line-height: 25px;
+            }
         }
     }
 
