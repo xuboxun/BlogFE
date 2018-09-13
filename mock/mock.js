@@ -1,9 +1,11 @@
 const techApi = require('./tech');
 const tagApi = require('./tag');
+const archivesApi = require('./archives');
 
 let apis = [
     ...techApi,
     ...tagApi,
+    ...archivesApi,
 ];
 
 

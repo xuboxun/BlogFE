@@ -28,20 +28,20 @@ export default {
 <style lang="scss">
 .m-userwrapper {
     width: 100%;
-    .head {
+    & > .head {
         height: 56px;
     }
-    .body {
+    & > .body {
         width: 80%;
         margin: 0 auto;
+        padding: 20px 20px;
     }
     @media screen and (max-width: 480px) {
-        .body {
+        & > .body {
             width: 100%;
-            padding: 20px 20px;
         }
     }
-    .foot {
+    & > .foot {
         height: 150px;
         padding-top: 50px;
         padding-bottom: 30px;

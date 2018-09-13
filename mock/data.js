@@ -2,7 +2,7 @@ const Mock = require('mockjs');
 const Random = Mock.Random;
 
 const getRandomType = function() {
-    const types = ['techList', 'culture'];
+    const types = ['tech', 'culture'];
     let index = Math.random() > 0.5 ? 1 : 0;
     return types[index];
 };
@@ -19,19 +19,26 @@ const getRandomTagName = function() {
 };
 
 // 生成时间戳number
-const getTimeStamp = function() {
-    return +Random.date('T');
+const getTimeStamp = function(range) {
+    if (range) {
+        const start = new Date('2016-01-01');
+        const end = new Date('2018-12-31');
+        return Random.integer(+start, +end);
+    } else {
+        return +Random.date('T');
+    }
 };
 
 
 
+// --------------------------------------------------
 
 const tagMock = Mock.mock({
     'tags|5-15': [{
         name: '@word',
         title: '@cword(3, 7)',
         intro: '@cparagraph(20, 50)',
-        createTime: getTimeStamp
+        createTime: () => getTimeStamp(true)
     }]
 });
 
@@ -43,7 +50,7 @@ let blogMock = Mock.mock({
         type: getRandomType,
         content: '@cparagraph(10, 20)',
         tagNames: getRandomTagName,
-        createTime: getTimeStamp
+        createTime: () => getTimeStamp(true)
     }]
 });
 
