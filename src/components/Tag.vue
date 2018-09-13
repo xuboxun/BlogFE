@@ -51,10 +51,10 @@ export default {
         }
     }
     .m-tag-large {
-        height: 35px;
-        line-height: 35px;
+        height: 30px;
+        line-height: 30px;
         font-size: 1.05rem;
-        padding: 0 20px;
+        padding: 0 15px;
         border: 1px solid #e8eaec;
         margin-right: 15px;
         margin-bottom: 20px;

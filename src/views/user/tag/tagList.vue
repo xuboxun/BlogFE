@@ -13,7 +13,7 @@
 
 <script>
 import Tag from '@/components/Tag';
-import NoResult from '@/components/NoResult';
+import NoResult from '@/components/NoResult.vue';
 
 export default {
     components: {

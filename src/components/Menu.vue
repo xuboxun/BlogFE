@@ -52,6 +52,7 @@ export default {
     justify-content: space-between;
 
     position: fixed;
+    z-index: 99999;
 
 
     .title {

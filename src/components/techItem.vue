@@ -34,7 +34,7 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: row;
-    padding: 10px 20px;
+    padding: 10px 0px;
 
     .time {
         width: 150px;

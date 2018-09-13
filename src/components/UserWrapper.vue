@@ -32,7 +32,14 @@ export default {
         height: 56px;
     }
     .body {
-
+        width: 80%;
+        margin: 0 auto;
+    }
+    @media screen and (max-width: 480px) {
+        .body {
+            width: 100%;
+            padding: 20px 20px;
+        }
     }
     .foot {
         height: 150px;
