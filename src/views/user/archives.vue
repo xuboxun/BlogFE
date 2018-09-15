@@ -1,66 +1,76 @@
 <template>
     <div class="v-archives">
-        <Collapse v-for="(year, index) in groupBy" :key="index" :title="year.year + '年'">
-            <div slot="body">
-                <Collapse v-for="(month, index) in year.data" :key="index" :title="month.month + '月'">
-                    <div slot="body">
-                        <li v-for="(blog, index) in month.data" :key="index" class="blog-item">
-                            <router-link :to="'/' + blog.type + '/blog/' + blog.name">
-                                {{blog.title}}
-                            </router-link>
-                        </li>
-                    </div>
-                </Collapse>
-            </div>
-        </Collapse>
+        <div class="filter">
+            <Selection v-model="filterTime" :options="options"></Selection>
+        </div>
+        <div>
+            <Collapse v-for="(group, index) in groupBy" :key="index" :title="Filter.yearMonth(group.name)">
+                <div slot="body">
+                    <li v-for="(blog, index) in group.blogs" :key="index" class="blog-item">
+                        <router-link :to="'/' + blog.type + '/blog/' + blog.name">
+                            {{blog.title}}
+                        </router-link>
+                    </li>
+                </div>
+            </Collapse>
+        </div>
     </div>
 </template>
 
 <script>
 import Collapse from '@/components/Collapse.vue';
+import Selection from '@/components/Selection.vue';
 import Filter from '@/utils/filter.js';
 // 按时间顺序归档
 export default {
     components: {
         Collapse,
+        Selection
     },
     data() {
         return {
-            blogs: []
+            Filter: Filter,
+            blogs: [],
+            filterTime: '1',
+            filterType: '',
         };
+    },
+    watch: {
+        'filterTime': function(val) {
+            console.log('filterTime change: ' + val)
+        }
     },
     computed: {
         groupBy: function() {
             let groupBy = [];
 
-            let years = {};
+            let groups = {};
             this.blogs.forEach(blog => {
-                years[blog.year] ? years[blog.year].push(blog) : years[blog.year] = [blog];
+                groups[blog.groupTime] ? groups[blog.groupTime].push(blog) : groups[blog.groupTime] = [blog];
             });
 
-            groupBy = Object.keys(years).map(year => {
-                let months = {};
-                years[year].forEach(blog => {
-                    months[blog.month] ? months[blog.month].push(blog) : months[blog.month] = [blog];
-                });
+            groupBy = Object.keys(groups).map(group => {
                 return {
-                    year: +year,
-                    data: Object.keys(months).map(month => {
-                        return {
-                            month: +month,
-                            data: months[month]
-                        };
-                    }).sort((a, b) => {
-                        return b.month - a.month;
+                    name: +group,
+                    blogs: groups[group].sort((a, b) => {
+                        return b.createTime - a.createTime;
                     })
                 };
             });
             groupBy = groupBy.sort((a, b) => {
-                return b.year -a.year;
+                return b.name -a.name;
             });
             
             return groupBy;
         },
+        options: function() {
+            return this.groupBy.map(group => {
+                return {
+                    value: group.name,
+                    label: Filter.yearMonth(group.name)   
+                };
+            });
+        }
     },
     methods: {
         searchArchives() {
@@ -68,8 +78,7 @@ export default {
                 this.blogs = res.data.data.items.map(blog => {
                     return {
                         ...blog,
-                        year: +Filter.time(blog.createTime, 'YYYY'),
-                        month: +Filter.time(blog.createTime, 'MM'),
+                        groupTime: +Filter.time(blog.createTime, 'YYYYMM'),
                     };
                 });
             });
@@ -83,6 +92,10 @@ export default {
 
 <style lang="scss">
 .v-archives {
+    .filter {
+        height: 50px;
+        line-height: 50px;
+    }
     .blog-item {
         height: 30px;
         line-height: 30px;

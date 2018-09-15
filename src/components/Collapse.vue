@@ -34,12 +34,11 @@ export default {
     .head {
         height: 30px;
         line-height: 30px;
-        text-indent: 10px;
-        background: #f8f8f9;
         margin-bottom: 5px;
+        text-indent: 5px;
 
         .title {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: #17233d;
             font-weight: 400;
         }
@@ -47,12 +46,7 @@ export default {
     .body {
         opacity: 1;
         transition: all 0.5s ease;
-        text-indent: 20px;
-
-        // 嵌套组件
-        .m-collapse {
-            margin-top: 10px;
-        }
+        text-indent: 15px;
     }
     .body-fold {
         opacity: 0;
