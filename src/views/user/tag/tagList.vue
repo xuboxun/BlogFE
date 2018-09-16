@@ -5,7 +5,7 @@
             <button class="btn-search" @click="search"><Icon name="search" /></button>
         </div>
         <div class="tags">
-            <Tag v-for="(tag, index) in filterTags" :key="index" :name="tag.name" :title="tag.title" size="large" />
+            <Tag v-for="tag in filterTags" :key="tag.name" :name="tag.name" :title="tag.title" size="large" />
             <NoResult v-if="filterTags.length === 0" />
         </div>
     </div>
@@ -30,6 +30,9 @@ export default {
     watch: {
         '$store.state.tag.tags': function() {
             this.init();
+        },
+        'query': function() {
+            this.search();
         }
     },
     methods: {
@@ -53,7 +56,7 @@ export default {
 .v-tag-list {
   .search {
     width: 600px;
-    margin: 20px 0 50px 0;
+    margin: 20px auto 50px auto;
     position: relative;
     padding: 5px 50px 5px 10px;
     border: 1px solid #eee;

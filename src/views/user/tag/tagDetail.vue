@@ -7,7 +7,7 @@
         <div class="blogs">
             <h4>博客列表</h4>
             <ul class="list">
-                <li class="item" v-for="(blog, index) in blogList" :key="index">
+                <li class="item" v-for="blog in blogList" :key="blog.name">
                     <router-link :to="'/' + blog.type + '/blog/' + blog.name">
                         <font class="time">{{Filter.time(blog.createTime)}}</font>
                         <font class="name">{{blog.title}}</font>

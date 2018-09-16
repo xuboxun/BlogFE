@@ -1,6 +1,6 @@
 <template>
     <div class="v-tech-list">
-        <BlogItem v-for="(tech, index) in blogs" :blog="tech" :key="index"></BlogItem>
+        <BlogItem v-for="tech in blogs" :blog="tech" :key="tech.name"></BlogItem>
     </div>
 </template>
 

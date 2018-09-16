@@ -4,9 +4,9 @@
             <Selection v-model="filterTime" :options="options" width="150px"></Selection>
         </div>
         <div>
-            <Collapse v-for="(group, index) in groupBy" :key="index" :title="Filter.yearMonth(group.name)">
+            <Collapse v-for="group in groupBy" :key="group.name" :title="Filter.yearMonth(group.name)">
                 <div slot="body">
-                    <li v-for="(blog, index) in group.blogs" :key="index" class="blog-item">
+                    <li v-for="blog in group.blogs" :key="blog.name" class="blog-item">
                         <router-link :to="'/' + blog.type + '/blog/' + blog.name">
                             {{blog.title}}
                         </router-link>

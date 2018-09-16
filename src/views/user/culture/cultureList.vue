@@ -1,6 +1,6 @@
 <template>
     <div class="v-culture-list">
-        <BlogItem v-for="(culture, index) in blogs" :blog="culture" :key="index"></BlogItem>
+        <BlogItem v-for="culture in blogs" :blog="culture" :key="culture.name"></BlogItem>
     </div>
 </template>
 
