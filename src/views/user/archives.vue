@@ -1,10 +1,11 @@
 <template>
     <div class="v-archives">
         <div class="filter">
-            <Selection v-model="filterTime" :options="options" width="150px"></Selection>
+            <Selection v-model="filterTime" :options="timeOptions" width="150px"></Selection>
+            <Selection v-model="filterType" :options="typeOption" style="margin-left: 20px;"></Selection>
         </div>
-        <div>
-            <Collapse v-for="group in groupBy" :key="group.name" :title="Filter.yearMonth(group.name)">
+        <div class="archives-list">
+            <Collapse v-for="group in filterBlogs" :key="group.name" :title="Filter.yearMonth(group.name)">
                 <div slot="body">
                     <li v-for="blog in group.blogs" :key="blog.name" class="blog-item">
                         <router-link :to="'/' + blog.type + '/blog/' + blog.name">
@@ -13,6 +14,7 @@
                     </li>
                 </div>
             </Collapse>
+            <NoResult :show="!filterBlogs.length" />
         </div>
     </div>
 </template>
@@ -20,12 +22,14 @@
 <script>
 import Collapse from '@/components/Collapse.vue';
 import Selection from '@/components/Selection.vue';
+import NoResult from '@/components/NoResult.vue';
 import Filter from '@/utils/filter.js';
 // 按时间顺序归档
 export default {
     components: {
         Collapse,
-        Selection
+        Selection,
+        NoResult,
     },
     data() {
         return {
@@ -33,12 +37,13 @@ export default {
             blogs: [],
             filterTime: '',
             filterType: '',
+            typeOption: [
+                { value: '', label: '全部类型' },
+                { value: 'tech', label: '技术' },
+                { value: 'culture', label: '随笔' },
+                { value: 'serial', label: '专栏' }
+            ]
         };
-    },
-    watch: {
-        'filterTime': function(val) {
-            console.log('filterTime change: ' + val)
-        }
     },
     computed: {
         groupBy: function() {
@@ -51,25 +56,48 @@ export default {
 
             groupBy = Object.keys(groups).map(group => {
                 return {
-                    name: +group,
+                    name: group,
                     blogs: groups[group].sort((a, b) => {
                         return b.createTime - a.createTime;
                     })
                 };
             });
             groupBy = groupBy.sort((a, b) => {
-                return b.name -a.name;
+                return parseInt(b.name) - parseInt(a.name);
             });
             
             return groupBy;
         },
-        options: function() {
-            return this.groupBy.map(group => {
-                return {
+        filterBlogs: function() {
+            if (this.filterTime === '' && this.filterType === '') {
+                return this.groupBy;
+            } else {
+                let arr = [];
+                this.groupBy.forEach(group => {
+                    if (group.name.indexOf(this.filterTime) > -1) {
+                        let blogs = group.blogs.filter(blog => {
+                            return blog.type.indexOf(this.filterType) > -1;
+                        });
+                        if (blogs.length > 0) {
+                            arr.push({
+                                name: group.name,
+                                blogs: blogs
+                            });
+                        }
+                    }
+                })
+                return arr;
+            }
+        },
+        timeOptions: function() {
+            let arr = [{value: '', label: '全部时间'}];
+            this.groupBy.forEach(group => {
+                arr.push({
                     value: group.name,
                     label: Filter.yearMonth(group.name)   
-                };
+                });
             });
+            return arr;
         }
     },
     methods: {
@@ -93,26 +121,43 @@ export default {
 <style lang="scss">
 .v-archives {
     .filter {
-        height: 50px;
-        line-height: 50px;
-        margin-bottom: 10px;
+        width: 100%;
+        position: fixed;
+        top: 56px;
+        left: 0;
+        padding: 30px 10%;
+        z-index: 999;
+        background: #fff;
     }
-    .blog-item {
-        height: 30px;
-        line-height: 30px;
-        a {
-            display: inline-block;
-            height: 100%;
+    .archives-list {
+        position: relative;
+        top: 80px;
+
+        .blog-item {
+            height: 30px;
+            line-height: 30px;
+            a {
+                display: inline-block;
+                height: 100%;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .blog-item {
+                a {
+                    width: 100%;
+                    overflow: hidden;
+                    white-space: nowrap;;
+                    text-overflow: ellipsis;
+                }
+            }
         }
     }
     @media screen and (max-width: 480px) {
-        .blog-item {
-            a {
-                width: 100%;
-                overflow: hidden;
-                white-space: nowrap;;
-                text-overflow: ellipsis;
-            }
+        .filter {
+            padding: 20px 20px;
+        }
+        .archives-list {
+            top: 45px;
         }
     }
 }

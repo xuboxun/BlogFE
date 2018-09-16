@@ -6,6 +6,10 @@
         </div>
         <Icon @click.native="toggleMenu" class="mbbtn icon" :name="!showMenu ? 'bars' : 'times'" />
         <div class="menu" :class="!showMenu ? 'menu-hide' : ''">
+            <li class="menu-items">
+                <input type="text" v-model="keyword" class="search-input" @keyup.enter="search" />
+                <Icon name="search" class="search-icon" @click.native="search" />
+            </li>
             <li class="menu-items"><router-link to="/home">首页</router-link></li>
             <li class="menu-items"><router-link to="/tech">技术</router-link></li>
             <li class="menu-items"><router-link to="/culture">随笔</router-link></li>
@@ -25,6 +29,7 @@ export default {
             logo,
             showMenu: false,
             activeMenu: '',
+            keyword: '',
         };
     },
     watch: {
@@ -35,6 +40,13 @@ export default {
     methods: {
         toggleMenu() {
             this.showMenu = !this.showMenu;
+        },
+        search(e) {
+            let keyword = this.keyword.trim();
+            if (keyword !== '') {
+                this.$router.push({ name: 'search', query: {keyword: keyword} });
+                this.keyword = '';
+            }
         },
     },
 };
@@ -89,9 +101,12 @@ export default {
     }
 
     .menu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         .menu-items {
-            float: left;
-            padding: 10px 15px ;
+            padding: 10px 15px;
+            position: relative;
 
             & + .menu-items {
                 margin-left: 15px;
@@ -102,12 +117,29 @@ export default {
                 width: 100%;
                 height: 100%;
             }
+
+            .search-input {
+                height: 30px;
+                width: 100%;
+                border-radius: 30px;
+                border: 1px solid #e8eaec;
+                padding: 0 12px;
+                color: #808695;
+            }
+            .search-icon {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 26px;
+                color: #c5c8ce;
+            }
         }
     }
 
     @media screen and (max-width: 480px) {
         .menu {
-            height: 280px;
+            flex-direction: column;
+            max-height: 500px;
             width: 100%;
             position: absolute;
             left: 0;
@@ -131,7 +163,7 @@ export default {
 
         .menu-hide {
             transform: translateY(-80px);
-            height: 0px;
+            max-height: 0px;
             opacity: 0;
         }
     }

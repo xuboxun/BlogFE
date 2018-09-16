@@ -1,12 +1,15 @@
 <template>
-    <div class="m-no-result">
+    <div class="m-no-result" v-if="show">
         <h3>啊哦，没有你要找的东西哦～</h3>
     </div>
 </template>
 
 <script>
 export default {
-    
+    name: 'NoResult',
+    props: {
+        show: Boolean
+    }
 };
 </script>
 

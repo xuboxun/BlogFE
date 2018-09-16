@@ -43,9 +43,17 @@ export default {
         toggleSelect() {
             this.dropDown = !this.dropDown;
         },
+        setInitLabel() {
+            let find = this.options.find(item => {
+                return item.value === this.value;
+            });
+            if (find) {
+                this.label = find.label;
+            }
+        }
     },
     mounted() {
-
+        this.setInitLabel();
     }
 };
 </script>
@@ -56,7 +64,9 @@ export default {
     min-width: 100px;
     height: 30px;
     line-height: 30px;
+    margin-right: 10px;
     position: relative;
+    cursor: pointer;
 
     .select {
         display: inline-block;

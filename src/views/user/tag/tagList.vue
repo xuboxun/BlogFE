@@ -6,7 +6,7 @@
         </div>
         <div class="tags">
             <Tag v-for="tag in filterTags" :key="tag.name" :name="tag.name" :title="tag.title" size="large" />
-            <NoResult v-if="filterTags.length === 0" />
+            <NoResult :show="!filterTags.length" />
         </div>
     </div>
 </template>
