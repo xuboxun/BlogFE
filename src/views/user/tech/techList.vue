@@ -1,23 +1,23 @@
 <template>
     <div class="v-tech-list">
-        <TechItem v-for="(tech, index) in techs" :tech="tech" :key="index"></TechItem>
+        <BlogItem v-for="(tech, index) in blogs" :blog="tech" :key="index"></BlogItem>
     </div>
 </template>
 
 <script>
-import TechItem from '@/components/techItem';
+import BlogItem from '@/components/BlogItem';
 export default {
     components: {
-        TechItem,
+        BlogItem,
     },
     data() {
         return {
-            techs: [],
+            blogs: [],
         };
     },
     mounted() {
         this.$http.get('/api/tech/list').then(res => {
-            this.techs = res.data.data.items;
+            this.blogs = res.data.data.items;
         });
     },
 };

@@ -1,14 +1,12 @@
 <template>
-    <div class="m-selection">
+    <div class="m-selection" :style="{width: width}">
         <div class="select" @click="toggleSelect" :class="border ? 'select-border' : ''">
             <input type="hidden" :value="innerValue">
             <span>{{label}}</span>
             <Icon name="angle-down" class="icon" :class="dropDown ? 'icon-dropdown' : ''" />
         </div>
         <div class="option" :class="dropDown ? 'option-dropdown' : ''">
-            <ul>
-                <li v-for="(option, index) in options" :key="index" @click="setValue(index)">{{option.label}}</li>
-            </ul>
+            <li v-for="(option, index) in options" :key="index" @click="setValue(index)">{{option.label}}</li>
         </div>
     </div>
 </template>
@@ -17,6 +15,7 @@
 export default {
     name: 'Selection',
     props: {
+        width: String,
         value: [String, Number],
         width: [String, Number],
         border: Boolean,
@@ -45,11 +44,15 @@ export default {
             this.dropDown = !this.dropDown;
         },
     },
+    mounted() {
+
+    }
 };
 </script>
 
 <style lang="scss">
 .m-selection {
+    display: inline-block;
     min-width: 100px;
     height: 30px;
     line-height: 30px;
@@ -93,6 +96,7 @@ export default {
         width: 100%;
         position: absolute;
         top: 35px;
+        left: 0;
         border: 1px solid #f0f0f0;
         box-shadow: 0px 0px 4px #ddd;
         border-radius: 3px;
@@ -101,17 +105,15 @@ export default {
         max-height: 0;
         opacity: 0;
 
-        ul {
-            padding: 3px 0;
+        padding: 3px 0;
 
-            li {
-                padding: 0 10px;
-                color: #515a6e;
-                border-bottom: 1px solid #e8eaec;
-            }
-            li:last-child {
-                border-bottom: 0;
-            }
+        li {
+            padding: 0 10px;
+            color: #515a6e;
+            border-bottom: 1px solid #e8eaec;
+        }
+        li:last-child {
+            border-bottom: 0;
         }
     }
     .option-dropdown {

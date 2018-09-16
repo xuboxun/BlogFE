@@ -1,7 +1,10 @@
 <template>
     <div class="m-collapse">
         <div class="head" @click="toggle">
-            <h3 class="title">{{title}}</h3>
+            <h3 class="title">
+                {{title}}
+                <Icon name="angle-up" class="icon" :class="fold ? 'icon-dropdown' : ''" />
+            </h3>
         </div>
         <div class="body" :class="fold ? 'body-fold' : ''">
             <slot name="body"></slot>
@@ -35,23 +38,37 @@ export default {
         height: 30px;
         line-height: 30px;
         margin-bottom: 5px;
-        text-indent: 5px;
+        padding-left: 10px;
 
         .title {
             font-size: 1.1rem;
             color: #17233d;
             font-weight: 400;
+            position: relative;
+
+            .icon {
+                color: #808695;
+                margin-left: 15px;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%) rotate(0);
+                transition: all 0.3s ease;
+            }
+            .icon-dropdown {
+                transform: translateY(-50%) rotate(180deg);
+            }
         }
     }
     .body {
         opacity: 1;
-        transition: all 0.5s ease;
-        text-indent: 15px;
+        transition: all 0.3s ease;
+        padding-left: 25px;
+        overflow: hidden;
+        max-height: 1000px;
     }
     .body-fold {
         opacity: 0;
-        height: 0;
-        display: none;
+        max-height: 0;
     }
     & + .m-collapse {
         margin-top: 30px;

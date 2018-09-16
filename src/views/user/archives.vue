@@ -1,7 +1,7 @@
 <template>
     <div class="v-archives">
         <div class="filter">
-            <Selection v-model="filterTime" :options="options"></Selection>
+            <Selection v-model="filterTime" :options="options" width="150px"></Selection>
         </div>
         <div>
             <Collapse v-for="(group, index) in groupBy" :key="index" :title="Filter.yearMonth(group.name)">
@@ -31,7 +31,7 @@ export default {
         return {
             Filter: Filter,
             blogs: [],
-            filterTime: '1',
+            filterTime: '',
             filterType: '',
         };
     },
@@ -95,6 +95,7 @@ export default {
     .filter {
         height: 50px;
         line-height: 50px;
+        margin-bottom: 10px;
     }
     .blog-item {
         height: 30px;

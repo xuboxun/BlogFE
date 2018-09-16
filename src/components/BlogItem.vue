@@ -1,10 +1,10 @@
 <template>
-    <div class="m-techitem">
-        <div class="time">{{Filter.time(tech.createTime)}}</div>
+    <div class="m-blogitem">
+        <div class="time">{{Filter.time(blog.createTime)}}</div>
         <div class="info">
-            <h3 class="title">{{tech.title}}</h3>
+            <h3 class="title">{{blog.title}}</h3>
             <p class="tags">
-                <Tag v-for="(name, index) in tech.tagNames" :key="index" :name="name" />
+                <Tag v-for="(name, index) in blog.tagNames" :key="index" :name="name" />
             </p>
         </div>
     </div>
@@ -14,12 +14,12 @@
 import Filter from '@/utils/filter.js';
 import Tag from '@/components/Tag';
 export default {
-    name: 'TechItem',
+    name: 'BlogItem',
     components: {
         Tag,
     },
     props: {
-        tech: Object
+        blog: Object
     },
     data() {
         return {
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss">
-.m-techitem {
+.m-blogitem {
     width: 100%;
     display: flex;
     flex-direction: row;
