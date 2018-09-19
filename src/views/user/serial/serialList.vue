@@ -1,15 +1,19 @@
 <template>
     <div class="v-serial-list">
-        <div class="serial-item" v-for="item in [1,2,3,4,5]" :key="item">
+        <div class="serial-item" v-for="(serial, index) in serialList" :key="index">
             <img :src="SerialBG" alt="" class="item-bg">
             <h3 class="name">
-                <router-link to="/serial/detail/id">
-                    专栏名称
+                <router-link :to="'/serial/detail/' + serial.name">
+                    {{serial.title}}
                     <Icon name="link" width="14" height="14" />
                 </router-link>
             </h3>
-            <p class="intro">介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍</p>
-            <p class="update">最近更新：<router-link to="/serial/blog/test">11. ***********</router-link></p>
+            <p class="intro">{{serial.intro}}</p>
+            <p class="update">
+                最近更新：
+                <router-link v-if="recentList[serial.name]" :to="'/serial/blog/' + recentList[serial.name].name">{{recentList[serial.name].title}}</router-link>
+                <font v-else>没有更新</font>
+            </p>
         </div>
     </div>
 </template>
@@ -20,8 +24,26 @@ export default {
     data() {
         return {
             SerialBG,
+            serialList: [],
+            recentList: [],
         };
     },
+    methods: {
+        searchSerial() {
+            this.$http.get('/api/serial/list').then(res => {
+                this.serialList = res.data.data.items;
+            });
+        },
+        searchRecent() {
+            this.$http.get('/api/serial/recent').then(res => {
+                this.recentList = res.data.data;
+            });
+        }
+    },
+    created() {
+        this.searchSerial();
+        this.searchRecent();
+    }
 };
 </script>
 

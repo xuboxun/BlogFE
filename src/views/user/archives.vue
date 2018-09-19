@@ -85,7 +85,7 @@ export default {
                             });
                         }
                     }
-                })
+                });
                 return arr;
             }
         },

@@ -2,8 +2,8 @@ const Mock = require('mockjs');
 const Random = Mock.Random;
 
 const getRandomType = function() {
-    const types = ['tech', 'culture'];
-    let index = Math.random() > 0.5 ? 1 : 0;
+    const types = ['tech', 'culture', 'serial'];
+    let index = Math.floor(Math.random() * 3);
     return types[index];
 };
 
@@ -16,6 +16,11 @@ const getRandomTagName = function() {
         tagNames.push(tagMock.tags[Random.integer(0, max)].name);
     }
     return tagNames;
+};
+
+const getRandomSerialName = function() {
+    const max = serialMock.serials.length - 1;
+    return serialMock.serials[Random.integer(0, max)].name;
 };
 
 // 生成时间戳number
@@ -42,6 +47,15 @@ const tagMock = Mock.mock({
     }]
 });
 
+let serialMock = Mock.mock({
+    'serials|1-10': [{
+        name: '@word(10, 20)',
+        title: '@ctitle(5, 15)',
+        intro: '@cparagraph(10, 30)',
+        createTime: () => getTimeStamp(true)
+    }]
+});
+
 
 let blogMock = Mock.mock({
     'blogs|50-100': [{
@@ -50,11 +64,13 @@ let blogMock = Mock.mock({
         type: getRandomType,
         content: '@cparagraph(10, 20)',
         tagNames: getRandomTagName,
+        serialName: getRandomSerialName,
         createTime: () => getTimeStamp(true)
     }]
 });
 
 module.exports = {
     ...tagMock,
+    ...serialMock,
     ...blogMock,
 };
