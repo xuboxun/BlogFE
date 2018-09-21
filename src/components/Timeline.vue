@@ -49,14 +49,13 @@ export default {
 
 <style lang="scss">
 .m-timeline {
-    padding-top: 20px;
     .timeline-item {
         min-height: 50px;
         display: flex;
         position: relative;
 
         .item-bar {
-            width: 25px;
+            width: 20px;
             flex: 0 0 auto;
             display: flex;
             flex-direction: column;
@@ -87,16 +86,18 @@ export default {
         .item-content {
             display: inline-block;
             min-width: 200px;
-            padding-left: 10px;
+            padding-left: 5px;
             padding-bottom: 20px;
 
             .title {
                 line-height: 1.5rem;
                 font-size: 1rem;
                 margin-bottom: 10px;
+                color: #515a6e;
             }
             .content {
                 font-size: 0.9rem;
+                color: #808695;
             }
         }
 
