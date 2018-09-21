@@ -7,7 +7,12 @@
             </div>
             <div class="item-content">
                 <p class="title">{{item.title}}</p>
-                <p class="content">{{item.content}}</p>
+                <div class="content">
+                    <p v-if="typeof item.content === 'string'">{{item.content}}</p>
+                    <ul v-else>
+                        <li class="content-li" v-for="(li, index) in item.content" :key="index">{{li}}</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -29,16 +34,12 @@ export default {
             default: () => {
                 return [
                     {
-                        title: '标题标题标题标题标题标题标题标题标题标题标题标题',
-                        content: 'content'
+                        title: '测试标题1',
+                        content: '测试内容1'
                     },
                     {
-                        title: 'title',
-                        content: 'content'
-                    },
-                    {
-                        title: 'title',
-                        content: 'content'
+                        title: '测试标题2',
+                        content: '测试内容2'
                     }
                 ];
             }
@@ -98,6 +99,11 @@ export default {
             .content {
                 font-size: 0.9rem;
                 color: #808695;
+
+                .content-li {
+                    line-height: 25px;
+                    list-style-type: circle;
+                }
             }
         }
 
