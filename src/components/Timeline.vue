@@ -6,7 +6,7 @@
                 <div class="line"></div>
             </div>
             <div class="item-content">
-                <p class="title">{{item.title}}</p>
+                <p class="title">{{item.time}} {{item.title}}</p>
                 <div class="content">
                     <p v-if="typeof item.content === 'string'">{{item.content}}</p>
                     <ul v-else>
@@ -100,6 +100,9 @@ export default {
                 font-size: 0.9rem;
                 color: #808695;
 
+                ul {
+                    padding-left: 20px;
+                }
                 .content-li {
                     line-height: 25px;
                     list-style-type: circle;
