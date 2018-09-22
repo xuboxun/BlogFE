@@ -69,8 +69,17 @@ let blogMock = Mock.mock({
     }]
 });
 
+let systemMock = Mock.mock({
+    'versions|10-20': [{
+        version: '@ctitle(1, 10)',
+        content: '@cparagraph',
+        time: () => getTimeStamp(true),
+    }]
+});
+
 module.exports = {
     ...tagMock,
     ...serialMock,
     ...blogMock,
+    ...systemMock
 };
