@@ -16,9 +16,7 @@ const archivesApi = [
                     createTime: item.createTime,
                 };
             });
-            data.sort((a, b) => {
-                return a - b > 0;
-            });
+
             res.json(response({
                 items: data,
                 total: data.length

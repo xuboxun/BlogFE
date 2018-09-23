@@ -1,6 +1,14 @@
 import moment from 'moment';
+import Const from './const';
 
 let Filter = {
+    blogType: function(key) {
+        let typeName = Const.blogType[key];
+        if (typeName) {
+            return typeName;
+        }
+        return '未知类型';
+    },
     time: function(input, format) {
         if (!format) {
             return moment(input).format('YYYY-MM-DD');

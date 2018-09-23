@@ -16,3 +16,11 @@ export default {
 };
 </script>
 
+<style lang="scss">
+.m-side {
+    width: 300px;
+    height: 600px;
+    border: 1px solid #dcdee2;
+}
+</style>
+
