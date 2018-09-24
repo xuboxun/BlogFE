@@ -69,7 +69,6 @@ const serialApi = [
                 });
                 group[serialName] = group[serialName][0];
             }
-            console.log(group)
             res.json(response({
                 ...group
             }));
