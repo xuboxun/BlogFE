@@ -2,16 +2,19 @@
     <div class="v-tech-list">
         <BlogItem v-for="tech in blogs" :blog="tech" :key="tech.name"></BlogItem>
         <Pager></Pager>
+        <Side />
     </div>
 </template>
 
 <script>
 import BlogItem from '@/components/BlogItem';
 import Pager from '@/components/Pager';
+import Side from '@/components/Side';
 export default {
     components: {
         BlogItem,
         Pager,
+        Side,
     },
     data() {
         return {
