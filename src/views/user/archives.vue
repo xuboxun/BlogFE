@@ -1,8 +1,10 @@
 <template>
     <div class="v-archives">
         <div class="filter">
-            <Selection v-model="filterTime" :options="timeOptions" width="150px"></Selection>
-            <Selection v-model="filterType" :options="typeOption" style="margin-left: 20px;"></Selection>
+            <div class="body-width-responsive filter-content">
+                <Selection v-model="filterTime" :options="timeOptions" width="150px"></Selection>
+                <Selection v-model="filterType" :options="typeOption" style="margin-left: 20px;"></Selection>
+            </div>
         </div>
         <div class="archives-list">
             <Collapse v-for="group in filterBlogs" :key="group.name" :title="Filter.yearMonth(group.name)">
@@ -123,11 +125,15 @@ export default {
     .filter {
         width: 100%;
         position: fixed;
-        top: 56px;
         left: 0;
-        padding: 30px 10%;
+        top: 56px;
+        padding: 30px;
         z-index: 999;
         background: #fff;
+
+        .filter-content {
+            margin: 0 auto;
+        }
     }
     .archives-list {
         position: relative;

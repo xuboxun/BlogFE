@@ -3,7 +3,7 @@
         <div class="view-wrapper">
             <div class="view-body">
                 <BlogItem v-for="tech in blogs" :blog="tech" :key="tech.name"></BlogItem>
-                <Pager></Pager>
+                <Pager :pageNum="pager.num" :pageSize="pager.size" :total="pager.total"></Pager>
             </div>
             <div class="view-side">
                 <Side />
@@ -25,12 +25,28 @@ export default {
     data() {
         return {
             blogs: [],
+            pager: {
+                num: 1,
+                size: 10,
+                total: 0,
+            }
         };
     },
+    methods: {
+        searchList() {
+            this.$http.get('/api/tech/list', {
+                params: {
+                    pageNum: this.pager.num,
+                    pageSize: this.pager.size,
+                }
+            }).then(res => {
+                this.blogs = res.data.data.items;
+                this.pager.total = res.data.data.total;
+            });
+        }
+    },
     mounted() {
-        this.$http.get('/api/tech/list').then(res => {
-            this.blogs = res.data.data.items;
-        });
+        this.searchList();
     },
 };
 </script>

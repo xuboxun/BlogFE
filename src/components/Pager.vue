@@ -37,7 +37,7 @@ export default {
         },
         total: {
             type: Number,
-            default: 105,
+            default: 0,
         },
         onChange: Function
     },
@@ -55,7 +55,6 @@ export default {
         },
         next() {
             if (this.innerPageNum !== this.pageCount) {
-                console.log(this.innerPageNum)
                 this.innerPageNum = this.innerPageNum + 1;
             }
         },

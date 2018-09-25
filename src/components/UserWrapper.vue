@@ -3,7 +3,7 @@
         <div class="head">
             <TopMenu></TopMenu>
         </div>
-        <div class="body">
+        <div class="body-width-responsive body">
             <router-view></router-view>
         </div>
         <div class="foot">
@@ -28,15 +28,22 @@ export default {
 <style lang="scss">
 .m-userwrapper {
     width: 100%;
+
+    .body-width-responsive {
+        width: 1040px;
+    }
+
     & > .head {
         height: 56px;
     }
     & > .body {
-        width: 80%;
         margin: 0 auto;
         padding: 20px 20px;
     }
     @media screen and (max-width: 480px) {
+        .body-width-responsive {
+            width: 100%;
+        }
         & > .body {
             width: 100%;
         }

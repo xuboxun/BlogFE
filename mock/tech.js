@@ -7,7 +7,7 @@ const techApi = [
         url: '/api/tech/list',
         handle: function (req, res) {
             let query = {
-                page: req.query.page || 1,
+                pageNum: req.query.pageNum || 1,
                 pageSize: req.query.pageSize || 10,
             };
             let allTechs = mockData.blogs.filter((item) => {
@@ -17,8 +17,8 @@ const techApi = [
                 return b.createTime - a.createTime;
             });
             let techs = allTechs.filter((item, index) => {
-                return index < query.page * query.pageSize &&
-                        index >= (query.page - 1) * query.pageSize;
+                return index < query.pageNum * query.pageSize &&
+                        index >= (query.pageNum - 1) * query.pageSize;
             });
             techs = techs.map(item => {
                 return {
