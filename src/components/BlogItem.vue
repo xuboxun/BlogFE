@@ -2,7 +2,7 @@
     <div class="m-blogitem">
         <div class="time">{{Filter.time(blog.createTime)}}</div>
         <div class="info">
-            <h3 class="title">{{blog.title}}</h3>
+            <h3 class="title"><router-link :to="'/' + blog.type + '/blog/' + blog.name">{{blog.title}}</router-link></h3>
             <p class="tags">
                 <Tag v-for="(name, index) in blog.tagNames" :key="index" :name="name" />
             </p>

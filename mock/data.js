@@ -1,6 +1,10 @@
 const Mock = require('mockjs');
 const Random = Mock.Random;
 
+const fs = require('fs');
+const path = require('path');
+const markdown = fs.readFileSync(path.resolve(__dirname, './markdown.md')).toString();
+
 const getRandomType = function() {
     const types = ['tech', 'culture', 'serial'];
     let index = Math.floor(Math.random() * 3);
@@ -62,7 +66,7 @@ let blogMock = Mock.mock({
         name: '@word(10, 20)',
         title: '@ctitle(5, 20)',
         type: getRandomType,
-        content: '@cparagraph(10, 20)',
+        content: markdown,
         tagNames: getRandomTagName,
         serialName: getRandomSerialName,
         createTime: () => getTimeStamp(true)

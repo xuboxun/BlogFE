@@ -38,10 +38,18 @@ export default {
         margin-right: 8px;
         margin-bottom: 5px;
         padding: 0 10px;
+        transition: all 0.5s ease;
+
+        &:hover {
+            box-shadow: 1px 1px 5px #dcdee2;
+        }
 
         a {
             width: 100%;
             color: #80848f;
+        }
+        a:hover {
+            color: #515a6e;
         }
 
         @media screen and (max-width: 480px){

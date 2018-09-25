@@ -1,11 +1,13 @@
 <template>
-    <div class="view-wrapper v-culture-list">
-        <div class="view-body">
-            <BlogItem v-for="culture in blogs" :blog="culture" :key="culture.name"></BlogItem>
-            <Pager></Pager>
-        </div>
-        <div class="view-side">
-            <Side />
+    <div class="v-culture-list">
+        <div class="view-wrapper">
+            <div class="view-body">
+                <BlogItem v-for="culture in blogs" :blog="culture" :key="culture.name"></BlogItem>
+                <Pager></Pager>
+            </div>
+            <div class="view-side">
+                <Side />
+            </div>
         </div>
     </div>
 </template>

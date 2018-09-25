@@ -1,18 +1,40 @@
 <template>
     <div class="v-tech-blog">
-        techblog
+        <div class="view-wrapper">
+            <div class="view-body">
+                <MarkdownView :article="blog.content" />
+            </div>
+            <div class="view-side">
+                目录
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import MarkdownView from '@/components/MarkdownView.vue';
 export default {
+    components: {
+        MarkdownView,
+    },
     data() {
         return {
-
+            blog: {},
         };
     },
+    methods: {
+        searchBlog() {
+            this.$http.get('/api/tech/detail', {
+                params: {
+                    name: this.$route.params.name
+                }
+            }).then(res => {
+                this.blog = res.data.data;
+            });
+        }
+    },
     created() {
-        console.log(this.$route.params.name);
+        this.searchBlog();
     }
 };
 </script>
