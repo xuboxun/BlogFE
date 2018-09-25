@@ -13,6 +13,9 @@ const cultureApi = [
             let blogs = mockData.blogs.filter((item) => {
                 return item.type === 'culture';
             });
+            blogs.sort((a, b) => {
+                return b.createTime - a.createTime;
+            });
             let cultures = blogs.filter((item, index) => {
                 return index < query.page * query.pageSize &&
                         index >= (query.page - 1) * query.pageSize;

@@ -1,7 +1,7 @@
 <template>
     <div class="m-menu">
         <div class="title">
-            <img :src="logo" alt="logo" class="logo">
+            <img src="@/images/logo.jpg" alt="logo" class="logo">
             <font class="name">名字</font>
         </div>
         <Icon @click.native="toggleMenu" class="mbbtn icon" :name="!showMenu ? 'bars' : 'times'" />
@@ -22,11 +22,9 @@
 </template>
 
 <script>
-import logo from '@/images/logo.jpg';
 export default {
     data() {
         return {
-            logo,
             showMenu: false,
             activeMenu: '',
             keyword: '',

@@ -54,6 +54,32 @@ export default {
             color: #515a6e;
         }
     }
+    .view-wrapper {
+        display: flex;
+
+        .view-body {
+            flex: 1 1 auto;    
+        }
+
+        .view-side {
+            flex: 0 0 auto;
+            padding-top: 40px;
+            padding-left: 100px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .view-wrapper {
+            flex-direction: column;
+
+            .view-side {
+                flex: 1 1 auto;
+                padding-top: 0;
+                padding-left: 0;
+                display: none;
+            }
+        }
+    }
 }
 </style>
 

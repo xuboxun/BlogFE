@@ -1,14 +1,24 @@
 <template>
-    <div class="v-culture-list">
-        <BlogItem v-for="culture in blogs" :blog="culture" :key="culture.name"></BlogItem>
+    <div class="view-wrapper v-culture-list">
+        <div class="view-body">
+            <BlogItem v-for="culture in blogs" :blog="culture" :key="culture.name"></BlogItem>
+            <Pager></Pager>
+        </div>
+        <div class="view-side">
+            <Side />
+        </div>
     </div>
 </template>
 
 <script>
-import BlogItem from '@/components/BlogItem'
+import BlogItem from '@/components/BlogItem';
+import Pager from '@/components/Pager.vue';
+import Side from '@/components/Side.vue';
 export default{
     components: {
         BlogItem,
+        Pager,
+        Side,
     },
     data() {
         return {

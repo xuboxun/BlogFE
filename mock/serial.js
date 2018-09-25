@@ -57,7 +57,7 @@ const serialApi = [
         url: '/api/serial/recent',
         handle: function(req, res) {
             let blogs = mockData.blogs.filter(item => {
-                return item.type = 'serial';
+                return item.type === 'serial';
             });
             let group = {};
             blogs.forEach(blog => {

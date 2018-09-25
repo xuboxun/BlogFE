@@ -1,7 +1,7 @@
 <template>
     <div class="m-side">
         <div class="base-info">
-            <img class="image" :src="Me" />
+            <img class="image" src="@/images/me.jpg" />
             <h2 class="name">徐博勋</h2>
             <p class="word">你心中的火焰，灼烧的不仅是你的内心，还会成为照亮世界的光，温暖他人。</p>
             <div class="accounts">
@@ -17,13 +17,12 @@
 </template>
 
 <script>
-import Me from '@/images/me.jpg';
 export default {
     name: 'Side',
     data() {
         return {
-            Me,
-        }
+
+        };
     } 
 };
 </script>

@@ -1,8 +1,12 @@
 <template>
-    <div class="v-tech-list">
-        <BlogItem v-for="tech in blogs" :blog="tech" :key="tech.name"></BlogItem>
-        <Pager></Pager>
-        <Side />
+    <div class="view-wrapper v-tech-list">
+        <div class="view-body">
+            <BlogItem v-for="tech in blogs" :blog="tech" :key="tech.name"></BlogItem>
+            <Pager></Pager>
+        </div>
+        <div class="view-side">
+            <Side />
+        </div>
     </div>
 </template>
 

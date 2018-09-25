@@ -1,12 +1,17 @@
 <template>
-    <div class="v-tag-list">
-        <div class="search">
-            <input class="query-input" type="text" v-model="query" @keyup.enter="search">
-            <button class="btn-search" @click="search"><Icon name="search" /></button>
+    <div class="view-wrapper v-tag-list">
+        <div class="view-body">
+            <div class="search">
+                <input class="query-input" type="text" v-model="query" @keyup.enter="search">
+                <button class="btn-search" @click="search"><Icon name="search" /></button>
+            </div>
+            <div class="tags">
+                <Tag v-for="tag in filterTags" :key="tag.name" :name="tag.name" :title="tag.title" size="large" />
+                <NoResult :show="!filterTags.length" />
+            </div>
         </div>
-        <div class="tags">
-            <Tag v-for="tag in filterTags" :key="tag.name" :name="tag.name" :title="tag.title" size="large" />
-            <NoResult :show="!filterTags.length" />
+        <div class="view-side">
+            <Side />
         </div>
     </div>
 </template>
@@ -14,11 +19,13 @@
 <script>
 import Tag from '@/components/Tag';
 import NoResult from '@/components/NoResult.vue';
+import Side from '@/components/Side.vue';
 
 export default {
     components: {
         Tag,
         NoResult,
+        Side,
     },
     data() {
         return {

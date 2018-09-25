@@ -1,29 +1,36 @@
 <template>
-    <div class="v-serial-list">
-        <div class="serial-item" v-for="(serial, index) in serialList" :key="index">
-            <img :src="SerialBG" alt="" class="item-bg">
-            <h3 class="name">
-                <router-link :to="'/serial/detail/' + serial.name">
-                    {{serial.title}}
-                    <Icon name="link" width="14" height="14" />
-                </router-link>
-            </h3>
-            <p class="intro">{{serial.intro}}</p>
-            <p class="update">
-                最近更新：
-                <router-link v-if="recentList[serial.name]" :to="'/serial/blog/' + recentList[serial.name].name">{{recentList[serial.name].title}}</router-link>
-                <font v-else>没有更新</font>
-            </p>
+    <div class="view-wrapper v-serial-list">
+        <div class="view-body">
+            <div class="serial-item" v-for="(serial, index) in serialList" :key="index">
+                <img src="@/images/serial.jpg" alt="" class="item-bg">
+                <h3 class="name">
+                    <router-link :to="'/serial/detail/' + serial.name">
+                        {{serial.title}}
+                        <Icon name="link" width="14" height="14" />
+                    </router-link>
+                </h3>
+                <p class="intro">{{serial.intro}}</p>
+                <p class="update">
+                    最近更新：
+                    <router-link v-if="recentList[serial.name]" :to="'/serial/blog/' + recentList[serial.name].name">{{recentList[serial.name].title}}</router-link>
+                    <font v-else>没有更新</font>
+                </p>
+            </div>
+        </div>
+        <div class="view-side">
+            <Side />
         </div>
     </div>
 </template>
 
 <script>
-import SerialBG from '@/images/serial.jpg';
-export default {
+import Side from '@/components/Side.vue';
+export default{
+    components: {
+        Side,
+    },
     data() {
         return {
-            SerialBG,
             serialList: [],
             recentList: [],
         };

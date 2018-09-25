@@ -1,6 +1,6 @@
 <template>
     <div class="v-404">
-        <img :src="error404" alt="404">
+        <img src="@/images/404.jpg" alt="404">
         <p class="gohome">
             <router-link to="/home">返回首页</router-link>
         </p>
@@ -8,14 +8,12 @@
 </template>
 
 <script>
-import error404 from '@/images/404.jpg';
 export default {
     data() {
         return {
-            error404
-        }
+        };
     }
-}
+};
 </script>
 
 <style lang="scss">

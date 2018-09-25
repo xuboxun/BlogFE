@@ -3,8 +3,8 @@
         <div class="home-banner">
 
         </div>
-        <div class="content-wrapper">
-            <div class="home-content">
+        <div class="view-wrapper">
+            <div class="view-body home-content">
                 <div class="recent">
                     <h2 class="section-title">最近更新</h2>
                     <div class="blog-item" v-for="(blog, index) in recent" :key="index">
@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <div class="home-side">
+            <div class="view-side">
                 <Side />
             </div>
         </div>
@@ -78,63 +78,41 @@ export default {
         overflow: hidden;
         margin-bottom: 30px;
     }
-    .content-wrapper {
-        display: flex;
-        .home-content {
-            flex: 1 1 auto;    
-            .section-title {
-                font-size: 1.45rem;
-                font-weight: 400;
-                line-height: 40px;
-                border-bottom: 1px solid #e8eaec;
-                margin-bottom: 15px;
-                color: #515a6e;
-            }
-            .recent {
-                .blog-item {
-                    margin-bottom: 30px;
-                    .type {
-                        line-height: 25px;
-                        font-size: 1.1rem;
-                        color: #808695;
-                    }
-                    .title {
-                        line-height: 35px;
-                        font-size: 1.2rem;
-                        font-weight: 400;
-                        color: #17233d;
-                    }
-                    .brief {
-                        text-indent: 2.1rem;
-                        font-size: 1.05rem;
-                        color: #515a6e;
-                    }
+    .home-content {
+        .section-title {
+            font-size: 1.45rem;
+            font-weight: 400;
+            line-height: 40px;
+            border-bottom: 1px solid #e8eaec;
+            margin-bottom: 15px;
+            color: #515a6e;
+        }
+        .recent {
+            .blog-item {
+                margin-bottom: 30px;
+                .type {
+                    line-height: 25px;
+                    font-size: 1.1rem;
+                    color: #808695;
+                }
+                .title {
+                    line-height: 35px;
+                    font-size: 1.2rem;
+                    font-weight: 400;
+                    color: #17233d;
+                }
+                .brief {
+                    text-indent: 2.1rem;
+                    font-size: 1.05rem;
+                    color: #515a6e;
                 }
             }
-        }
-
-        .home-side {
-            flex: 0 0 auto;
-            padding-top: 40px;
-            padding-left: 100px;
         }
     }
 
     @media screen and (max-width: 480px) {
         .home-banner {
             height: 200px;
-        }
-        .content-wrapper {
-            flex-direction: column;
-
-            .home-content {
-
-            }
-            .home-side {
-                flex: 1 1 auto;
-                padding-top: 0;
-                padding-left: 0;
-            }
         }
     }
     

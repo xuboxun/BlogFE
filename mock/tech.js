@@ -13,6 +13,9 @@ const techApi = [
             let allTechs = mockData.blogs.filter((item) => {
                 return item.type === 'tech';
             });
+            allTechs.sort((a, b) => {
+                return b.createTime - a.createTime;
+            });
             let techs = allTechs.filter((item, index) => {
                 return index < query.page * query.pageSize &&
                         index >= (query.page - 1) * query.pageSize;

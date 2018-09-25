@@ -1,7 +1,7 @@
 <template>
     <div class="v-index">
         <div class="background">
-            <img :src="indexbg" />
+            <img src="@/images/indexbg.jpg" />
         </div>
         <div class="content">
             <h1 class="name">徐博勋的博客</h1>
@@ -24,11 +24,9 @@
 </template>
 
 <script>
-import indexbg from '@/images/indexbg.jpg';
 export default {
     data() {
         return {
-            indexbg,
         };
     },
     mounted() {
