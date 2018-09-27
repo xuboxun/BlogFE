@@ -2,7 +2,7 @@ import userRoutes from './user';
 import adminRoutes from './admin';
 
 import UserWrapper from '@/components/UserWrapper';
-import Admin from '@/views/admin/admin';
+import AdminWrapper from '@/components/AdminWrapper';
 
 import Index from '@/views/index';
 import Error404 from '@/views/404';
@@ -24,7 +24,8 @@ export const routes = [
     {
         path: '/admin', name: 'admin',
         meta: { title: '后台' },
-        component: Admin,
+        component: AdminWrapper,
+        redirect: '/admin/dashboard',
         children: [
             ...adminRoutes
         ]
