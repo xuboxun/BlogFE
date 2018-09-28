@@ -7,9 +7,19 @@
                     <h1 class="name">控制台</h1>
                 </div>
                 <div class="toolbar">
-                    <div class="user">
-
-                    </div>
+                    <Dropdown>
+                        <div class="user">
+                            <Icon name="user" class="icon" />
+                            <font class="name">admin</font>
+                            <Icon name="angle-down" class="icon" />
+                        </div>
+                        <div slot="content">
+                            <ul>
+                                <li>个人信息</li>
+                                <li>退出</li>
+                            </ul>
+                        </div>
+                    </Dropdown>
                 </div>
             </div>
         </div>
@@ -28,7 +38,11 @@
 </template>
 
 <script>
+import Dropdown from '@/units/Dropdown';
 export default {
+    components: {
+        Dropdown,
+    },
     data() {
         return {
             navShow: true,
@@ -39,11 +53,11 @@ export default {
             console.log('click')
             this.navShow = !this.navShow;
         }
-    }
+    },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .m-admin-wrapper {
     width: 100%;
     height: 100%;
@@ -59,6 +73,9 @@ export default {
     .admin-header {
         height: $headerHeight;
         background: #607d8b !important;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
 
         .logo-area {
             width: $leftWidth;
@@ -76,6 +93,29 @@ export default {
                 font-size: 1.3rem;
                 font-weight: 400;
                 color: #fff;
+            }
+        }
+
+        .toolbar {
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+
+            .user {
+                height: $headerHeight;
+                width: 100px;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+
+                .icon {
+                    color: #fff;
+                }
+                .name {
+                    margin: 0 5px;
+                }
             }
         }
     }

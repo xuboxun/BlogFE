@@ -9,8 +9,10 @@ import Icon from 'vue-awesome/components/Icon';
 
 import store from './store';
 import { routes } from './routes';
+import './directives';
 import '@/styles/base.css';
 import App from './App';
+
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
