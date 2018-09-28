@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import MarkdownView from '@/components/MarkdownView.vue';
+import MarkdownView from '@/units/MarkdownView.vue';
 export default {
     components: {
         MarkdownView,

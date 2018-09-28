@@ -1,5 +1,5 @@
 <template>
-    <div class="m-collapse">
+    <div class="u-collapse">
         <div class="head" @click="toggle">
             <h3 class="title">
                 {{title}}
@@ -10,7 +10,7 @@
             <slot name="body"></slot>
         </div>
     </div>
-</template>
+</template>`
 
 <script>
 export default {
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style lang="scss">
-.m-collapse {
+.u-collapse {
     
     .head {
         height: 30px;
@@ -70,7 +70,7 @@ export default {
         opacity: 0;
         max-height: 0;
     }
-    & + .m-collapse {
+    & + .u-collapse {
         margin-top: 30px;
     }
 }

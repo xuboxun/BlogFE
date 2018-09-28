@@ -1,5 +1,5 @@
 <template>
-    <div class="m-timeline">
+    <div class="u-timeline">
         <div class="timeline-item" v-for="(item, index) in data" :key="index">
             <div class="item-bar">
                 <div class="dot" :class="'dot-' + type"></div>
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style lang="scss">
-.m-timeline {
+.u-timeline {
     .timeline-item {
         min-height: 50px;
         display: flex;

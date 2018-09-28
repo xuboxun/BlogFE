@@ -3,7 +3,7 @@
         <div class="view-wrapper">
             <div class="view-body">
                 <div class="serial-item" v-for="(serial, index) in serialList" :key="index">
-                    <img src="@/images/serial.jpg" alt="" class="item-bg">
+                    <img src="@/assets/images/serial.jpg" class="item-bg">
                     <h3 class="name">
                         <router-link :to="'/serial/detail/' + serial.name">
                             {{serial.title}}

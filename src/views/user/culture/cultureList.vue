@@ -14,7 +14,7 @@
 
 <script>
 import BlogItem from '@/components/BlogItem';
-import Pager from '@/components/Pager.vue';
+import Pager from '@/units/Pager.vue';
 import Side from '@/components/Side.vue';
 export default{
     components: {

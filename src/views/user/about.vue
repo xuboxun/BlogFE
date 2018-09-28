@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import Timeline from '@/components/Timeline.vue';
+import Timeline from '@/units/Timeline.vue';
 import Filter from '@/utils/filter.js';
 export default {
     components: {

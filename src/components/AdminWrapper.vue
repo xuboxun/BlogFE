@@ -4,16 +4,20 @@
             <div class="admin-header">
                 <div class="logo-area">
                     <Icon name="bars" width="25" height="20" class="bar" @click.native="toggleNav" />
-                    <h1 class="name">博客后台</h1>
+                    <h1 class="name">控制台</h1>
                 </div>
                 <div class="toolbar">
-                    <!-- user -->
+                    <div class="user">
+
+                    </div>
                 </div>
             </div>
         </div>
         <div class="body-container">
-            <div class="admin-navbar" :class="navShow ? '' : 'admin-navbar-hide'">
-                navbar navbar navbar navbar
+            <div class="navbar-container" :class="navShow ? '' : 'navbar-container-hide'">
+                <div class="admin-navbar">
+                    navbar navbar navbar navbar
+                </div>
             </div>
             
             <div class="admin-console">
@@ -81,20 +85,23 @@ export default {
         display: flex;
         flex-direction: row;
     }
-    .admin-navbar {
+    .navbar-container {
         width: $leftWidth;
         background: #aaa;
         overflow: hidden;
     }
-    .admin-navbar-hide {
+    .navbar-container-hide {
         width: 0;
         transform: translateX(-$leftWidth);
+    }
+    .admin-navbar {
+        width: $leftWidth;
     }
     .admin-console {
         flex: 1 1 auto;
         background: #eee;
     }
-    .admin-navbar,
+    .navbar-container,
     .admin-console {
         transition: all 0.3s ease;
     }

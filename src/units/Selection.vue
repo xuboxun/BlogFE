@@ -1,5 +1,5 @@
 <template>
-    <div class="m-selection" :style="{width: width}">
+    <div class="u-selection" :style="{width: width}">
         <div class="select" @click="toggleSelect" :class="border ? 'select-border' : ''">
             <input type="hidden" :value="innerValue">
             <span>{{label}}</span>
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss">
-.m-selection {
+.u-selection {
     display: inline-block;
     min-width: 100px;
     height: 30px;

@@ -1,5 +1,5 @@
 <template>
-    <div class="m-pager">
+    <div class="u-pager">
         <li class="pager-item"
             :class="innerPageNum === 1 ? 'pager-item-disabled' : ''"
             @click="prev"
@@ -74,7 +74,7 @@ export default {
 </script>
 
 <style lang="scss">
-.m-pager {
+.u-pager {
     margin-top: 10px;
     .pager-item {
         height: 25px;

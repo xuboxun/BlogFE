@@ -14,7 +14,7 @@
 
 <script>
 import BlogItem from '@/components/BlogItem';
-import Pager from '@/components/Pager';
+import Pager from '@/units/Pager';
 import Side from '@/components/Side';
 export default {
     components: {

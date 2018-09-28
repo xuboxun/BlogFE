@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Tag from '@/components/Tag';
+import Tag from '@/units/Tag';
 import NoResult from '@/components/NoResult.vue';
 import Side from '@/components/Side.vue';
 

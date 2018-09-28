@@ -12,7 +12,7 @@
 
 <script>
 import Filter from '@/utils/filter.js';
-import Tag from '@/components/Tag';
+import Tag from '@/units/Tag';
 export default {
     name: 'BlogItem',
     components: {

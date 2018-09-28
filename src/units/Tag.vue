@@ -1,5 +1,5 @@
 <template>
-    <span class="m-tag" :class="innerSize === 'large' ? 'm-tag-large' : '' ">
+    <span class="u-tag" :class="innerSize === 'large' ? 'u-tag-large' : '' ">
         <router-link :to="'/tag/detail/' + name">{{innerTitle}}</router-link>
     </span>
 </template>
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .m-tag {
+    .u-tag {
         display: inline-block;
         height: 25px;
         line-height: 25px;
@@ -58,7 +58,7 @@ export default {
             }
         }
     }
-    .m-tag-large {
+    .u-tag-large {
         height: 30px;
         line-height: 30px;
         font-size: 1.05rem;

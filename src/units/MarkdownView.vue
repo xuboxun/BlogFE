@@ -1,5 +1,5 @@
 <template>
-    <div class="m-markdown-view">
+    <div class="u-markdown-view">
         <div v-html="renderHTML" class="markdown-body"></div>
     </div>
 </template>
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style lang="scss">
-.m-markdown-view {
+.u-markdown-view {
     .markdown-body {
 		box-sizing: border-box;
 		min-width: 200px;
