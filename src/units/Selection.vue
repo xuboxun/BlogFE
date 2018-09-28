@@ -1,5 +1,5 @@
 <template>
-    <div class="u-selection" :style="{width: width}">
+    <div class="u-selection" :style="{width: width}" v-clickoutside="close">
         <div class="select" @click="toggleSelect" :class="border ? 'select-border' : ''">
             <input type="hidden" :value="innerValue">
             <span>{{label}}</span>
@@ -17,7 +17,6 @@ export default {
     props: {
         width: String,
         value: [String, Number],
-        width: [String, Number],
         border: Boolean,
         options: Array,
     },
@@ -42,6 +41,9 @@ export default {
         },
         toggleSelect() {
             this.dropDown = !this.dropDown;
+        },
+        close() {
+            this.dropDown = false;
         },
         setInitLabel() {
             let find = this.options.find(item => {

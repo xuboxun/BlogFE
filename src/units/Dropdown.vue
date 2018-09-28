@@ -67,30 +67,19 @@ export default {
 
         .dropdown-menu {
             min-width: 100px;
+            max-height: 0;
             position: absolute;
             opacity: 0;
-            max-height: 0;
             background: #fff;
             transform: translateY(5px);
             transition: all 0.3s ease;
             box-shadow: 0 0 5px #dddddd;
             border-radius: 3px;
-
-            ul {
-                padding: 5px 0;
-            }
-            li {
-                padding: 0 10px;
-                line-height: 30px;
-                height: 30px;
-                cursor: pointer;
-
-                &:hover {
-                    background: #f8f8f9;
-                }
-            }
+            overflow: hidden;
+            z-index: 999;
         }
         .dropdown-menu-show {
+            padding: 5px 0;
             opacity: 1;
             max-height: 400px;
             overflow: auto;

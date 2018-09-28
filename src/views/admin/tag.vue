@@ -1,6 +1,6 @@
 <template>
-    <div class="v-admin-dashboard">
-        dashboard
+    <div class="v-admin-tag">
+        tag list
     </div>
 </template>
 
@@ -11,14 +11,11 @@ export default {
 
         };
     },
-    methods: {
-
-    },
 };
 </script>
 
-<style lang="scss">
-.v-admin-dashboard {
+<style lang="scss" scoped>
+    .v-admin-tag {
 
-}
+    }
 </style>
