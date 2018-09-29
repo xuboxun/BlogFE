@@ -3,24 +3,29 @@
         <table>
             <thead>
                 <tr>
-                    <th>item</th>
-                    <th>item</th>
-                    <th>item</th>
-                    <th>item</th>
+                    <th
+                        v-for="column in columns"
+                        :key="column.key"
+                        :class="computeColumnAlign(column)"
+                    >
+                        {{column.key}}
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
+                <tr v-for="(row, rowIndex) in data" :key="rowIndex">
+                    <td
+                        v-for="(column, columnIndex) in columns"
+                        :key="columnIndex"
+                        :class="computeColumnAlign(column)"
+                    >
+                        {{
+                            !column.render ? row[column.key] : column.render(row[column.key], rowIndex, row)
+                        }}
+                    </td>
                 </tr>
-                <tr>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
+                <tr v-if="data.length === 0">
+                    <td :colspan="columns.length">no data</td>
                 </tr>
             </tbody>
         </table>
@@ -49,6 +54,11 @@ export default {
 
         };
     },
+    methods: {
+        computeColumnAlign(column) {
+            return column.align ? 'align-' + column.align : 'align-left';
+        }
+    }
 
 };
 </script>
@@ -56,7 +66,6 @@ export default {
 <style lang="scss" scoped>
 .u-table {
     width: 100%;
-    height: 100%;
     table {
         width: 100%;
         border-collapse: collapse;
@@ -69,10 +78,7 @@ export default {
                 border-bottom: 1px solid #e8eaec;
             }
         }
-        th, td {
-            height: 40px;
-            text-align: center;
-        }
+
         tbody {
             tr {
                 border-bottom: 1px solid  #e8eaec;
@@ -80,6 +86,22 @@ export default {
             tr:last-child {
                 border: 0;
             }
+        }
+
+        th, td {
+            height: 40px;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .align-left {
+            text-align: left;
+        }
+        .align-center {
+            text-align: center;
+        }
+        .align-right {
+            text-align: right;
         }
     }
 
