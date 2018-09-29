@@ -1,7 +1,7 @@
 <template>
     <div class="m-menu">
         <div class="title">
-            <img src="@/assets/images/logo.jpg" alt="logo" class="logo">
+            <img src="/assets/images/logo.jpg" alt="logo" class="logo">
             <font class="name">名字</font>
         </div>
         <Icon @click.native="toggleMenu" class="mbbtn icon" :name="!showMenu ? 'bars' : 'times'" />

@@ -188,6 +188,11 @@ export default {
         flex: 1 1 auto;
         background: #fafafa;
         padding: 20px 25px;
+
+        & > div {
+            width: 100%;
+            height: 100%;
+        }
     }
     .navbar-container,
     .admin-console {

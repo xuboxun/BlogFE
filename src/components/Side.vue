@@ -1,7 +1,7 @@
 <template>
     <div class="m-side">
         <div class="base-info">
-            <img src="@/assets/images/me.jpg" class="image" />
+            <img src="/assets/images/me.jpg" class="image" />
             <h2 class="name">徐博勋</h2>
             <p class="word">你心中的火焰，灼烧的不仅是你的内心，还会成为照亮世界的光，温暖他人。</p>
             <div class="accounts">

@@ -1,6 +1,6 @@
 <template>
     <div class="v-404">
-        <img src="@/assets/images/404.jpg" alt="404">
+        <img src="/assets/images/404.jpg" alt="404">
         <p class="gohome">
             <router-link to="/home">返回首页</router-link>
         </p>
