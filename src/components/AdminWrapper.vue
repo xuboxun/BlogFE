@@ -187,7 +187,7 @@ export default {
     .admin-console {
         flex: 1 1 auto;
         background: #fafafa;
-        padding: 20px 25px;
+        padding: 15px 25px;
 
         & > div {
             width: 100%;

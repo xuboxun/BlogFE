@@ -8,7 +8,7 @@ import Subscribe from '@/views/admin/subscribe';
 const adminRoutes = [
     {
         path: 'dashboard', name: 'admin/dashboard',
-        meta: { title: 'admin首页' },
+        meta: { title: '控制台' },
         component: Dashboard
     },
     {
