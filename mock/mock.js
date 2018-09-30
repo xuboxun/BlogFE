@@ -5,6 +5,7 @@ const tagApi = require('./tag');
 const serialApi = require('./serial');
 const archivesApi = require('./archives');
 const systemApi = require('./system');
+const adminAPi = require('./admin');
 
 let apis = [
     ...homeApi,
@@ -14,6 +15,7 @@ let apis = [
     ...serialApi,
     ...archivesApi,
     ...systemApi,
+    ...adminAPi
 ];
 
 

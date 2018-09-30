@@ -1,6 +1,6 @@
 <template>
     <div class="u-button" @click="click">
-        <button class="button" :class="'button-' + type">
+        <button class="button" :class="['button-type-' + type, 'button-size-' + size]">
             <slot></slot>
         </button>
     </div>
@@ -15,6 +15,13 @@ export default {
             default: 'default',
             validator: function(val) {
                 return ['default', 'warn', 'text'].indexOf(val) > -1;
+            }
+        },
+        size: {
+            type: String,
+            default: 'normal',
+            validator: function(val) {
+                return ['small', 'normal', 'large'].indexOf(val) > -1;
             }
         }
     },
@@ -36,26 +43,39 @@ export default {
     display: inline-block;
 
     .button {
-        font-size: 1.05rem;
         border: 0;
-        height: 30px;
-        padding: 0 15px;
         border-radius: 3px;
         cursor: pointer;
         transition: all 0.1s ease;
     }
-    .button-default {
+    .button-type-default {
         background: #2d8cf0;
         color: #fff;
     }
-    .button-warn {
+    .button-type-warn {
         background: #ed4014;
         color: #fff;
     }
-    .button-text {
+    .button-type-text {
         background: transparent;
-        color: #17233d;
+        color: #808695;
     }
+    .button-size-normal {
+        font-size: 1.05rem;
+        height: 30px;
+        padding: 0 15px;
+    }
+    .button-size-small {
+        font-size: 0.9rem;
+        height: 25px;
+        padding: 0 10px;
+    }
+    .button-size-large {
+        font-size: 1.15rem;
+        height: 35px;
+        padding: 0 10px;
+    }
+
     .button:hover {
         box-shadow: 0 0 3px #999;
     }

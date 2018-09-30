@@ -4,6 +4,8 @@ import adminRoutes from './admin';
 import UserWrapper from '@/components/UserWrapper';
 import AdminWrapper from '@/components/AdminWrapper';
 
+import Login from '@/views/admin/login';
+
 import Index from '@/views/index';
 import Error404 from '@/views/404';
 
@@ -20,7 +22,7 @@ export const routes = [
         children: [
             ...userRoutes
         ]
-    }, 
+    },
     {
         path: '/admin', name: 'admin',
         meta: { title: '后台' },
@@ -29,6 +31,11 @@ export const routes = [
         children: [
             ...adminRoutes
         ]
+    },
+    {
+        path: '/admin/login', name: 'admin/login',
+        meta: { title: '登录' },
+        component: Login
     },
     {
         path: '*',

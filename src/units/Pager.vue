@@ -1,25 +1,27 @@
 <template>
     <div class="u-pager">
-        <li class="pager-item"
-            :class="innerPageNum === 1 ? 'pager-item-disabled' : ''"
-            @click="prev"
-        >
-            上一页
-        </li>
-        <li class="pager-item"
-            :class="innerPageNum === page ? 'pager-item-active' : ''"
-            v-for="page in pageCount" :key="page"
-            @click="jump(page)"
-        >
-            {{page}}
-        </li>
+        <ul class="pager-ul" :style="'float:' + align">
+            <li class="pager-item"
+                :class="innerPageNum === 1 ? 'pager-item-disabled' : ''"
+                @click="prev"
+            >
+                上一页
+            </li>
+            <li class="pager-item"
+                :class="innerPageNum === page ? 'pager-item-active' : ''"
+                v-for="page in pageCount" :key="page"
+                @click="jump(page)"
+            >
+                {{page}}
+            </li>
 
-        <li class="pager-item"
-            :class="innerPageNum === pageCount ? 'pager-item-disabled' : ''"
-            @click="next"
-        >
-            下一页
-        </li>
+            <li class="pager-item"
+                :class="innerPageNum === pageCount ? 'pager-item-disabled' : ''"
+                @click="next"
+            >
+                下一页
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -38,6 +40,13 @@ export default {
         total: {
             type: Number,
             default: 0,
+        },
+        align: {
+            type: String,
+            default: 'left',
+            validator: function(val) {
+                return ['left', 'center', 'right'].indexOf(val) > -1;
+            }
         },
         onChange: Function
     },
@@ -76,13 +85,17 @@ export default {
 <style lang="scss">
 .u-pager {
     margin-top: 10px;
+
+    .pager-ul {
+        display: inline-block;
+    }
     .pager-item {
         height: 25px;
         line-height: 25px;
-        float: left;
         padding: 0 10px;
         color: #2d8cf0;
         cursor: pointer;
+        float: left;
     }
     .pager-item-active {
         background: #2d8cf0;

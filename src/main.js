@@ -23,7 +23,14 @@ const RouterConfig = {
 const router = new VueRouter(RouterConfig);
 
 router.beforeEach((to, from, next) => {
-    next();
+    const path = to.path;
+    const auth = false;
+    //进入管理界面
+    if (path.indexOf('/admin') === 0 && path !== '/admin/login' && !auth) {
+        router.push('/admin/login');
+    } else {
+        next();
+    }
 });
 
 new Vue({

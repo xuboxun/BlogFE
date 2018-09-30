@@ -2,6 +2,7 @@ import Dashboard from '@/views/admin/dashboard';
 import Write from '@/views/admin/write';
 import Blog from '@/views/admin/blog';
 import Tag from '@/views/admin/tag';
+import Serial from '@/views/admin/serial';
 import System from '@/views/admin/system';
 import Subscribe from '@/views/admin/subscribe';
 
@@ -25,6 +26,11 @@ const adminRoutes = [
         path: 'tag', name: 'admin/tag',
         meta: { title: '标签管理' },
         component: Tag
+    },
+    {
+        path: 'serial', name: 'admin/serial',
+        meta: { title: '专栏管理' },
+        component: Serial
     },
     {
         path: 'subscribe', name: 'admin/subscribe',

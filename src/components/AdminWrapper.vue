@@ -29,6 +29,7 @@
                     <Divider />
                     <router-link to="/admin/blog"><li class="nav-item"><Icon name="th-list" class="icon" />博客管理</li></router-link>
                     <router-link to="/admin/tag"><li class="nav-item"><Icon name="tag" class="icon" />标签管理</li></router-link>
+                    <router-link to="/admin/serial"><li class="nav-item"><Icon name="layer-group" class="icon" />专栏管理</li></router-link>
                     <router-link to="/admin/subscribe"><li class="nav-item"><Icon name="rss" class="icon" />订阅管理</li></router-link>
                     <router-link to="/admin/system"><li class="nav-item"><Icon name="cog" class="icon" />系统管理</li></router-link>
                 </div>
@@ -197,6 +198,8 @@ export default {
     .navbar-container,
     .admin-console {
         transition: all 0.3s ease;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 }
 </style>

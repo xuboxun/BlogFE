@@ -1,6 +1,6 @@
 <template>
     <div class="u-table">
-        <table>
+        <table :style="width ? 'min-width: ' + width + 'px' : ''">
             <thead>
                 <tr>
                     <th
@@ -55,7 +55,8 @@ export default {
             default: function() {
                 return [];
             }
-        }
+        },
+        width: [Number, String],
     },
     data() {
         return {
@@ -74,6 +75,7 @@ export default {
 <style lang="scss" scoped>
 .u-table {
     width: 100%;
+    overflow: auto;
     table {
         width: 100%;
         border-collapse: collapse;

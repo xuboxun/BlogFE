@@ -3,7 +3,8 @@
         <LocateBar>
             <Button @click="addBlog">新建博客</Button>
         </LocateBar>
-        <Table :columns="table.columns" :data="table.data" />
+        <Table :columns="table.columns" :data="table.data" width="800" />
+        <Pager :pageNum="pager.pageNum" :pageSize="pager.pageSize" :total="pager.total" align="right"></Pager>
     </div>
 </template>
 
@@ -12,6 +13,7 @@ import LocateBar from '@/units/LocateBar';
 import Table from '@/units/Table';
 import Button from '@/units/Button';
 import Tag from '@/units/Tag';
+import Pager from '@/units/Pager';
 import Filter from '@/utils/filter';
 export default {
     components: {
@@ -19,6 +21,7 @@ export default {
         Table,
         Button,
         Tag,
+        Pager,
     },
     data() {
         return {
@@ -27,7 +30,10 @@ export default {
                     {
                         key: 'type',
                         title: '类型',
-                        align: 'left'
+                        align: 'left',
+                        render: (h, params) => {
+                            return h('p', Filter.blogType(params.value));
+                        }
                     },
                     {
                         key: 'title',
@@ -53,6 +59,10 @@ export default {
                         render: (h, params) => {
                             return h('div', [
                                 h('Button', {
+                                    props: {
+                                        size: 'small',
+                                        type: 'text'
+                                    },
                                     on: {
                                         click: () =>  { console.log('233') }
                                     }
@@ -62,6 +72,11 @@ export default {
                     }
                 ],
                 data: []
+            },
+            pager: {
+                pageNum: 1,
+                pageSize: 15,
+                total: 0,
             }
 
         };
@@ -71,9 +86,13 @@ export default {
             this.$router.push({ name: 'admin/write' });
         },
         searchBlog() {
-            this.$http.get('/api/tech/list').then(res => {
+            this.$http.get('/api/blog/list', {
+                params: {
+                    ...this.pager
+                }
+            }).then(res => {
                 this.table.data = res.data.data.items;
-                console.log(this.table.data);
+                this.pager.total = res.data.data.total;
             });
         }
     },
