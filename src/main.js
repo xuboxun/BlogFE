@@ -4,12 +4,10 @@ import VueRouter from 'vue-router';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-import 'vue-awesome/icons';
-import Icon from 'vue-awesome/components/Icon';
-
 import store from './store';
 import { routes } from './routes';
 import './directives';
+import '@/units';
 import '@/styles/base.css';
 import App from './App';
 
@@ -17,7 +15,6 @@ import App from './App';
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
-Vue.component('Icon', Icon);
 
 const RouterConfig = {
     // mode: 'history',

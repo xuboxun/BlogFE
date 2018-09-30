@@ -8,7 +8,7 @@
                         :key="column.key"
                         :class="computeColumnAlign(column)"
                     >
-                        {{column.key}}
+                        {{column.title}}
                     </th>
                 </tr>
             </thead>
@@ -19,9 +19,13 @@
                         :key="columnIndex"
                         :class="computeColumnAlign(column)"
                     >
-                        {{
-                            !column.render ? row[column.key] : column.render(row[column.key], rowIndex, row)
-                        }}
+                        <template v-if="!column.render">
+                            {{ row[column.key] }}
+                        </template>
+                        <template v-else>
+                            <TableRender :render="column.render" :params="{ value: row[column.key], key: column.key, row: row }" />
+                        </template>
+
                     </td>
                 </tr>
                 <tr v-if="data.length === 0">
@@ -33,8 +37,12 @@
 </template>
 
 <script>
+import TableRender from '@/units/TableRender';
 export default {
     name: 'Table',
+    components: {
+        TableRender
+    },
     props: {
         columns: {
             type: Array,
@@ -71,6 +79,12 @@ export default {
         border-collapse: collapse;
         border: 1px solid #dcdee2;
 
+        th, td {
+            height: 45px;
+            text-align: center;
+            padding: 0 18px;
+        }
+
         thead {
             th {
                 color: #515a6e;
@@ -83,15 +97,18 @@ export default {
             tr {
                 border-bottom: 1px solid  #e8eaec;
             }
+            tr:nth-child(2n) {
+                background: #f8f8f9;
+            }
             tr:last-child {
                 border: 0;
             }
-        }
-
-        th, td {
-            height: 40px;
-            text-align: center;
-            padding: 0 10px;
+            tr:hover {
+                background: #EBF7FF;
+            }
+            td {
+                color: #808695;
+            }
         }
 
         .align-left {
