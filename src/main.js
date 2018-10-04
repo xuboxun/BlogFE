@@ -27,7 +27,8 @@ router.beforeEach((to, from, next) => {
     const auth = false;
     //进入管理界面
     if (path.indexOf('/admin') === 0 && path !== '/admin/login' && !auth) {
-        router.push('/admin/login');
+        // router.push('/admin/login');
+        next();
     } else {
         next();
     }

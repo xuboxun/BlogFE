@@ -1,17 +1,96 @@
 <template>
     <div class="v-admin-login">
-        login
+        <div class="login-bg"></div>
+        <div class="login-block">
+            <h2 class="title">主人，请登录</h2>
+            <FormItem>
+                <Input v-model="account" placeholder="请输入账号" width="100%" />
+            </FormItem>
+            <FormItem>
+                <Input v-model="password" placeholder="请输入密码" width="100%" />
+            </FormItem>
+            <FormItem style="margin-top: 10px;">
+                <Button size="large" style="width: 100%;" @click="login">登录</Button>
+            </FormItem>
+
+            <div class="info" v-if="info">
+                {{info}}
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'login'
+    name: 'login',
+    data() {
+        return {
+            account: '',
+            password: '',
+            info: ''
+        };
+    },
+    methods: {
+        login() {
+            const info = {
+                account: this.account,
+                password: this.password
+            };
+            this.setInfo('错误信息');
+            this.$router.push({ name: 'admin/dashboard' });
+        },
+        setInfo(info) {
+            this.info = info;
+            setTimeout(() => {
+                this.info = '';
+            }, 3000)
+        }
+    }
 };
 </script>
 
 <style lang="scss" scoped>
 .v-admin-login {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    .login-bg {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background-image: url("/assets/images/loginbg.jpg");
+        background-position: center center;
+    }
+    .login-block {
+        width: 400px;
+        height: 300px;
+        border-radius: 5px;
+        background: #fff;
+        z-index: 999;
+        position: relative;
+        top: 150px;
 
+        .title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #17233d;
+            height: 80px;
+            line-height: 80px;
+            font-weight: 400;
+        }
+    }
+    .info {
+        margin-top: 10px;
+        padding: 0 20px;
+        color: #ed4014;
+    }
+    @media screen and (max-width: 480px) {
+        .login-block {
+            width: 90%;
+        }
+    }
 }
 </style>

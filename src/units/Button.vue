@@ -43,6 +43,7 @@ export default {
     display: inline-block;
 
     .button {
+        width: 100%;
         border: 0;
         border-radius: 3px;
         cursor: pointer;
