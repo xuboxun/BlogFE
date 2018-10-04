@@ -1,7 +1,10 @@
 <template>
     <div class="u-locate-bar">
         <div class="location" v-if="locations">
-            <span class="location-item" v-for="(item, index) in locations" :key="index">{{item.name}}</span>
+            <span class="location-item" v-for="(item, index) in locations" :key="index">
+                {{item.name}}
+                <span v-if="index !== locations.length - 1"> / </span>
+            </span>
         </div>
         <div class="location" v-else>
             <span class="location-item">{{defaultTitle}}</span>

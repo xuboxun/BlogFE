@@ -1,5 +1,5 @@
 <template>
-    <div class="v-admin-blog">
+    <div class="v-admin-blog-list">
         <LocateBar>
             <Button @click="addBlog">新建博客</Button>
         </LocateBar>
@@ -38,7 +38,14 @@ export default {
                     {
                         key: 'title',
                         title: '标题',
-                        align: 'left'
+                        align: 'left',
+                        render: (h, params) => {
+                            return h('router-link', {
+                                props: {
+                                    to: '/admin/blog/detail/' + params.row.name
+                                }
+                            }, params.value);
+                        }
                     },
                     {
                         key: 'name',
@@ -103,7 +110,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .v-admin-blog {
+    .v-admin-blog-list {
 
     }
 </style>

@@ -9,6 +9,7 @@
 <script>
 import LocateBar from '@/units/LocateBar';
 import Button from '@/units/Button';
+import Filter from '@/utils/filter';
 export default {
     components: {
         LocateBar,
@@ -27,6 +28,13 @@ export default {
                         key: 'title',
                         title: '标签名',
                         align: 'left',
+                        render: (h, params) => {
+                            return h('router-link', {
+                                props: {
+                                    to: '/admin/tag/detail/' + params.row.name
+                                }
+                            }, params.value);
+                        }
                     },
                     {
                         key: 'name',
@@ -42,13 +50,34 @@ export default {
                         key: 'createTime',
                         title: '创建时间',
                         align: 'left',
+                        render: (h, params) => {
+                            return h('p', Filter.time(params.value));
+                        }
                     },
-
+                    {
+                        key: 'operate',
+                        title: '操作',
+                        align: 'left',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Button', {
+                                    props: {
+                                        type: 'text'
+                                    }
+                                }, '详情')
+                            ]);
+                        }
+                    }
                 ],
                 data: []
             }
         };
     },
+    created() {
+        this.$http.get('/api/tag/list').then(res => {
+            this.table.data = res.data.data.items;
+        });
+    }
 };
 </script>
 
