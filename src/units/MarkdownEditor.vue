@@ -74,5 +74,11 @@ export default {
 .u-markdown-editor {
     width: 100%;
     height: 100%;
+
+    #editormd {
+        li {
+            list-style-type: inherit;
+        }
+    }
 }
 </style>
