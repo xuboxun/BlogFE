@@ -4,7 +4,7 @@ const response = require('./response');
 const adminAPi = [
     {
         method: 'get',
-        url: '/api/blog/list',
+        url: '/api/admin/blog/list',
         handle: function (req, res) {
             let query = {
                 pageNum: req.query.pageNum || 1,

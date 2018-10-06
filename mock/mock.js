@@ -1,6 +1,5 @@
 const homeApi = require('./home');
-const techApi = require('./tech');
-const cultureApi = require('./culture');
+const blogApi = require('./blog');
 const tagApi = require('./tag');
 const serialApi = require('./serial');
 const archivesApi = require('./archives');
@@ -9,8 +8,7 @@ const adminAPi = require('./admin');
 
 let apis = [
     ...homeApi,
-    ...techApi,
-    ...cultureApi,
+    ...blogApi,
     ...tagApi,
     ...serialApi,
     ...archivesApi,

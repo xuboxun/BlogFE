@@ -7,20 +7,22 @@ const BlogDetailApi = '/api/blog/detail';
 * 获取博客列表
 * params:
 * */
-export async function getBlogList() {
-    const res = await axios.get(BlogListApi, {
+export async function getBlogList(options) {
+    const data = await axios.get(BlogListApi, {
         params: {
-
+            type: options.type,
+            pageNum: options.pageNum,
+            pageSize: options.pageSize
         }
     });
-    return res;
+    return data;
 }
 
-export async function getBlogDetail() {
-    const res = await axios.get(BlogDetailApi, {
+export async function getBlogDetail(name) {
+    const data = await axios.get(BlogDetailApi, {
         params: {
-
+            name: name
         }
     });
-    return res;
+    return data;
 }

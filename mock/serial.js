@@ -30,30 +30,6 @@ const serialApi = [
     },
     {
         method: 'get',
-        url: '/api/serial/blogs',
-        handle: function (req, res) {
-            let query = {
-                name: req.query.name
-            };
-            let blogs = mockData.blogs.filter(item => {
-                return item.serialName = query.name;
-            });
-            blogs = blogs.map(item => {
-                return {
-                    name: item.name,
-                    title: item.title,
-                    type: item.type,
-                    createTime: item.createTime,
-                };
-            });
-            res.json(response({
-                items: blogs,
-                total: blogs.length
-            }));
-        }
-    },
-    {
-        method: 'get',
         url: '/api/serial/recent',
         handle: function(req, res) {
             let blogs = mockData.blogs.filter(item => {
