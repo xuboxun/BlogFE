@@ -13,6 +13,7 @@
 
 <script>
 import MarkdownView from '@/units/MarkdownView.vue';
+import { getBlogDetail } from '@/service/blog';
 export default {
     components: {
         MarkdownView,
@@ -24,17 +25,16 @@ export default {
     },
     methods: {
         searchBlog() {
-            this.$http.get('/api/tech/detail', {
-                params: {
-                    name: this.$route.params.name
+            getBlogDetail(this.$route.params.name).then(res => {
+                if (res.data.code === 200) {
+                    this.blog = res.data.data;
                 }
-            }).then(res => {
-                this.blog = res.data.data;
             });
         }
     },
     created() {
         this.searchBlog();
+        console.log(this.$route);
     }
 };
 </script>

@@ -16,6 +16,8 @@
 import BlogItem from '@/components/BlogItem';
 import Pager from '@/units/Pager';
 import Side from '@/components/Side';
+import { getBlogList } from '@/service/blog';
+
 export default {
     components: {
         BlogItem,
@@ -34,20 +36,21 @@ export default {
     },
     methods: {
         searchList() {
-            this.$http.get('/api/tech/list', {
-                params: {
-                    pageNum: this.pager.num,
-                    pageSize: this.pager.size,
-                }
+            getBlogList({
+                type: 'tech',
+                pageNum: this.pager.num,
+                pageSize: this.pager.size,
             }).then(res => {
-                this.blogs = res.data.data.items;
-                this.pager.total = res.data.data.total;
+                if (res.data.code === 200) {
+                    this.blogs = res.data.result.items;
+                    this.pager.total = res.data.result.total;
+                }
             });
         }
     },
     mounted() {
         this.searchList();
-    },
+    }
 };
 </script>
 

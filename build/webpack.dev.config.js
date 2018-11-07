@@ -10,7 +10,7 @@ module.exports = merge(base, {
         port: 8000,
         contentBase: '../dist',
         proxy: {
-            '/api': 'http://localhost:3000/api'   
+            '/api': 'http://localhost:3000'
         },
         open: true,
     },
