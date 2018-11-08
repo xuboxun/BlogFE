@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         saveDraft() {
-            console.log('saveDraft');
+            console.log(this.content);
         }
     }
 };

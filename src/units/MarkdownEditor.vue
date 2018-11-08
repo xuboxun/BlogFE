@@ -1,17 +1,26 @@
 <template>
-    <div class="u-markdown-editor" @keyup.down.capture="handleInput">
-        <link rel="stylesheet" href="/assets/editor.md/css/editormd.css">
-        <div id="editormd">
-            <!--<textarea style="display:none;">{{ content }}</textarea>-->
+    <div class="u-markdown-editor">
+        <div class="u-markdown-editor-wrapper">
+            <div class="tool-bar">工具栏</div>
+            <div class="body-bar">
+                <div class="editor-area" v-show="config.editor">
+                    <textarea id="editor-area-textarea" v-model="writeContent"></textarea>
+                </div>
+                <div class="preview-area" v-show="config.preview">
+                    <MarkdownView :article="writeContent"></MarkdownView>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-// TODO: 去除editor.md，自己实现轻量级的markdown编辑器
-import $script from 'scriptjs';
+import MarkdownView from '@/units/MarkdownView';
 export default {
     name: 'MarkdownEditor',
+    components: {
+        MarkdownView
+    },
     model: {
         prop: 'content',
         event: 'update'
@@ -21,64 +30,26 @@ export default {
             type: String,
             default: ''
         },
-        editorPath: {
-            type: String,
-            default: '/assets/editor.md/',
-        },
-        editorConfig: {
-            type: Object,
-            default() {
-                return {
-                    id   : 'editormd',
-                    path: '/assets/editor.md/lib/',
-                    codeFold: true,
-                    saveHTMLToTextarea: true,
-                    searchReplace: true,
-                    htmlDecode: 'style,script,iframe|on*',
-                    emoji: true,
-                    taskList: true,
-                    tocm: true,                  // Using [TOCM]
-                    tex: true,                   // 开启科学公式TeX语言支持，默认关闭
-                    flowChart: true,             // 开启流程图支持，默认关闭
-                    sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
-                    imageUpload: true,
-                    imageFormats: ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp'],
-                    imageUploadURL: 'examples/php/upload.php',
-                    onload: () => {
-
-                    },
-                };
-            },
-        },
+    },
+    watch: {
+        writeContent(val) {
+            this.$emit('update', val);
+        }
     },
     data() {
         return {
-            instance: null,
+            config: {
+                editor: true,
+                preview: true,
+            },
+            writeContent: ''
         };
     },
     methods: {
-        initEditor() {
-            this.$nextTick((editorMD = window.editormd) => {
-                if (editorMD) {
-                    this.instance = editorMD(this.editorConfig);
-                }
-            });
-        },
-        handleInput(e) {
-            let md = this.instance.getMarkdown();
-            console.log(md);
-            // this.$emit('update', this.content);
-        }
+
     },
     mounted() {
-        $script([
-            `${this.editorPath}jquery.min.js`,
-            `${this.editorPath}zepto.min.js`,
-        ], () => {
-            $script(`${this.editorPath}/editormd.min.js`, () => {
-                this.initEditor();
-            });
-        });
+
     },
 };
 </script>
@@ -87,11 +58,45 @@ export default {
 .u-markdown-editor {
     width: 100%;
     height: 100%;
+    li {
+        list-style-type: inherit;
+    }
+    .u-markdown-editor-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .tool-bar {
+        min-height: 50px;
+        background: #ccc;
+    }
+    .body-bar {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex: 1 1 auto;
+        background: #fff;
 
-    #editormd {
-        li {
-            list-style-type: inherit;
+        .editor-area,
+        .preview-area {
+            height: 100%;
+            width: 50%;
+            flex: 1 1 auto;
+            padding: 10px;
         }
+        .editor-area {
+            border-right: 1px solid #ccc;
+        }
+        .preview-area {
+        }
+    }
+    #editor-area-textarea {
+        width: 100%;
+        height: 100%;
+        resize: none;
+        border: 0;
     }
 }
 </style>
