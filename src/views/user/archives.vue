@@ -26,6 +26,7 @@ import Collapse from '@/units/Collapse.vue';
 import Selection from '@/units/Selection.vue';
 import NoResult from '@/components/NoResult.vue';
 import Filter from '@/utils/filter.js';
+import { getArchives } from '@/service/others';
 // 按时间顺序归档
 export default {
     components: {
@@ -67,7 +68,7 @@ export default {
             groupBy = groupBy.sort((a, b) => {
                 return parseInt(b.name) - parseInt(a.name);
             });
-            
+
             return groupBy;
         },
         filterBlogs: function() {
@@ -96,7 +97,7 @@ export default {
             this.groupBy.forEach(group => {
                 arr.push({
                     value: group.name,
-                    label: Filter.yearMonth(group.name)   
+                    label: Filter.yearMonth(group.name)
                 });
             });
             return arr;
@@ -104,13 +105,15 @@ export default {
     },
     methods: {
         searchArchives() {
-            this.$http.get('/api/archives').then(res => {
-                this.blogs = res.data.data.items.map(blog => {
-                    return {
-                        ...blog,
-                        groupTime: +Filter.time(blog.createTime, 'YYYYMM'),
-                    };
-                });
+            getArchives().then(res => {
+                if (res.data.code === 200) {
+                    this.blogs = res.data.result.items.map(blog => {
+                        return {
+                            ...blog,
+                            groupTime: +Filter.time(blog.createTime, 'YYYYMM'),
+                        };
+                    });
+                }
             });
         }
     },

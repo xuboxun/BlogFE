@@ -1,13 +1,13 @@
 <template>
     <div class="v-tag-detail">
         <div class="tag">
-            <h3 class="name">{{title}}</h3>
-            <p class="desc">{{intro}}</p>
+            <h3 class="name">{{ tag.title }}</h3>
+            <p class="desc">{{ tag.description }}</p>
         </div>
         <div class="blogs">
             <h4>博客列表</h4>
             <ul class="list">
-                <li class="item" v-for="blog in blogList" :key="blog.name">
+                <li class="item" v-for="blog in tag.blogs" :key="blog.name">
                     <router-link :to="'/' + blog.type + '/blog/' + blog.name">
                         <font class="time">{{Filter.time(blog.createTime)}}</font>
                         <font class="name">{{blog.title}}</font>
@@ -20,34 +20,25 @@
 
 <script>
 import Filter from '@/utils/filter';
+import { getTagDetail } from '@/service/tag';
 export default {
     data() {
         return {
             Filter: Filter,
-            name: '',
-            title: '',
-            intro: '',
-            createTime: '',
-            blogList: []
+            tag: {},
         };
     },
     methods: {
-        getTagDetail() {
-            this.$http('/api/tag/detail', {
-                params: {
-                    name: this.name,
+        searchTagDetail() {
+            getTagDetail(this.$route.params.name).then(res => {
+                if (res.data.code === 200) {
+                    this.tag = res.data.result;
                 }
-            }).then(res => {
-                let data = res.data.data;
-                this.title = data.title;
-                this.intro = data.intro;
-                this.blogList = data.blogs;
             });
         }
     },
     created() {
-        this.name = this.$route.params.name;
-        this.getTagDetail();
+        this.searchTagDetail();
     }
 };
 </script>
@@ -120,7 +111,7 @@ export default {
                 }
             }
         }
-        
+
     }
 }
 </style>

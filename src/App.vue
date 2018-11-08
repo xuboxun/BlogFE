@@ -6,9 +6,9 @@
 
 <script>
 export default {
-    
+
     created() {
-        this.$store.dispatch('tag/reqTags');
+
     }
 };
 </script>

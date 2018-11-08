@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { getTagDetail } from '@/service/tag';
+
 export default {
     data() {
         return {

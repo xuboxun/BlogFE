@@ -12,7 +12,7 @@
                         <h3 class="title">
                             <router-link :to="'/' + blog.type + '/blog/' + blog.name">{{blog.title}}</router-link>
                         </h3>
-                        <p class="brief">{{blog.content.slice(0, 200) + '...'}}</p>
+                        <!--<p class="brief">{{blog.content.slice(0, 200) + '...'}}</p>-->
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        
+
     </div>
 </template>
 
@@ -39,7 +39,11 @@ export default {
         return {
             Filter,
             recent: [],
-            mostView: []
+            mostView: [],
+            pager: {
+                size: 10,
+                num: 1
+            }
         };
     },
     computed: {
@@ -49,18 +53,21 @@ export default {
     },
     methods: {
         searchRecent() {
-            this.$http.get('/api/home/recent', {
-                params: {
-                    size: 6
-                }
+            getBlogList({
+                pageSize: this.pager.size,
+                pageNum: this.pager.num
             }).then(res => {
-                this.recent = res.data.data.items;
+                if (res.data.code === 200) {
+                    this.recent = res.data.result.items;
+                } else {
+                    this.recent = [];
+                }
             });
         },
         searchMostView() {
-            this.$http.get('/api/home/mostview').then(res => {
-                this.mostView = res.data.data.items;
-            });
+            // this.$http.get('/api/home/mostview').then(res => {
+            //     this.mostView = res.data.data.items;
+            // });
         }
     },
     created() {
@@ -91,14 +98,14 @@ export default {
         }
         .recent {
             .blog-item {
-                margin-bottom: 30px;
+                margin-bottom: 20px;
                 .type {
                     line-height: 25px;
                     font-size: 1.1rem;
                     color: #808695;
                 }
                 .title {
-                    line-height: 35px;
+                    line-height: 30px;
                     font-size: 1.2rem;
                     font-weight: 400;
                     color: #17233d;
@@ -117,8 +124,8 @@ export default {
             height: 200px;
         }
     }
-    
-    
+
+
 }
 </style>
 

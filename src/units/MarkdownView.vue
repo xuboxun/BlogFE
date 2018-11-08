@@ -41,8 +41,8 @@ export default {
 		min-width: 200px;
 		max-width: 980px;
 		margin: 0 auto;
-        padding: 45px;
-        
+        padding: 0px;
+
         li {
             list-style-type: inherit;
         }
@@ -50,7 +50,7 @@ export default {
 
 	@media (max-width: 767px) {
 		.markdown-body {
-			padding: 15px;
+			padding: 0px;
 		}
 	}
 }

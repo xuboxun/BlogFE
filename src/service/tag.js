@@ -5,11 +5,13 @@ const TagDetailApi = '/api/tag/detail';
 
 
 export async function getTagList() {
-    const res = await axios.get(TagListApi);
-    return res;
+    return axios.get(TagListApi);
 }
 
-export async function getTagDetail() {
-    const res = await axios.get(TagDetailApi);
-    return res;
+export async function getTagDetail(name) {
+    return axios.get(TagDetailApi, {
+        params: {
+            name: name
+        }
+    });
 }

@@ -3,8 +3,8 @@
         <div class="view-wrapper">
             <div class="view-body">
                 <div class="search">
-                    <input class="query-input" type="text" v-model="query" @keyup.enter="search">
-                    <button class="btn-search" @click="search"><Icon name="search" /></button>
+                    <input class="query-input" type="text" v-model="query" @keyup.enter="filter">
+                    <button class="btn-search" @click="filter"><Icon name="search" /></button>
                 </div>
                 <div class="tags">
                     <Tag v-for="tag in filterTags" :key="tag.name" :name="tag.name" :title="tag.title" size="large" />
@@ -22,6 +22,7 @@
 import Tag from '@/units/Tag';
 import NoResult from '@/components/NoResult.vue';
 import Side from '@/components/Side.vue';
+import { getTagList } from '@/service/tag';
 
 export default {
     components: {
@@ -37,26 +38,27 @@ export default {
         };
     },
     watch: {
-        '$store.state.tag.tags': function() {
-            this.init();
-        },
         'query': function() {
-            this.search();
+            this.filter();
         }
     },
     methods: {
-        search() {
+        filter() {
             this.filterTags = this.tags.filter(tag => {
                 return tag.title.indexOf(this.query) > -1;
             });
         },
-        init() {
-            this.tags = this.$store.state.tag.tags;
-            this.filterTags = this.tags;
+        searchTagList() {
+            getTagList().then(res => {
+                if (res.data.code === 200) {
+                    this.tags = res.data.result.items;
+                    this.filterTags = this.tags;
+                }
+            });
         }
     },
     created() {
-        this.init();
+        this.searchTagList();
     }
 };
 </script>

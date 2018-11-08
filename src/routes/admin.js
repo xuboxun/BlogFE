@@ -38,7 +38,7 @@ const adminRoutes = [
                 component: BlogList
             },
             {
-                path: 'detail/:id',
+                path: 'detail/:name',
                 name: 'admin/blog/detail',
                 meta: { title: '博客详情' },
                 component: BlogDetail
@@ -59,7 +59,7 @@ const adminRoutes = [
                 component: TagList
             },
             {
-                path: 'detail/:id',
+                path: 'detail/:name',
                 name: 'admin/tag/detail',
                 meta: { title: '标签详情' },
                 component: TagDetail
@@ -80,7 +80,7 @@ const adminRoutes = [
                 component: SerialList
             },
             {
-                path: 'detail/:id',
+                path: 'detail/:name',
                 name: 'admin/serial/detail',
                 meta: { title: '专栏详情' },
                 component: SerialDetail

@@ -16,6 +16,7 @@
 import BlogItem from '@/components/BlogItem';
 import Pager from '@/units/Pager.vue';
 import Side from '@/components/Side.vue';
+import { getBlogList } from '@/service/blog';
 export default{
     components: {
         BlogItem,
@@ -25,11 +26,24 @@ export default{
     data() {
         return {
             blogs: [],
+            pager: {
+                num: 1,
+                size: 10,
+                total: 0,
+            }
         };
     },
     mounted() {
-        this.$http.get('/api/culture/list').then(res => {
-            this.blogs = res.data.data.items;
+        getBlogList({
+            type: 'culture',
+            pageNum: this.pager.num,
+            pageSize: this.pager.size,
+        }).then(res => {
+            if (res.data.code === 200) {
+                this.blogs = res.data.result.items;
+            } else {
+                this.blogs = [];
+            }
         });
     }
 };

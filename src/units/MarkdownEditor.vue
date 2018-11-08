@@ -1,8 +1,8 @@
 <template>
-    <div class="u-markdown-editor">
+    <div class="u-markdown-editor" @keyup.down.capture="handleInput">
         <link rel="stylesheet" href="/assets/editor.md/css/editormd.css">
         <div id="editormd">
-            <textarea style="display:none;"># title</textarea>
+            <!--<textarea style="display:none;">{{ content }}</textarea>-->
         </div>
     </div>
 </template>
@@ -12,7 +12,15 @@
 import $script from 'scriptjs';
 export default {
     name: 'MarkdownEditor',
+    model: {
+        prop: 'content',
+        event: 'update'
+    },
     props: {
+        content: {
+            type: String,
+            default: ''
+        },
         editorPath: {
             type: String,
             default: '/assets/editor.md/',
@@ -45,7 +53,7 @@ export default {
     },
     data() {
         return {
-
+            instance: null,
         };
     },
     methods: {
@@ -56,6 +64,11 @@ export default {
                 }
             });
         },
+        handleInput(e) {
+            let md = this.instance.getMarkdown();
+            console.log(md);
+            // this.$emit('update', this.content);
+        }
     },
     mounted() {
         $script([

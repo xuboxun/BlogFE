@@ -4,7 +4,7 @@
             <Button @click="saveDraft">保存草稿</Button>
         </LocateBar>
         <div class="write-area">
-            <MarkdownEditor />
+            <MarkdownEditor v-model="content" />
         </div>
     </div>
 </template>
@@ -20,7 +20,9 @@ export default {
         Button,
     },
     data: function () {
-        return {};
+        return {
+            content: ''
+        };
     },
     methods: {
         saveDraft() {

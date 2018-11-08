@@ -15,6 +15,8 @@
 import LocateBar from '@/units/LocateBar';
 import Modal from '@/units/Modal';
 import Filter from '@/utils/filter';
+import { getSerialList } from '@/service/serial';
+
 export default {
     name: 'serial',
     components: {
@@ -87,8 +89,10 @@ export default {
         }
     },
     created() {
-        this.$http.get('/api/serial/list').then(res => {
-            this.table.data = res.data.data.items;
+        getSerialList().then(res => {
+            if (res.data.code === 200) {
+                this.table.data = res.data.result.items;
+            }
         });
     }
 };

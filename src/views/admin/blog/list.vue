@@ -15,6 +15,8 @@ import Button from '@/units/Button';
 import Tag from '@/units/Tag';
 import Pager from '@/units/Pager';
 import Filter from '@/utils/filter';
+import { getBlogList } from '@/service/blog';
+
 export default {
     components: {
         LocateBar,
@@ -71,7 +73,7 @@ export default {
                                         type: 'text'
                                     },
                                     on: {
-                                        click: () =>  { console.log('233') }
+                                        click: () =>  { console.log('233'); }
                                     }
                                 }, '详情'),
                             ]);
@@ -93,13 +95,13 @@ export default {
             this.$router.push({ name: 'admin/write' });
         },
         searchBlog() {
-            this.$http.get('/api/blog/list', {
-                params: {
-                    ...this.pager
-                }
+            getBlogList({
+                ...this.pager
             }).then(res => {
-                this.table.data = res.data.data.items;
-                this.pager.total = res.data.data.total;
+                if (res.data.code === 200) {
+                    this.table.data = res.data.result.items;
+                    this.pager.total = res.data.result.total;
+                }
             });
         }
     },

@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { getBlogDetail } from '@/service/blog';
+
 export default {
     data() {
         return {
@@ -23,12 +25,10 @@ export default {
     },
     methods: {
         search() {
-            this.$http.get('/api/tech/detail', {
-                params: {
-                    name: this.$route.params.id
+            getBlogDetail(this.$route.params.name).then(res => {
+                if (res.data.code === 200) {
+                    this.blog = res.data.result;
                 }
-            }).then(res => {
-                this.blog = res.data.data;
             });
         }
     },

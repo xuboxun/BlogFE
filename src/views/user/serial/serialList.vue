@@ -13,7 +13,7 @@
                     <p class="intro">{{serial.intro}}</p>
                     <p class="update">
                         最近更新：
-                        <router-link v-if="recentList[serial.name]" :to="'/serial/blog/' + recentList[serial.name].name">{{recentList[serial.name].title}}</router-link>
+                        <router-link v-if="serial.recent" :to="'/serial/blog/' + serial.recent.name">{{serial.recent.title}}</router-link>
                         <font v-else>没有更新</font>
                     </p>
                 </div>
@@ -27,6 +27,7 @@
 
 <script>
 import Side from '@/components/Side.vue';
+import { getSerialList } from '@/service/serial';
 export default{
     components: {
         Side,
@@ -34,24 +35,21 @@ export default{
     data() {
         return {
             serialList: [],
-            recentList: [],
         };
     },
     methods: {
         searchSerial() {
-            this.$http.get('/api/serial/list').then(res => {
-                this.serialList = res.data.data.items;
-            });
-        },
-        searchRecent() {
-            this.$http.get('/api/serial/recent').then(res => {
-                this.recentList = res.data.data;
+            getSerialList().then(res => {
+                if (res.data.code === 200) {
+                    this.serialList = res.data.result.items;
+                } else {
+                    this.serialList = [];
+                }
             });
         }
     },
     created() {
         this.searchSerial();
-        this.searchRecent();
     }
 };
 </script>

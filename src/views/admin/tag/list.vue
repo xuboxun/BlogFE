@@ -10,6 +10,8 @@
 import LocateBar from '@/units/LocateBar';
 import Button from '@/units/Button';
 import Filter from '@/utils/filter';
+import { getTagList } from '@/service/tag';
+
 export default {
     components: {
         LocateBar,
@@ -74,8 +76,10 @@ export default {
         };
     },
     created() {
-        this.$http.get('/api/tag/list').then(res => {
-            this.table.data = res.data.data.items;
+        getTagList().then(res => {
+            if (res.data.code === 200) {
+                this.table.data = res.data.result.items;
+            }
         });
     }
 };

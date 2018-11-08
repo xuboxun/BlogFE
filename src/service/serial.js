@@ -1,8 +1,16 @@
 import axios from 'axios';
 
 const SerialListApi = '/api/serial/list';
+const SerialDetailApi = '/api/serial/detail';
 
-export async function getSerialList() {
-    const res = await axios.get(SerialListApi);
-    return res;
+export function getSerialList() {
+    return axios.get(SerialListApi);
+}
+
+export function getSerialDetail(name) {
+    return axios.get(SerialDetailApi, {
+        params: {
+            name: name
+        }
+    });
 }
