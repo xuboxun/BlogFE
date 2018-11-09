@@ -36,7 +36,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .u-input {
     width: 150px;
     input {

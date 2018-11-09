@@ -58,6 +58,7 @@ export default {
 .u-markdown-editor {
     width: 100%;
     height: 100%;
+    border: 1px solid #ccc;
     li {
         list-style-type: inherit;
     }
