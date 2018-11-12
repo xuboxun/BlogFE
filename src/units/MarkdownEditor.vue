@@ -1,10 +1,12 @@
 <template>
-    <div class="u-markdown-editor">
+    <div class="u-markdown-editor" :class="config.fullScreen ? 'editor-fullScreen' : ''">
         <div class="u-markdown-editor-wrapper">
-            <div class="tool-bar">工具栏</div>
+            <div class="tool-bar">
+                <Icon class="tool-item" name="expand-arrows-alt" @click.native="toolFullScreen"></Icon>
+            </div>
             <div class="body-bar">
                 <div class="editor-area" v-show="config.editor">
-                    <textarea id="editor-area-textarea" v-model="writeContent"></textarea>
+                    <textarea id="editor-area-textarea" v-model="writeContent" spellcheck="false"></textarea>
                 </div>
                 <div class="preview-area" v-show="config.preview">
                     <MarkdownView :article="writeContent"></MarkdownView>
@@ -41,12 +43,17 @@ export default {
             config: {
                 editor: true,
                 preview: true,
+                fullScreen: false
             },
             writeContent: ''
         };
     },
     methods: {
-
+        // 工具栏-全屏
+        toolFullScreen() {
+            console.log('233');
+            this.config.fullScreen = !this.config.fullScreen;
+        }
     },
     mounted() {
 
@@ -70,7 +77,18 @@ export default {
     }
     .tool-bar {
         min-height: 50px;
-        background: #ccc;
+        background: #f0f0f0;
+        padding: 0 15px;
+        position: relative;
+
+        .tool-item {
+            cursor: pointer;
+            color: #999;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            margin-right: 10px;
+        }
     }
     .body-bar {
         width: 100%;
@@ -93,11 +111,19 @@ export default {
         .preview-area {
         }
     }
+
     #editor-area-textarea {
         width: 100%;
         height: 100%;
         resize: none;
         border: 0;
+        line-height: 25px;
     }
+}
+.editor-fullScreen {
+    position: absolute;
+    left: 0;
+    top: 0;
+
 }
 </style>

@@ -1,6 +1,8 @@
 <template>
     <span class="u-tag" :class="innerSize === 'large' ? 'u-tag-large' : '' ">
-        <router-link :to="'/tag/detail/' + name">{{innerTitle}}</router-link>
+        <router-link v-if="name !== undefined" :to="'/tag/detail/' + name">{{innerTitle}}</router-link>
+        <template v-else>{{innerTitle}}</template>
+        <Icon v-if="closable" name="times" class="tag-close" @click.native.stop="close"></Icon>
     </span>
 </template>
 
@@ -10,13 +12,25 @@ export default {
     props: {
         name: String,
         title: String,
-        size: String, // default large
+        size: {
+            type: String,
+            default: 'large'
+        },
+        closable: {
+            type: Boolean,
+            default: false
+        },
     },
     data() {
         return {
             innerTitle: '',
-            innerSize: this.size || 'default',
+            innerSize: this.size,
         };
+    },
+    methods: {
+        close() {
+            this.$emit('close');
+        }
     },
     created() {
         if (this.title) {
@@ -39,6 +53,7 @@ export default {
         margin-bottom: 5px;
         padding: 0 10px;
         transition: all 0.5s ease;
+        position: relative;
 
         &:hover {
             box-shadow: 1px 1px 5px #dcdee2;
@@ -50,6 +65,13 @@ export default {
         }
         a:hover {
             color: #515a6e;
+        }
+
+        .tag-close {
+            color: #aaa;
+            cursor: pointer;
+            position: relative;
+            top: 3px;
         }
 
         @media screen and (max-width: 480px){

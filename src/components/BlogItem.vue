@@ -4,7 +4,7 @@
         <div class="info">
             <h3 class="title"><router-link :to="'/' + blog.type + '/blog/' + blog.name">{{blog.title}}</router-link></h3>
             <p class="tags">
-                <Tag v-for="(name, index) in blog.tagNames" :key="index" :name="name" />
+                <Tag v-for="(tag, index) in blog.tags" :key="index" :name="tag.name" :title="tag.title" size="small" />
             </p>
         </div>
     </div>

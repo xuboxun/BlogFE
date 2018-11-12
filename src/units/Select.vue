@@ -2,18 +2,26 @@
     <div class="u-select" v-clickoutside="close">
         <div class="select-wrapper">
             <div class="select-value" @click="toggleOption">
+                <font v-if="value.length === 0" class="select-placement">{{ placement }}</font>
                 <template v-if="!multiple">
-                    {{ innerValue[0].title }}
+                    {{ selectedOption && selectedOption.title }}
                 </template>
                 <template v-else>
-                    <Tag v-for="item in innerValue" :key="item.value" :name="item.value" :title="item.title" size="small"></Tag>
+                    <Tag
+                        v-for="item in selectedOption"
+                        :key="item.value"
+                        :title="item.title"
+                        size="small"
+                        :closable="true"
+                        @close="closeTag(item.value)"
+                    ></Tag>
                 </template>
             </div>
             <div class="select-option" :class="!optionShow ? 'select-option-hide' : ''">
                 <li class="option"
                     v-for="item in options"
                     :key="item.value"
-                    @click="selectOption(item)">
+                    @click="selectOption(item.value)">
                     {{ item.title }}
                     <Icon class="option-check" name="check" v-if="!multiple ? innerValue === item.value : innerValue.indexOf(item.value) > -1"></Icon>
                 </li>
@@ -27,6 +35,10 @@ export default {
     name: 'Select',
     props: {
         value: [String, Number, Array],
+        placement: {
+            type: String,
+            default: '请选择'
+        },
         multiple: {
             type: Boolean,
             default: false
@@ -42,29 +54,29 @@ export default {
     },
     data() {
         return {
-            innerValue: [
-                { value: '', title: ''}
-            ],
+            innerValue: this.multiple ? [] : '',
             optionShow: false,
         };
     },
+    computed: {
+        selectedOption: function() {
+            if (!this.multiple) {
+                return this.options.find(item => item.value === this.value);
+            } else {
+                return this.options.filter(item => {
+                    return this.value.indexOf(item.value) > -1;
+                });
+            }
+        }
+    },
     watch: {
         value: function() {
-            // console.log('watch value');
-            // if (!this.multiple) {
-            //     this.innerValue = [this.options.find(item => item.value === this.value)];
-            //     console.log(this.innerValue);
-            // } else {
-            //     this.innerValue = this.options.filter(item => item.value === this.value);
-            // }
+            console.log('watch value');
+            this.innerValue = this.value;
         },
         innerValue: function() {
             console.log('watch innerValue');
-            let val = this.innerValue.map(item => item.value);
-            if (!this.multiple) {
-                val = val[0];
-            }
-            this.$emit('update', val);
+            this.$emit('update', this.innerValue);
         }
     },
     methods: {
@@ -74,17 +86,25 @@ export default {
         toggleOption() {
             this.optionShow = !this.optionShow;
         },
-        selectOption(option) {
+        selectOption(optionValue) {
             if (!this.multiple) {
-                this.innerValue = [option];
+                this.innerValue = optionValue;
                 this.close();
             } else {
-                let index = this.innerValue.findIndex(item => item.value === option.value);
+                let index = this.innerValue.findIndex(value => value === optionValue);
                 if (index === -1) {
-                    this.innerValue.push(option);
+                    this.innerValue.push(optionValue);
                 } else {
                     this.innerValue.splice(index, 1);
                 }
+            }
+        },
+        closeTag(optionValue) {
+            let index = this.innerValue.findIndex(value => value === optionValue);
+            if (index === -1) {
+                this.innerValue.push(optionValue);
+            } else {
+                this.innerValue.splice(index, 1);
             }
         }
     }
@@ -93,10 +113,10 @@ export default {
 
 <style lang="scss" scoped>
 .u-select {
-    width: 200px;
+    min-width: 200px;
     height: 35px;
     .select-wrapper {
-        width: 200px;
+        min-width: 200px;
         height: 35px;
         z-index: 9999;
         position: absolute;
@@ -111,6 +131,9 @@ export default {
         border-radius: 3px;
         background: #fff;
         cursor: pointer;
+        .select-placement {
+            color: #ccc;
+        }
     }
     .select-option {
         width: 100%;

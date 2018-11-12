@@ -2,7 +2,7 @@
     <div class="v-admin-write">
         <LocateBar>
             <Button @click="saveDraft">保存草稿</Button>
-            <Button @click="doneWrite">提交</Button>
+            <Button @click="submit">提交</Button>
         </LocateBar>
         <div class="base-info">
             <p class="hide-info" v-show="isBaseInfoHide">基本配置信息</p>
@@ -12,9 +12,9 @@
                     <Input width="50%" class="info-name" type="text" placeholder="博客链接名" v-model="blog.name" />
                 </div>
                 <div class="base-props">
-                    <Select v-model="blog.type" :options="typeList" class="info-type"></Select>
-                    <Select v-model="blog.tagIds" :options="tagList" v-if="blog.type === 'tech' || blog.type === 'culture'" class="info-tag" :multiple="true"></Select>
-                    <Select v-model="blog.serialId" v-if="blog.type === 'serial'" class="info-serial"></Select>
+                    <Select v-model="blog.type" :options="typeList" class="info-type" placement="请选择博客类型"></Select>
+                    <Select v-model="blog.tagIds" :options="tagList" v-if="blog.type === 'tech' || blog.type === 'culture'" class="info-tag" :multiple="true" placement="请选择标签"></Select>
+                    <Select v-model="blog.serialId" :options="serialList" v-if="blog.type === 'serial'" class="info-serial" placement="请选择专栏"></Select>
                 </div>
             </div>
             <div class="down-arrow" @click="toggleBaseInfo"></div>
@@ -31,6 +31,8 @@ import LocateBar from '@/units/LocateBar';
 import Button from '@/units/Button';
 import { getSerialList } from '@/service/serial';
 import { getTagList } from '@/service/tag';
+import { addBlog } from '@/service/blog';
+
 
 export default {
     components: {
@@ -63,10 +65,38 @@ export default {
             this.isBaseInfoHide = !this.isBaseInfoHide;
         },
         saveDraft() {
-            console.log(this.blog);
+            if (this.checkData()) {
+                console.log(this.blog);
+            }
         },
-        doneWrite() {
-            console.log(this.blog);
+        submit() {
+            if (this.checkData()) {
+                addBlog(this.blog).then(res => {
+                    if (res.data.code === 200) {
+                        console.log('添加成功');
+                    } else {
+                        console.log('add error');
+                    }
+                });
+            }
+        },
+        checkData() {
+            let blog = this.blog;
+            if (blog.name === '' || blog.title === '') {
+                console.log('博客名不能为空');
+                return false;
+            }
+            if (blog.type === '') {
+                console.log('博客类型不能为空');
+                return false;
+            }
+            if (((blog.type === 'tech' || blog.type === 'culture') && blog.tagIds.length === 0)
+                || (blog.type === 'serial' && blog.serialId === 0)
+            ) {
+                console.log('博客标签或专栏不能为空');
+                return false;
+            }
+            return true;
         },
         searchTagList() {
             getTagList().then(res => {

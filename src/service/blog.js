@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const BlogListApi = '/api/blog/list';
 const BlogDetailApi = '/api/blog/detail';
+const BlogAddApi = '/api/blog/add';
 
 /*
 * 获取博客列表
@@ -22,5 +23,16 @@ export function getBlogDetail(name) {
         params: {
             name: name
         }
+    });
+}
+
+export function addBlog(payload) {
+    return axios.post(BlogAddApi, {
+        title: payload.title,
+        name: payload.name,
+        content: payload.content,
+        type: payload.type,
+        tagIds: payload.type === 'serial' ? undefined : payload.tagIds,
+        serialId: payload.type === 'serial' ? payload.serialId : undefined
     });
 }
