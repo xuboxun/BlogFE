@@ -16,6 +16,7 @@ import Table from '@/units/Table';
 import Tag from '@/units/Tag';
 import Timeline from '@/units/Timeline';
 import Input from '@/units/Input';
+import Select from '@/units/Select';
 import FormItem from '@/units/FormItem';
 
 
@@ -34,6 +35,7 @@ const components = {
     Timeline,
     Icon,
     Input,
+    Select,
     FormItem,
 };
 
