@@ -34,6 +34,11 @@ export default {
         },
     },
     watch: {
+        content() {
+            if (this.writeContent !== this.content) {
+                this.writeContent = this.content;
+            }
+        },
         writeContent(val) {
             this.$emit('update', val);
         }
@@ -66,6 +71,9 @@ export default {
     width: 100%;
     height: 100%;
     border: 1px solid #ccc;
+    position: absolute;
+    left: 0;
+    top: 0;
     li {
         list-style-type: inherit;
     }
@@ -121,9 +129,9 @@ export default {
     }
 }
 .editor-fullScreen {
-    position: absolute;
+    z-index: 99999;
+    position: fixed;
     left: 0;
     top: 0;
-
 }
 </style>

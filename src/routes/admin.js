@@ -1,5 +1,5 @@
 import Dashboard from '@/views/admin/dashboard';
-import Write from '@/views/admin/write';
+import Editor from '@/views/admin/editor';
 import BlogList from '@/views/admin/blog/list';
 import BlogDetail from '@/views/admin/blog/detail';
 import TagList from '@/views/admin/tag/list';
@@ -22,7 +22,7 @@ const adminRoutes = [
         path: 'write',
         name: 'admin/write',
         meta: { title: '写博客' },
-        component: Write
+        component: Editor
     },
     {
         path: 'blog',
@@ -42,6 +42,12 @@ const adminRoutes = [
                 name: 'admin/blog/detail',
                 meta: { title: '博客详情' },
                 component: BlogDetail
+            },
+            {
+                path: 'edit/:name',
+                name: 'admin/blog/edit',
+                meta: { title: '博客编辑' },
+                component: Editor
             }
         ]
     },

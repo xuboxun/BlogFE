@@ -1,6 +1,8 @@
 <template>
     <div class="v-admin-blog-detail">
-        <LocateBar :locations="locations"></LocateBar>
+        <LocateBar :locations="locations">
+            <Button @click="edit">编辑</Button>
+        </LocateBar>
         <div class="detail">
             <h2 class="title">{{blog.title}}</h2>
             <div class="base-info">
@@ -28,6 +30,15 @@ export default {
             getBlogDetail(this.$route.params.name).then(res => {
                 if (res.data.code === 200) {
                     this.blog = res.data.result;
+                    this.locations[1].name = this.blog.title;
+                }
+            });
+        },
+        edit() {
+            this.$router.push({
+                name: 'admin/blog/edit',
+                params: {
+                    name: this.$route.params.name
                 }
             });
         }

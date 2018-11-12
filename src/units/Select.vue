@@ -2,7 +2,7 @@
     <div class="u-select" v-clickoutside="close">
         <div class="select-wrapper">
             <div class="select-value" @click="toggleOption">
-                <font v-if="value.length === 0" class="select-placement">{{ placement }}</font>
+                <font v-if="value === undefined || value.length === 0" class="select-placement">{{ placement }}</font>
                 <template v-if="!multiple">
                     {{ selectedOption && selectedOption.title }}
                 </template>
@@ -64,7 +64,7 @@ export default {
                 return this.options.find(item => item.value === this.value);
             } else {
                 return this.options.filter(item => {
-                    return this.value.indexOf(item.value) > -1;
+                    return this.value && this.value.indexOf(item.value) > -1;
                 });
             }
         }
@@ -72,6 +72,7 @@ export default {
     watch: {
         value: function() {
             console.log('watch value');
+            console.log(this.value);
             this.innerValue = this.value;
         },
         innerValue: function() {
@@ -118,7 +119,7 @@ export default {
     .select-wrapper {
         min-width: 200px;
         height: 35px;
-        z-index: 9999;
+        z-index: 999;
         position: absolute;
     }
     .select-value {

@@ -24,8 +24,15 @@ export default {
     },
     data() {
         return {
-            innerValue: this.value,
+            innerValue: '',
         };
+    },
+    watch: {
+        value: function() {
+            if (this.value !== this.innerValue) {
+                this.innerValue = this.value;
+            }
+        }
     },
     methods: {
         update(e) {
