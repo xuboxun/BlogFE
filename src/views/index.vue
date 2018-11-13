@@ -1,8 +1,6 @@
 <template>
     <div class="v-index">
-        <div class="background">
-            <img src="/assets/images/indexbg.jpg" />
-        </div>
+        <div class="background"></div>
         <div class="content">
             <h1 class="name">徐博勋的博客</h1>
             <div class="entry">
@@ -30,7 +28,7 @@ export default {
         };
     },
     mounted() {
-        
+
     },
 };
 </script>
@@ -44,6 +42,9 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
+        background-image: url('/assets/images/indexbg.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
     }
     .content {
         width: 580px;
@@ -93,7 +94,7 @@ export default {
                 color: #fff;
                 height: 30px;
                 line-height: 35px;
-                border-bottom: 1px solid #fff;  
+                border-bottom: 1px solid #fff;
             }
             ul {
                 margin-top: 10px;
@@ -115,6 +116,10 @@ export default {
     }
 
     @media screen and (max-width: 480px) {
+        .background {
+            background-size: auto 100%;
+            background-image: url('/assets/images/index_mb_bg.jpg');
+        }
         .content {
             width: 80%;
             top: 50%;

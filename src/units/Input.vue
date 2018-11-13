@@ -1,6 +1,6 @@
 <template>
     <div class="u-input" :style="'width: ' + width">
-        <input type="text" v-model="innerValue" @input="update" :placeholder="placeholder">
+        <input :type="type" v-model="innerValue" @input="update" :placeholder="placeholder">
     </div>
 </template>
 
@@ -9,6 +9,10 @@ export default {
     name: 'Input',
     props: {
         value: [String, Number],
+        type: {
+            type: String,
+            default: 'text'
+        },
         width: {
             type: String,
             default: '150px'

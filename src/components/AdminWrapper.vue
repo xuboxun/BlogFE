@@ -15,7 +15,7 @@
                         </div>
                         <div slot="content">
                             <li class="menu-item">个人信息</li>
-                            <li class="menu-item">退出</li>
+                            <li class="menu-item" @click="logout">退出</li>
                         </div>
                     </Dropdown>
                 </div>
@@ -34,7 +34,7 @@
                     <router-link to="/admin/system"><li class="nav-item"><Icon name="cog" class="icon" />系统管理</li></router-link>
                 </div>
             </div>
-            
+
             <div class="admin-console">
                 <router-view></router-view>
             </div>
@@ -45,6 +45,8 @@
 <script>
 import Dropdown from '@/units/Dropdown';
 import Divider from '@/units/Divider';
+import { authentication, adminLogout } from '@/service/login';
+
 export default {
     components: {
         Dropdown,
@@ -58,8 +60,27 @@ export default {
     methods: {
         toggleNav() {
             this.navShow = !this.navShow;
+        },
+        logout() {
+            adminLogout().then(res => {
+                if (res.data.code === 200) {
+                    console.log('退出成功');
+                    this.$router.push({
+                        name: 'admin/login'
+                    });
+                }
+            });
         }
     },
+    mounted() {
+        authentication().then(res => {
+            if (res.data.code === 200 && res.data.result.login) {
+                console.log('登录成功');
+            } else {
+                this.$router.push({ name: 'admin/login' });
+            }
+        });
+    }
 };
 </script>
 

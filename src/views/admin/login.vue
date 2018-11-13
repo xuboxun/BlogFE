@@ -7,7 +7,7 @@
                 <Input v-model="account" placeholder="请输入账号" width="100%" />
             </FormItem>
             <FormItem>
-                <Input v-model="password" placeholder="请输入密码" width="100%" />
+                <Input v-model="password" type="password" placeholder="请输入密码" width="100%" />
             </FormItem>
             <FormItem style="margin-top: 10px;">
                 <Button size="large" style="width: 100%;" @click="login">登录</Button>
@@ -21,6 +21,9 @@
 </template>
 
 <script>
+import { adminLogin } from '@/service/login';
+import md5 from 'md5';
+
 export default {
     name: 'login',
     data() {
@@ -32,18 +35,23 @@ export default {
     },
     methods: {
         login() {
-            const info = {
+            adminLogin({
                 account: this.account,
-                password: this.password
-            };
-            this.setInfo('错误信息');
-            this.$router.push({ name: 'admin/dashboard' });
+                password: md5(this.password),
+                code: 'code'
+            }).then(res => {
+                if (res.data.code === 200) {
+                    this.$router.push({ name: 'admin/dashboard' });
+                } else {
+                    this.setInfo(res.data.msg);
+                }
+            });
         },
         setInfo(info) {
             this.info = info;
             setTimeout(() => {
                 this.info = '';
-            }, 3000)
+            }, 3000);
         }
     }
 };
