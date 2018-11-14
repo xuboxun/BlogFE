@@ -70,9 +70,10 @@ export default {
     height: 100%;
     .modal-body {
         width: 400px;
-        height: 300px;
+        min-height: 200px;
         background: #fff;
         border-radius: 5px;
+        padding: 15px 20px 20px;
         position: absolute;
         left: 50%;
         top: 100px;
@@ -80,8 +81,8 @@ export default {
 
         .icon-close {
             position: absolute;
-            right: 10px;
-            top: 10px;
+            right: 15px;
+            top: 15px;
             color: #999;
             cursor: pointer;
             width: 20px;

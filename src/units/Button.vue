@@ -14,7 +14,7 @@ export default {
             type: String,
             default: 'default',
             validator: function(val) {
-                return ['default', 'warn', 'text'].indexOf(val) > -1;
+                return ['default', 'warn', 'text', 'textwarn'].indexOf(val) > -1;
             }
         },
         size: {
@@ -60,6 +60,10 @@ export default {
     .button-type-text {
         background: transparent;
         color: #808695;
+    }
+    .button-type-textwarn {
+        color: #ed4014;
+        background: transparent;
     }
     .button-size-normal {
         font-size: 1.05rem;

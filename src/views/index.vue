@@ -42,7 +42,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background-image: url('/assets/images/indexbg.jpg');
+        background-image: url('/assets/images/sing.jpg');
         background-repeat: no-repeat;
         background-position: center;
     }
@@ -55,7 +55,7 @@ export default {
         top: 40%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: rgba(225, 225, 225, 0.4);
+        background: rgba(200, 200, 200, 0.4);
 
         .name {
             height: 70px;

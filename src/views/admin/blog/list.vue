@@ -5,6 +5,7 @@
         </LocateBar>
         <Table :columns="table.columns" :data="table.data" width="800" />
         <Pager :pageNum="pager.pageNum" :pageSize="pager.pageSize" :total="pager.total" align="right"></Pager>
+        <DeleteModal ref="deleteBlogModal" :info="deleteInfo"></DeleteModal>
     </div>
 </template>
 
@@ -15,6 +16,7 @@ import Button from '@/units/Button';
 import Tag from '@/units/Tag';
 import Pager from '@/units/Pager';
 import Filter from '@/utils/filter';
+import DeleteModal from '@/components/DeleteModal';
 import { getBlogList } from '@/service/blog';
 
 export default {
@@ -24,6 +26,7 @@ export default {
         Button,
         Tag,
         Pager,
+        DeleteModal
     },
     data() {
         return {
@@ -65,6 +68,7 @@ export default {
                     {
                         key: 'operate',
                         title: '操作',
+                        align: 'center',
                         render: (h, params) => {
                             return h('div', [
                                 h('Button', {
@@ -73,9 +77,18 @@ export default {
                                         type: 'text'
                                     },
                                     on: {
-                                        click: () =>  { console.log('233'); }
+                                        click: () => { this.edit(params.row.name); }
                                     }
-                                }, '详情'),
+                                }, '编辑'),
+                                h('Button', {
+                                    props: {
+                                        size: 'small',
+                                        type: 'textwarn'
+                                    },
+                                    on: {
+                                        click: () => { this.delete(params.row); }
+                                    }
+                                }, '删除'),
                             ]);
                         }
                     }
@@ -86,8 +99,8 @@ export default {
                 pageNum: 1,
                 pageSize: 15,
                 total: 0,
-            }
-
+            },
+            deleteInfo: []
         };
     },
     methods: {
@@ -102,6 +115,30 @@ export default {
                     this.table.data = res.data.result.items;
                     this.pager.total = res.data.result.total;
                 }
+            });
+        },
+        edit(name) {
+            this.$router.push({
+                name: 'admin/blog/edit',
+                params: { name: name }
+            });
+        },
+        delete(row) {
+            this.deleteInfo = [
+                { key: '博客名', value: row.title },
+                { key: '链接名', value: row.name },
+                { key: '创建时间', value: Filter.time(row.createTime) },
+            ];
+            this.$refs.deleteBlogModal.show(() => {
+                return this.requestDelete(row.name);
+            });
+        },
+        requestDelete(name) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log('delete', name);
+                    resolve(true);
+                }, 1500);
             });
         }
     },

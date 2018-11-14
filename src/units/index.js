@@ -10,6 +10,7 @@ import Dropdown from '@/units/Dropdown';
 import LocateBar from '@/units/LocateBar';
 import MarkdownEditor from '@/units/MarkdownEditor';
 import MarkdownView from '@/units/MarkdownView';
+import Modal from '@/units/Modal';
 import Pager from '@/units/Pager';
 import Selector from '@/units/Selection';
 import Table from '@/units/Table';
@@ -28,6 +29,7 @@ const components = {
     LocateBar,
     MarkdownEditor,
     MarkdownView,
+    Modal,
     Pager,
     Selector,
     Table,
