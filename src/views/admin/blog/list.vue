@@ -5,7 +5,7 @@
         </LocateBar>
         <Table :columns="table.columns" :data="table.data" width="800" />
         <Pager :pageNum="pager.pageNum" :pageSize="pager.pageSize" :total="pager.total" align="right"></Pager>
-        <DeleteModal ref="deleteBlogModal" :info="deleteInfo"></DeleteModal>
+        <DeleteModal ref="deleteBlogModal" title="删除博客?" :info="deleteInfo"></DeleteModal>
     </div>
 </template>
 
@@ -69,6 +69,7 @@ export default {
                         key: 'operate',
                         title: '操作',
                         align: 'center',
+                        width: 150,
                         render: (h, params) => {
                             return h('div', [
                                 h('Button', {

@@ -24,16 +24,17 @@ export default {
 <style lang="scss" scoped>
 .u-formitem {
     width: 100%;
-    height: 50px;
+    min-height: 50px;
     padding: 0 20px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 
     .comment {
         display: inline-block;
         height: 35px;
         width: 100px;
-
+        color: #515a6e;
+        flex: 0 0 auto;
     }
 }
 </style>

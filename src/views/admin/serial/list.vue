@@ -1,13 +1,11 @@
 <template>
     <div class="v-admin-serial">
         <LocateBar>
-            <Button @click="addSerial">添加专栏</Button>
+            <Button @click="addSerial">新建专栏</Button>
         </LocateBar>
         <Table :columns="table.columns" :data="table.data" width="800" />
         <Pager :pageNum="pager.pageNum" :pageSize="pager.pageSize" :total="pager.total" align="right"></Pager>
-        <Modal v-model="addModal">
-            content
-        </Modal>
+        <DeleteModal ref="deleteBlogModal" title="删除专栏?" :info="deleteInfo"></DeleteModal>
     </div>
 </template>
 
@@ -15,6 +13,7 @@
 import LocateBar from '@/units/LocateBar';
 import Modal from '@/units/Modal';
 import Filter from '@/utils/filter';
+import DeleteModal from '@/components/DeleteModal';
 import { getSerialList } from '@/service/serial';
 
 export default {
@@ -22,10 +21,10 @@ export default {
     components: {
         LocateBar,
         Modal,
+        DeleteModal
     },
     data() {
         return {
-            addModal: false,
             pager: {
                 pageNum: 1,
                 pageSize: 15,
@@ -66,26 +65,66 @@ export default {
                     {
                         key: 'operate',
                         title: '操作',
-                        align: 'left',
+                        align: 'center',
+                        width: 150,
                         render: (h, params) => {
                             return h('div', [
                                 h('Button', {
                                     props: {
+                                        size: 'small',
                                         type: 'text'
+                                    },
+                                    on: {
+                                        click: () => { this.edit(params.row.name); }
                                     }
-                                }, '详情')
+                                }, '编辑'),
+                                h('Button', {
+                                    props: {
+                                        size: 'small',
+                                        type: 'textwarn'
+                                    },
+                                    on: {
+                                        click: () => { this.delete(params.row); }
+                                    }
+                                }, '删除'),
                             ]);
                         }
                     }
                 ],
                 data: []
-            }
+            },
+            deleteInfo: []
         };
     },
     methods: {
         addSerial() {
-            console.log('addSerial');
-            this.addModal = true;
+            this.$router.push({
+                name: 'admin/serial/add'
+            });
+        },
+        edit(name) {
+            this.$router.push({
+                name: 'admin/serial/edit',
+                params: { name: name }
+            });
+        },
+        delete(row) {
+            this.deleteInfo = [
+                { key: '专栏名', value: row.title },
+                { key: '链接名', value: row.name },
+                { key: '创建时间', value: Filter.time(row.createTime) },
+            ];
+            this.$refs.deleteBlogModal.show(() => {
+                return this.requestDelete(row.name);
+            });
+        },
+        requestDelete(name) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log('delete', name);
+                    resolve(true);
+                }, 1500);
+            });
         }
     },
     created() {

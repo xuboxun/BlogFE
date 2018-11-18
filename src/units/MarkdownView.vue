@@ -13,7 +13,7 @@ export default {
     props: {
         article: {
             type: String,
-            default: '# test'
+            default: ''
         }
     },
     data() {

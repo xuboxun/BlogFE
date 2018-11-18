@@ -5,8 +5,8 @@
             <h1 class="name">徐博勋的博客</h1>
             <div class="entry">
                 <li><router-link to="/home"><Icon name="angle-right" class="icon" />首页</router-link></li>
-                <li><router-link to="/tech"><Icon name="angle-right" class="icon" />技术博客</router-link></li>
-                <li><router-link to="/culture"><Icon name="angle-right" class="icon" />文艺青年</router-link></li>
+                <li><router-link to="/tech"><Icon name="angle-right" class="icon" />技术</router-link></li>
+                <li><router-link to="/culture"><Icon name="angle-right" class="icon" />随笔</router-link></li>
                 <li><router-link to="/about"><Icon name="angle-right" class="icon" />关于你想知道的我</router-link></li>
             </div>
             <div class="link">

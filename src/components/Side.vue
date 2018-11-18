@@ -5,11 +5,16 @@
             <h2 class="name">徐博勋</h2>
             <p class="word">你心中的火焰，灼烧的不仅是你的内心，还会成为照亮世界的光，温暖他人。</p>
             <div class="accounts">
-                <a class="brand" href="https://github.com/xbx0119" target="blanket">
-                    <Icon name="brands/github" scale="2" />
+                <a class="brand" href="https://github.com/xbx0119" target="blanket" title="https://github.com/xbx0119">
+                    <!--<Icon name="brands/github" scale="2" />-->
+                    <!-- TODO: 图标优化， 减少http请求 -->
+                    <img src="/assets/images/github.webp" alt="github" />
                 </a>
-                <a class="brand" href="https://www.zhihu.com/people/xuboxun/activities" target="blanket">
-                    <Icon name="brands/zhihu" scale="2.5" />
+                <a class="brand" href="https://www.zhihu.com/people/xuboxun/activities" target="blanket" title="https://www.zhihu.com/people/xuboxun/activities">
+                    <img src="/assets/images/zhihu.webp" alt="知乎" />
+                </a>
+                <a class="brand" href="mailto:ixuboxun@163.com" target="blanket" title="ixuboxun@163.com">
+                    <img src="/assets/images/email.webp" alt="邮箱" />
                 </a>
             </div>
         </div>
@@ -59,6 +64,12 @@ export default {
             margin-top: 15px;
             a {
                 display: inline-block;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                }
             }
             .brand + .brand {
                 margin-left: 10px;

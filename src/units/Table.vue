@@ -7,6 +7,7 @@
                         v-for="column in columns"
                         :key="column.key"
                         :class="computeColumnAlign(column)"
+                        :style="computeStyle(column)"
                     >
                         {{column.title}}
                     </th>
@@ -18,6 +19,7 @@
                         v-for="(column, columnIndex) in columns"
                         :key="columnIndex"
                         :class="computeColumnAlign(column)"
+                        :style="computeStyle(column)"
                     >
                         <template v-if="!column.render">
                             {{ row[column.key] }}
@@ -66,6 +68,13 @@ export default {
     methods: {
         computeColumnAlign(column) {
             return column.align ? 'align-' + column.align : 'align-left';
+        },
+        computeStyle(column) {
+            let obj = {};
+            if (column.width) {
+                obj.width = column.width + 'px';
+            }
+            return obj;
         }
     }
 

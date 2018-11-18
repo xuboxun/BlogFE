@@ -1,7 +1,7 @@
 <template>
     <Modal class="m-delete-modal" v-model="flag">
         <div class="tips">
-            <h3 class="title">删除博客?</h3>
+            <h3 class="title">{{ title }}</h3>
             <div class="info">
                 <h4>相关信息</h4>
                 <template v-if="info.length > 0">
@@ -23,6 +23,10 @@
 export default {
     name: 'DeleteModal',
     props: {
+        title: {
+            type: String,
+            default: '删除?'
+        },
         info: {
             type: Array,
             default: () => [], // { key: '', value: ''}

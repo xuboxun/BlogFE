@@ -4,8 +4,10 @@ import BlogList from '@/views/admin/blog/list';
 import BlogDetail from '@/views/admin/blog/detail';
 import TagList from '@/views/admin/tag/list';
 import TagDetail from '@/views/admin/tag/detail';
+import TagEditor from '@/views/admin/tag/editor';
 import SerialList from '@/views/admin/serial/list';
 import SerialDetail from '@/views/admin/serial/detail';
+import SerialEditor from '@/views/admin/serial/editor';
 import System from '@/views/admin/system';
 import Subscribe from '@/views/admin/subscribe';
 
@@ -70,6 +72,18 @@ const adminRoutes = [
                 meta: { title: '标签详情' },
                 component: TagDetail
             },
+            {
+                path: 'add',
+                name: 'admin/tag/add',
+                meta: { title: '新建标签' },
+                component: TagEditor
+            },
+            {
+                path: 'edit/:name',
+                name: 'admin/tag/edit',
+                meta: { title: '编辑标签' },
+                component: TagEditor
+            },
         ]
     },
     {
@@ -90,6 +104,18 @@ const adminRoutes = [
                 name: 'admin/serial/detail',
                 meta: { title: '专栏详情' },
                 component: SerialDetail
+            },
+            {
+                path: 'add',
+                name: 'admin/serial/add',
+                meta: { title: '新建专栏' },
+                component: SerialEditor
+            },
+            {
+                path: 'edit/:name',
+                name: 'admin/serial/edit',
+                meta: { title: '编辑专栏' },
+                component: SerialEditor
             },
         ]
     },
