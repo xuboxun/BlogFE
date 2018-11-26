@@ -1,8 +1,10 @@
 <template>
     <div class="m-menu">
         <div class="title">
-            <img src="/assets/images/logo.jpg" alt="logo" class="logo">
-            <font class="name">名字</font>
+            <router-link to="/">
+                <!--<img src="/assets/images/logo.jpg" alt="logo" class="logo">-->
+                <font class="name">思吾轩</font>
+            </router-link>
         </div>
         <Icon @click.native="toggleMenu" class="mbbtn icon" :name="!showMenu ? 'bars' : 'times'" />
         <div class="menu" :class="!showMenu ? 'menu-hide' : ''">
@@ -70,10 +72,10 @@ export default {
             width: 100px;
             height: 40px;
             float: left;
+            margin-right: 5px;
         }
         .name {
             display: inline-block;
-            margin-left: 5px;
             line-height: 40px;
             font-size: 1.2rem;
             color: #17233d;
@@ -147,7 +149,7 @@ export default {
             box-shadow: 5px 0px 5px #ddd;
             transition: all 0.5s ease;
             opacity: 1;
-            
+
 
             .menu-items {
                 width: 100%;
