@@ -3,6 +3,7 @@ import axios from 'axios';
 const TagListApi = '/api/tag/list';
 const TagDetailApi = '/api/tag/detail';
 const TagAddApi = '/api/tag/add';
+const TagEditApi = '/api/tag/edit';
 const TagCheckExistApi = '/api/tag/checkExist';
 
 
@@ -20,6 +21,15 @@ export function getTagDetail(name) {
 
 export function createTag(payload) {
     return axios.post(TagAddApi, {
+        title: payload.title,
+        name: payload.name,
+        description: payload.description
+    });
+}
+
+export function updateTag(payload) {
+    return axios.post(TagEditApi, {
+        id: payload.id,
         title: payload.title,
         name: payload.name,
         description: payload.description

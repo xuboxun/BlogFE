@@ -19,6 +19,7 @@ import Timeline from '@/units/Timeline';
 import Input from '@/units/Input';
 import Select from '@/units/Select';
 import FormItem from '@/units/FormItem';
+import Verify from '@/units/Verify';
 
 
 const components = {
@@ -39,6 +40,7 @@ const components = {
     Input,
     Select,
     FormItem,
+    Verify
 };
 
 

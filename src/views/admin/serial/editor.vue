@@ -1,15 +1,127 @@
 <template>
     <div class="v-admin-serial-editor">
-        <LocateBar></LocateBar>
+        <LocateBar>
+            <Button @click="submitEdit" v-if="editFlag">确定修改</Button>
+            <Button @click="submitAdd" v-else>确定添加</Button>
+        </LocateBar>
         <div class="serial-editor-wrapper">
-
+            <FormItem comment="专栏名">
+                <Input type="text" v-model="form.title" />
+            </FormItem>
+            <FormItem comment="链接名">
+                <Input type="text" v-model="form.name" />
+            </FormItem>
+            <FormItem comment="描述">
+                <Input type="textarea" v-model="form.description" width="100%" />
+            </FormItem>
         </div>
     </div>
 </template>
 
 <script>
+import { getSerialDetail, createSerial, updateSerial, checkSerialExist } from '@/service/serial';
 export default {
-    name: 'editor'
+    name: 'editor',
+    data() {
+        return {
+            editFlag: false,
+            form: {
+                title: '',
+                name: '',
+                description: ''
+            },
+            detail: {}
+        };
+    },
+    methods: {
+        async checkForm() {
+            if (this.form.title === '' || this.form.name === '') {
+                console.log('不能为空');
+                return false;
+            } else {
+                let checkName = await this.existCheck({ key: 'name', value: this.form.name});
+                let checkTitle = await this.existCheck({ key: 'title', value: this.form.title});
+                console.log('check');
+                if (!checkName || !checkTitle) {
+                    console.log('存在性检测失败');
+                    return false;
+                }
+                return true;
+            }
+        },
+        async submitEdit() {
+            if (await this.checkForm()) {
+                updateSerial({
+                    id: this.detail.id,
+                    ...this.form
+                }).then(res => {
+                    if (res.data.code === 200) {
+                        console.log('编辑成功');
+                        this.$router.push({
+                            name: 'admin/serial/list'
+                        });
+                    } else {
+                        console.log('编辑失败');
+                    }
+                });
+            }
+        },
+        async submitAdd() {
+            if (await this.checkForm()) {
+                createSerial(this.form).then(res => {
+                    if (res.data.code === 200) {
+                        console.log('添加成功');
+                        this.$router.push({
+                            name: 'admin/serial/list'
+                        });
+                    } else {
+                        console.log('添加失败');
+                    }
+                });
+            }
+        },
+        async existCheck(option) {
+            let res = await checkSerialExist({
+                [option.key]: option.value,
+            });
+            let { code, result } = res.data;
+            if (code === 200) {
+                if (this.editFlag) {
+                    if (!result) {
+                        return true;
+                    } else {
+                        if (this.detail[option.key] === result[option.key]) {
+                            return true;
+                        }
+                        return false;
+                    }
+                } else {
+                    return !result;
+                }
+            } else {
+                return false;
+            }
+        },
+        searchTag() {
+            getSerialDetail(this.$route.params.name).then(res => {
+                if (res.data.code === 200) {
+                    let info = res.data.result;
+                    this.detail = info;
+                    this.form = {
+                        title: info.title,
+                        name: info.name,
+                        description: info.description
+                    };
+                }
+            });
+        },
+    },
+    created() {
+        if (this.$route.name === 'admin/serial/edit') {
+            this.editFlag = true;
+            this.searchTag();
+        }
+    }
 };
 </script>
 

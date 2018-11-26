@@ -7,7 +7,11 @@
                 <Input v-model="account" placeholder="请输入账号" width="100%" />
             </FormItem>
             <FormItem>
-                <Input v-model="password" type="password" placeholder="请输入密码" width="100%" />
+                <Input v-model="password" type="password" placeholder="请输入密码" width="100%" @keyup.enter.native="login" />
+            </FormItem>
+            <FormItem>
+                <Input v-model="code" type="text" placeholder="请输入验证码" width="100%"  />
+                <Verify></Verify>
             </FormItem>
             <FormItem style="margin-top: 10px;">
                 <Button size="large" style="width: 100%;" @click="login">登录</Button>
@@ -30,6 +34,7 @@ export default {
         return {
             account: '',
             password: '',
+            code: '',
             info: ''
         };
     },
@@ -38,7 +43,7 @@ export default {
             adminLogin({
                 account: this.account,
                 password: md5(this.password),
-                code: 'code'
+                code: this.code
             }).then(res => {
                 if (res.data.code === 200) {
                     this.$router.push({ name: 'admin/dashboard' });
@@ -74,7 +79,7 @@ export default {
     }
     .login-block {
         width: 400px;
-        height: 300px;
+        height: 310px;
         border-radius: 5px;
         background: #fff;
         z-index: 999;

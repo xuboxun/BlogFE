@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { getTagDetail, createTag, checkTagExist } from '@/service/tag';
+import { getTagDetail, createTag, updateTag, checkTagExist } from '@/service/tag';
 
 export default {
     name: 'editor',
@@ -52,8 +52,19 @@ export default {
         },
         async submitEdit() {
             if (await this.checkForm()) {
-                // code
-                console.log('edit');
+                updateTag({
+                    id: this.detail.id,
+                    ...this.form
+                }).then(res => {
+                    if (res.data.code === 200) {
+                        console.log('编辑成功');
+                        this.$router.push({
+                            name: 'admin/tag/list'
+                        });
+                    } else {
+                        console.log('编辑失败');
+                    }
+                });
             }
         },
         async submitAdd() {
