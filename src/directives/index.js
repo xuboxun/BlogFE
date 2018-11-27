@@ -1,1 +1,2 @@
 import './clickoutside';
+import './drag';

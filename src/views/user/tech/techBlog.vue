@@ -14,13 +14,11 @@
 
 <script>
 import MarkdownView from '@/units/MarkdownView.vue';
-import MarkdownToc from '@/components/MarkdownToc.vue';
 import { getBlogDetail } from '@/service/blog';
 import Filter from '@/utils/filter';
 export default {
     components: {
         MarkdownView,
-        MarkdownToc
     },
     data() {
         return {
