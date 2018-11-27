@@ -3,7 +3,7 @@
         <div class="view-wrapper">
             <div class="view-body">
                 <BlogItem v-for="culture in blogs" :blog="culture" :key="culture.name"></BlogItem>
-                <Pager></Pager>
+                <Pager v-model="pager.num" :pageSize="pager.size" :total="pager.total" @change-page="searchList"></Pager>
             </div>
             <div class="view-side">
                 <Side />
@@ -33,18 +33,24 @@ export default{
             }
         };
     },
+    methods: {
+        searchList() {
+            getBlogList({
+                type: 'culture',
+                pageNum: this.pager.num,
+                pageSize: this.pager.size,
+            }).then(res => {
+                if (res.data.code === 200) {
+                    this.blogs = res.data.result.items;
+                    this.pager.total = res.data.result.total;
+                } else {
+                    this.blogs = [];
+                }
+            });
+        }
+    },
     mounted() {
-        getBlogList({
-            type: 'culture',
-            pageNum: this.pager.num,
-            pageSize: this.pager.size,
-        }).then(res => {
-            if (res.data.code === 200) {
-                this.blogs = res.data.result.items;
-            } else {
-                this.blogs = [];
-            }
-        });
+        this.searchList();
     }
 };
 </script>

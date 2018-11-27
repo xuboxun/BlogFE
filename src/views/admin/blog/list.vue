@@ -4,7 +4,7 @@
             <Button @click="addBlog">新建博客</Button>
         </LocateBar>
         <Table :columns="table.columns" :data="table.data" width="800" />
-        <Pager :pageNum="pager.pageNum" :pageSize="pager.pageSize" :total="pager.total" align="right"></Pager>
+        <Pager v-model="pager.pageNum" :pageSize="pager.pageSize" :total="pager.total" align="right" @change-page="searchBlog"></Pager>
         <DeleteModal ref="deleteBlogModal" title="删除博客?" :info="deleteInfo"></DeleteModal>
     </div>
 </template>

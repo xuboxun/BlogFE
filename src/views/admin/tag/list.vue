@@ -4,7 +4,7 @@
             <Button @click="addTag">新建标签</Button>
         </LocateBar>
         <Table :columns="table.columns" :data="table.data" width="800" />
-        <Pager :pageNum="pager.pageNum" :pageSize="pager.pageSize" :total="pager.total" align="right"></Pager>
+        <Pager v-model="pager.pageNum" :pageSize="pager.pageSize" :total="pager.total" align="right" @change-page="searchTagList"></Pager>
         <DeleteModal ref="deleteBlogModal" title="删除标签?" :info="deleteInfo"></DeleteModal>
     </div>
 </template>
@@ -124,14 +124,18 @@ export default {
                     resolve(true);
                 }, 1500);
             });
+        },
+        searchTagList() {
+            getTagList().then(res => {
+                if (res.data.code === 200) {
+                    this.table.data = res.data.result.items;
+                    this.pager.num = res.data.result.total;
+                }
+            });
         }
     },
     created() {
-        getTagList().then(res => {
-            if (res.data.code === 200) {
-                this.table.data = res.data.result.items;
-            }
-        });
+        this.searchTagList();
     }
 };
 </script>

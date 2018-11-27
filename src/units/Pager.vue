@@ -47,14 +47,23 @@ export default {
             validator: function(val) {
                 return ['left', 'center', 'right'].indexOf(val) > -1;
             }
-        },
-        onChange: Function
+        }
+    },
+    model: {
+        prop: 'pageNum',
+        event: 'update'
     },
     data() {
         return {
             innerPageNum: this.pageNum,
             innerPageSize: this.pageSize,
         };
+    },
+    watch: {
+        innerPageNum: function(val) {
+            this.$emit('update', val);
+            this.$emit('change-page');
+        }
     },
     methods: {
         prev() {

@@ -11,6 +11,9 @@ module.exports = merge(base, {
         proxy: {
             '/api': 'http://localhost:3000'
         },
+        hot: true,
+        inline: true,
+        historyApiFallback: true,
         open: true,
     },
     plugins: [

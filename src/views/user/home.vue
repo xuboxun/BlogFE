@@ -1,7 +1,9 @@
 <template>
     <div class="v-home">
         <div class="home-banner">
-
+            <div class="img-wrapper">
+                <img src="/assets/images/book.jpg" alt="" />
+            </div>
         </div>
         <div class="view-wrapper">
             <div class="view-body home-content">
@@ -86,6 +88,19 @@ export default {
         border-radius: 5px;
         overflow: hidden;
         margin-bottom: 30px;
+
+        .img-wrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            img {
+                width: 100%;
+                border-radius: 5px;
+            }
+        }
     }
     .home-content {
         .section-title {

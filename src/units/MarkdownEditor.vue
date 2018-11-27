@@ -117,6 +117,8 @@ export default {
             border-right: 1px solid #ccc;
         }
         .preview-area {
+            height: 100%;
+            overflow: auto;
         }
     }
 

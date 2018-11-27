@@ -44,6 +44,9 @@ export default {
             addBlog(this.blog).then(res => {
                 if (res.data.code === 200) {
                     console.log('添加成功');
+                    this.$router.push({
+                        name: 'admin/blog/list'
+                    });
                 } else {
                     console.log('add error');
                 }
@@ -57,6 +60,9 @@ export default {
             }).then(res => {
                 if (res.data.code === 200) {
                     console.log('编辑成功');
+                    this.$router.push({
+                        name: 'admin/blog/list'
+                    });
                 } else {
                     console.log(res.data);
                 }

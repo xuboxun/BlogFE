@@ -3,7 +3,7 @@
         <div class="view-wrapper">
             <div class="view-body">
                 <BlogItem v-for="tech in blogs" :blog="tech" :key="tech.name"></BlogItem>
-                <Pager :pageNum="pager.num" :pageSize="pager.size" :total="pager.total"></Pager>
+                <Pager v-model="pager.num" :pageSize="pager.size" :total="pager.total" @change-page="searchList"></Pager>
             </div>
             <div class="view-side">
                 <Side />
@@ -56,7 +56,7 @@ export default {
 
 <style lang="scss">
 .v-tech-list {
-    
+
 }
 </style>
 

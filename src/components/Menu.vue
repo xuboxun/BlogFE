@@ -2,23 +2,25 @@
     <div class="m-menu">
         <div class="title">
             <router-link to="/">
-                <!--<img src="/assets/images/logo.jpg" alt="logo" class="logo">-->
+                <!--<img src="/assets/images/me.gif" alt="logo" class="logo">-->
                 <font class="name">思吾轩</font>
             </router-link>
         </div>
-        <Icon @click.native="toggleMenu" class="mbbtn icon" :name="!showMenu ? 'bars' : 'times'" />
-        <div class="menu" :class="!showMenu ? 'menu-hide' : ''">
-            <li class="menu-items">
-                <input type="text" v-model="keyword" class="search-input" @keyup.enter="search" />
-                <Icon name="search" class="search-icon" @click.native="search" />
-            </li>
-            <li class="menu-items"><router-link to="/home">首页</router-link></li>
-            <li class="menu-items"><router-link to="/tech">技术</router-link></li>
-            <li class="menu-items"><router-link to="/culture">随笔</router-link></li>
-            <li class="menu-items"><router-link to="/serial">专栏</router-link></li>
-            <li class="menu-items"><router-link to="/tag">标签</router-link></li>
-            <li class="menu-items"><router-link to="/archives">归档</router-link></li>
-            <li class="menu-items"><router-link to="/about">关于</router-link></li>
+        <div class="menu-wrapper" v-clickoutside="hideMenu">
+            <Icon @click.native="toggleMenu" class="mbbtn icon" :name="!showMenu ? 'bars' : 'times'" />
+            <ul class="menu" :class="!showMenu ? 'menu-hide' : ''">
+                <li class="menu-items search-item">
+                    <input type="text" v-model="keyword" class="search-input" @keyup.enter="search" />
+                    <Icon name="search" class="search-icon" @click.native="search" />
+                </li>
+                <li class="menu-items"><router-link to="/home">首页</router-link></li>
+                <li class="menu-items"><router-link to="/tech">技术</router-link></li>
+                <li class="menu-items"><router-link to="/culture">随笔</router-link></li>
+                <li class="menu-items"><router-link to="/serial">专栏</router-link></li>
+                <li class="menu-items"><router-link to="/tag">标签</router-link></li>
+                <li class="menu-items"><router-link to="/archives">归档</router-link></li>
+                <li class="menu-items"><router-link to="/about">关于</router-link></li>
+            </ul>
         </div>
     </div>
 </template>
@@ -38,7 +40,12 @@ export default {
         },
     },
     methods: {
+        hideMenu() {
+            console.log('hide');
+            this.showMenu = false;
+        },
         toggleMenu() {
+            console.log('toggle');
             this.showMenu = !this.showMenu;
         },
         search(e) {
@@ -69,7 +76,7 @@ export default {
 
     .title {
         .logo {
-            width: 100px;
+            /*width: 100px;*/
             height: 40px;
             float: left;
             margin-right: 5px;
@@ -99,13 +106,12 @@ export default {
             display: inline-block;
         }
     }
-
+    .menu-wrapper {}
     .menu {
         display: flex;
         flex-direction: row;
         align-items: center;
         .menu-items {
-            padding: 10px 15px;
             position: relative;
 
             & + .menu-items {
@@ -116,6 +122,7 @@ export default {
                 display: inline-block;
                 width: 100%;
                 height: 100%;
+                padding: 10px 15px;
             }
 
             .search-input {
@@ -133,6 +140,9 @@ export default {
                 right: 26px;
                 color: #c5c8ce;
             }
+        }
+        .search-item {
+            padding: 10px 15px;
         }
     }
 

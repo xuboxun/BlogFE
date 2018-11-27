@@ -4,7 +4,7 @@
             <Button @click="addSerial">新建专栏</Button>
         </LocateBar>
         <Table :columns="table.columns" :data="table.data" width="800" />
-        <Pager :pageNum="pager.pageNum" :pageSize="pager.pageSize" :total="pager.total" align="right"></Pager>
+        <Pager v-moel="pager.pageNum" :pageSize="pager.pageSize" :total="pager.total" align="right" @change-page="searchSerialList"></Pager>
         <DeleteModal ref="deleteBlogModal" title="删除专栏?" :info="deleteInfo"></DeleteModal>
     </div>
 </template>
@@ -125,14 +125,18 @@ export default {
                     resolve(true);
                 }, 1500);
             });
+        },
+        searchSerialList() {
+            getSerialList().then(res => {
+                if (res.data.code === 200) {
+                    this.table.data = res.data.result.items;
+                    this.pager.total = res.data.result.total;
+                }
+            });
         }
     },
     created() {
-        getSerialList().then(res => {
-            if (res.data.code === 200) {
-                this.table.data = res.data.result.items;
-            }
-        });
+        this.searchSerialList();
     }
 };
 </script>

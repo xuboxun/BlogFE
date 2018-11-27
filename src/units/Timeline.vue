@@ -10,7 +10,7 @@
                 <div class="content">
                     <p v-if="typeof item.content === 'string'">{{item.content}}</p>
                     <ul v-else>
-                        <li class="content-li" v-for="(li, index) in item.content" :key="index">{{li}}</li>
+                        <li class="content-li" v-for="(li, index) in item.content" :key="index" v-if="li !== ''">{{li}}</li>
                     </ul>
                 </div>
             </div>
@@ -67,7 +67,7 @@ export default {
             .dot {
                 width: 12px;
                 height: 12px;
-                border-radius: 50%;                
+                border-radius: 50%;
             }
             .dot-circle {
                 border: 1px solid #2d8cf0;

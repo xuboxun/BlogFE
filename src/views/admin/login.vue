@@ -10,7 +10,7 @@
                 <Input v-model="password" type="password" placeholder="请输入密码" width="100%" @keyup.enter.native="login" />
             </FormItem>
             <FormItem>
-                <Input v-model="code" type="text" placeholder="请输入验证码" width="100%"  />
+                <Input v-model="code" type="text" placeholder="请输入验证码" width="100%" @keyup.enter.native="login" />
                 <Verify></Verify>
             </FormItem>
             <FormItem style="margin-top: 10px;">

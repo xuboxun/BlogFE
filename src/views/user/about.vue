@@ -18,6 +18,8 @@
 <script>
 import Timeline from '@/units/Timeline.vue';
 import Filter from '@/utils/filter.js';
+import { getVersionList } from '@/service/system';
+
 export default {
     components: {
         Timeline,
@@ -28,15 +30,17 @@ export default {
         };
     },
     created() {
-        this.$http.get('/api/system/version').then(res => {
-            let items = res.data.data.items;
-            this.versions = items.map(item => {
-                return {
-                    title: item.version,
-                    content: item.content.split('。'),
-                    time: Filter.time(item.time),
-                };
-            });
+        getVersionList().then(res => {
+            if (res.data.code === 200) {
+                let items = res.data.result.items;
+                this.versions = items.map(item => {
+                    return {
+                        title: 'Version ' + item.version,
+                        content: item.description.split('。'),
+                        time: Filter.time(item.createTime),
+                    };
+                });
+            }
         });
     }
 };
