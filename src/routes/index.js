@@ -4,10 +4,9 @@ import adminRoutes from './admin';
 import UserWrapper from '@/components/UserWrapper';
 import AdminWrapper from '@/components/AdminWrapper';
 
-import Login from '@/views/admin/login';
-
-import Index from '@/views/index';
-import Error404 from '@/views/404';
+const Login = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/login');
+const Index = () => import(/* webpackChunkName: "Index" */ '@/views/index');
+const Error404 = () => import(/* webpackChunkName: "Error404" */ '@/views/404');
 
 export const routes = [
     {

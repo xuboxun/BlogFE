@@ -1,24 +1,24 @@
 
-import Home from '@/views/user/home';
+const Home = () => import(/* webpackChunkName: "Home" */ '@/views/user/home');
 
-import TechList from '@/views/user/tech/techList';
-import TecBlog from '@/views/user/tech/techBlog';
+const TechList = () => import(/* webpackChunkName: "Tech" */ '@/views/user/tech/techList');
+const TecBlog = () => import(/* webpackChunkName: "Tech" */ '@/views/user/tech/techBlog');
 
-import CultureList from '@/views/user/culture/cultureList';
-import CultureBlog from '@/views/user/culture/cultureBlog';
+const CultureList = () => import(/* webpackChunkName: "Culture" */ '@/views/user/culture/cultureList');
+const CultureBlog = () => import(/* webpackChunkName: "Culture" */ '@/views/user/culture/cultureBlog');
 
-import SerialList from '@/views/user/serial/serialList';
-import SerialDetail from '@/views/user/serial/serialDetail';
-import SerialBlog from '@/views/user/serial/serialBlog';
+const SerialList = () => import(/* webpackChunkName: "Serial" */ '@/views/user/serial/serialList');
+const SerialDetail = () => import(/* webpackChunkName: "Serial" */ '@/views/user/serial/serialDetail');
+const SerialBlog = () => import(/* webpackChunkName: "Serial" */ '@/views/user/serial/serialBlog');
 
-import TagList from '@/views/user/tag/tagList';
-import TagDetail from '@/views/user/tag/tagDetail';
+const TagList = () => import(/* webpackChunkName: "Tag" */ '@/views/user/tag/tagList');
+const TagDetail = () => import(/* webpackChunkName: "Tag" */ '@/views/user/tag/tagDetail');
 
-import Archives from '@/views/user/archives';
+const Archives = () => import(/* webpackChunkName: "Archives" */ '@/views/user/archives');
 
-import Search from '@/views/user/search';
+const About = () => import(/* webpackChunkName: "About" */ '@/views/user/about');
 
-import About from '@/views/user/about';
+const Search = () => import(/* webpackChunkName: "Search" */ '@/views/user/search');
 
 import Content from '@/components/Content';
 

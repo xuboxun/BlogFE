@@ -1,15 +1,20 @@
-import Dashboard from '@/views/admin/dashboard';
-import Editor from '@/views/admin/editor';
-import BlogList from '@/views/admin/blog/list';
-import BlogDetail from '@/views/admin/blog/detail';
-import TagList from '@/views/admin/tag/list';
-import TagDetail from '@/views/admin/tag/detail';
-import TagEditor from '@/views/admin/tag/editor';
-import SerialList from '@/views/admin/serial/list';
-import SerialDetail from '@/views/admin/serial/detail';
-import SerialEditor from '@/views/admin/serial/editor';
-import System from '@/views/admin/system';
-import Subscribe from '@/views/admin/subscribe';
+const Dashboard = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/dashboard');
+
+const Editor = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/editor');
+const BlogList = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/blog/list');
+const BlogDetail = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/blog/detail');
+
+const TagList = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/tag/list');
+const TagDetail = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/tag/detail');
+const TagEditor = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/tag/editor');
+
+const SerialList = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/serial/list');
+const SerialDetail = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/serial/detail');
+const SerialEditor = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/serial/editor');
+
+const System = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/system');
+
+const Subscribe = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/subscribe');
 
 import Content from '@/components/Content';
 
