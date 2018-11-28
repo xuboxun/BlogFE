@@ -4,7 +4,7 @@
             <Button @click="addSerial">新建专栏</Button>
         </LocateBar>
         <Table :columns="table.columns" :data="table.data" width="800" />
-        <Pager v-moel="pager.pageNum" :pageSize="pager.pageSize" :total="pager.total" align="right" @change-page="searchSerialList"></Pager>
+        <Pager v-model="pager.pageNum" :pageSize="pager.pageSize" :total="pager.total" align="right" @change-page="searchSerialList"></Pager>
         <DeleteModal ref="deleteBlogModal" title="删除专栏?" :info="deleteInfo"></DeleteModal>
     </div>
 </template>
