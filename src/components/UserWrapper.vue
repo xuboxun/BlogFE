@@ -9,7 +9,7 @@
         <div class="foot">
             <div>
                 <p></p>
-                <p class="content">Power by Xu boxun</p>
+                <p class="content">Power by Xu boxun <span id="cnzz_stat_icon_1275502621" style="display: none;"></span></p>
             </div>
         </div>
     </div>
@@ -21,6 +21,18 @@ export default {
     name: 'UserWrapper',
     components: {
         TopMenu,
+    },
+    methods: {
+        createAnalyse() {
+            const wrapper = document.getElementById('cnzz_stat_icon_1275502621');
+            const newScript = document.createElement('script');
+            newScript.type = 'text/javascript';
+            newScript.src = 'https://s96.cnzz.com/z_stat.php?id=1275502621&amp;show=pic';
+            wrapper.appendChild(newScript);
+        }
+    },
+    mounted() {
+        this.createAnalyse();
     }
 };
 </script>
@@ -65,7 +77,7 @@ export default {
         display: flex;
 
         .view-body {
-            flex: 1 1 auto;    
+            flex: 1 1 auto;
         }
 
         .view-side {

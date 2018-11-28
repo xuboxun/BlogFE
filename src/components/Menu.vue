@@ -41,11 +41,9 @@ export default {
     },
     methods: {
         hideMenu() {
-            console.log('hide');
             this.showMenu = false;
         },
         toggleMenu() {
-            console.log('toggle');
             this.showMenu = !this.showMenu;
         },
         search(e) {
