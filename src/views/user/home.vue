@@ -2,7 +2,7 @@
     <div class="v-home">
         <div class="home-banner">
             <div class="img-wrapper">
-                <img src="/assets/images/book.jpg" alt="" />
+                <img src="/assets/images/book.webp" alt="" />
             </div>
         </div>
         <div class="view-wrapper">

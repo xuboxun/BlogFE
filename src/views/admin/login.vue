@@ -74,7 +74,7 @@ export default {
         position: fixed;
         left: 0;
         top: 0;
-        background-image: url("/assets/images/loginbg.jpg");
+        background-image: url("/assets/images/loginbg.webp");
         background-position: center center;
     }
     .login-block {

@@ -54,7 +54,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background-image: url('/assets/images/sing.jpg');
+        background-image: url('/assets/images/sing.webp');
         background-repeat: no-repeat;
         background-position: center;
     }
