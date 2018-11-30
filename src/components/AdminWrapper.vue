@@ -24,14 +24,19 @@
         <div class="body-container">
             <div class="navbar-container" :class="navShow ? '' : 'navbar-container-toggle'">
                 <div class="admin-navbar">
-                    <router-link to="/admin"><li class="nav-item"><Icon name="tachometer-alt" class="icon" />Dashboard</li></router-link>
-                    <router-link to="/admin/write"><li class="nav-item"><Icon name="edit" class="icon" />写博客</li></router-link>
+                    <li class="nav-item"><router-link to="/admin"><Icon name="tachometer-alt" class="icon" />Dashboard</router-link></li>
+                    <li class="nav-item"><router-link to="/admin/write"><Icon name="edit" class="icon" />写博客</router-link></li>
                     <Divider />
-                    <router-link to="/admin/blog"><li class="nav-item"><Icon name="th-list" class="icon" />博客管理</li></router-link>
-                    <router-link to="/admin/tag"><li class="nav-item"><Icon name="tag" class="icon" />标签管理</li></router-link>
-                    <router-link to="/admin/serial"><li class="nav-item"><Icon name="layer-group" class="icon" />专栏管理</li></router-link>
-                    <router-link to="/admin/subscribe"><li class="nav-item"><Icon name="rss" class="icon" />订阅管理</li></router-link>
-                    <router-link to="/admin/system"><li class="nav-item"><Icon name="cog" class="icon" />系统管理</li></router-link>
+                    <li class="nav-item"><router-link to="/admin/blog"><Icon name="th-list" class="icon" />博客管理</router-link></li>
+                    <li class="nav-item"><router-link to="/admin/tag"><Icon name="tag" class="icon" />标签管理</router-link></li>
+                    <li class="nav-item"><router-link to="/admin/serial"><Icon name="layer-group" class="icon" />专栏管理</router-link></li>
+                    <li class="nav-item"><router-link to="/admin/subscribe"><Icon name="rss" class="icon" />订阅管理</router-link></li>
+                    <li class="nav-item">
+                        <router-link to="/admin/system"><Icon name="cog" class="icon" />系统管理</router-link>
+                        <ul class="nav-submenu">
+                            <li class="nav-sub-item"><router-link to="/admin/system/version"><Icon name="code-branch" class="icon" />版本管理</router-link></li>
+                        </ul>
+                    </li>
                 </div>
             </div>
 
@@ -196,13 +201,25 @@ export default {
             line-height: 50px;
             font-size: 1.1rem;
             cursor: pointer;
-            padding: 0 15px;
 
-            &:hover {
-                background: #f8f8f9;
+            .nav-submenu {
+                .nav-sub-item {
+                    a {
+                        padding: 0 45px;
+                    }
+                }
             }
-            .icon {
-                margin-right: 10px;
+            a {
+                width: 100%;
+                height: 100%;
+                display: inline-block;
+                padding: 0 15px;
+                &:hover {
+                    background: #f8f8f9;
+                }
+                .icon {
+                    margin-right: 10px;
+                }
             }
         }
     }

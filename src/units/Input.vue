@@ -1,10 +1,10 @@
 <template>
     <div class="u-input" :style="'width: ' + width">
         <template v-if="type !== 'textarea'">
-            <input class="type-normal" :type="type" v-model="innerValue" @input="update" :placeholder="placeholder">
+            <input class="type-normal" :type="type" v-model="innerValue" @input="update" :placeholder="placeholder" :style="height ? {height: height} : {}">
         </template>
         <template v-else>
-            <textarea class="type-textarea" v-model="innerValue" @input="update" :placeholder="placeholder"></textarea>
+            <textarea class="type-textarea" v-model="innerValue" @input="update" :placeholder="placeholder" :style="height ? {height: height} : {}"></textarea>
         </template>
     </div>
 </template>
@@ -22,6 +22,7 @@ export default {
             type: String,
             default: '150px'
         },
+        height: String,
         placeholder: {
             type: String,
             default: ''

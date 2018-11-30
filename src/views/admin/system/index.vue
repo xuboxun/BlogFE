@@ -1,5 +1,5 @@
 <template>
-    <div class="v-admin-system">
+    <div class="v-admin-system-index">
         <LocateBar></LocateBar>
     </div>
 </template>
@@ -10,7 +10,6 @@ import Button from '@/units/Button';
 export default {
     components: {
         LocateBar,
-        Button,
     },
     data() {
         return {
@@ -21,7 +20,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-admin-system {
+    .v-admin-system-index {
 
-}
+    }
 </style>

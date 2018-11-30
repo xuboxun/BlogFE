@@ -12,7 +12,8 @@ const SerialList = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/s
 const SerialDetail = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/serial/detail');
 const SerialEditor = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/serial/editor');
 
-const System = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/system');
+const SystemIndex = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/system/index');
+const SystemVersion = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/system/version');
 
 const Subscribe = () => import(/* webpackChunkName: "Admin" */ '@/views/admin/subscribe');
 
@@ -134,7 +135,22 @@ const adminRoutes = [
         path: 'system',
         name: 'admin/system',
         meta: { title: '系统管理' },
-        component: System
+        component: Content,
+        redirect: 'system/index',
+        children: [
+            {
+                path: 'index',
+                name: 'admin/system/index',
+                meta: { title: '系统管理' },
+                component: SystemIndex
+            },
+            {
+                path: 'version',
+                name: 'admin/system/version',
+                meta: { title: '系统版本' },
+                component: SystemVersion
+            }
+        ]
     },
 ];
 

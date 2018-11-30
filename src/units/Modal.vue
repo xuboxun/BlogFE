@@ -3,9 +3,11 @@
         <div class="u-modal" v-if="value">
             <div class="modal-body"
                  :class="[center ? 'modal-body-center' : '']"
-                 :style="['top: ' + top + 'px']"
-            >
+                 :style="['top: ' + top + 'px']">
                 <Icon class="icon-close" name="times" @click.native="close(false)"></Icon>
+                <template v-if="title">
+                    <h3 class="default-title">{{ title }}</h3>
+                </template>
                 <slot></slot>
             </div>
             <div class="modal-mask" @click="maskClose"></div>
@@ -18,8 +20,7 @@ export default {
     name: 'Modal',
     props: {
         title: {
-            type: String,
-            default: '标题',
+            type: String
         },
         value: {
             type: Boolean,
@@ -69,7 +70,7 @@ export default {
     width: 100%;
     height: 100%;
     .modal-body {
-        width: 400px;
+        min-width: 400px;
         min-height: 200px;
         background: #fff;
         border-radius: 5px;
@@ -87,6 +88,12 @@ export default {
             cursor: pointer;
             width: 20px;
             height: 20px;
+        }
+        .default-title {
+            font-size: 16px;
+            font-weight: 400;
+            color: #1c2438;
+            margin-bottom: 10px;
         }
     }
     .modal-body-center {
