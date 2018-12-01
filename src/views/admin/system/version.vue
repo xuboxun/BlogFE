@@ -9,20 +9,26 @@
             <div class="add-modal">
                 <Input type="text" width="100%" placeholder="版本号" v-model="form.version" class="version" />
                 <Input type="textarea" width="100%" height="150px" placeholder="版本描述，中文句号分隔" v-model="form.description" class="description" />
-                <Button @click="cancel">取消</Button>
-                <Button type="primary" @click="confirm">确定</Button>
+                <div style="text-align: right; margin-top: 15px;">
+                    {{ JSON.stringify(form)}}
+                    <Button @click="cancel">取消</Button>
+                    <Button type="primary" @click="confirm" style="margin-left: 10px;">确定</Button>
+                </div>
             </div>
         </Modal>
+        <DeleteModal ref="deleteModal" title="删除版本" :info="deleteInfo"></DeleteModal>
     </div>
 </template>
 
 <script>
 import LocateBar from '@/units/LocateBar';
 import Filter from '@/utils/filter';
-import { getVersionList, createVersion, updateVersion } from '@/service/system';
+import DeleteModal from '@/components/DeleteModal';
+import { getVersionList, createVersion, updateVersion, deleteVersion } from '@/service/system';
 export default {
     components: {
         LocateBar,
+        DeleteModal
     },
     data() {
         return {
@@ -97,9 +103,11 @@ export default {
             },
             showModal: false,
             form: {
+                id: '',
                 version: '',
                 description: ''
-            }
+            },
+            deleteInfo: []
         };
     },
     methods: {
@@ -116,11 +124,23 @@ export default {
         add() {
             this.showModal = true;
         },
-        edit() {
+        edit(row) {
+            console.log(row);
+            this.form = {
+                id: row.id,
+                version: row.version,
+                description: row.description
+            };
             this.showModal = true;
         },
-        delete() {
-
+        delete(row) {
+            this.deleteInfo = [
+                { key: '版本号', value: row.version },
+                { key: '版本信息', value: row.description }
+            ];
+            this.$refs.deleteModal.show(() => {
+                this.removeVersion(row.id);
+            });
         },
         cancel() {
             this.form = {
@@ -132,6 +152,7 @@ export default {
         },
         confirm() {
             if (this.form.version && this.form.description) {
+                this.form.description = this.form.description.replace('\n', '');
                 if (this.form.id) {
                     this.editVersion();
                 } else {
@@ -145,6 +166,7 @@ export default {
             createVersion(this.form).then(res => {
                 if (res.data.code === 200) {
                     console.log('添加成功');
+                    this.searchVersion();
                     this.cancel();
                 } else {
                     console.log('添加失败: ', res.data.msg);
@@ -155,9 +177,21 @@ export default {
             updateVersion(this.form).then(res => {
                 if (res.data.code === 200) {
                     console.log('编辑成功');
+                    this.searchVersion();
                     this.cancel();
                 } else {
                     console.log('编辑失败: ', res.data.msg);
+                }
+            });
+        },
+        removeVersion(id) {
+            deleteVersion(id).then(res => {
+                if (res.data.code === 200) {
+                    console.log('删除成功');
+                    this.searchVersion();
+                    this.cancel();
+                } else {
+                    console.log('删除失败: ', res.data.msg);
                 }
             });
         }

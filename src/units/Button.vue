@@ -14,7 +14,7 @@ export default {
             type: String,
             default: 'default',
             validator: function(val) {
-                return ['default', 'warn', 'text', 'textwarn'].indexOf(val) > -1;
+                return ['default', 'primary', 'warn', 'text', 'textwarn'].indexOf(val) > -1;
             }
         },
         size: {
@@ -50,6 +50,11 @@ export default {
         transition: all 0.1s ease;
     }
     .button-type-default {
+        background: #fff;
+        color: #515a6e;
+        border: 1px solid #dcdee2;
+    }
+    .button-type-primary {
         background: #2d8cf0;
         color: #fff;
     }
