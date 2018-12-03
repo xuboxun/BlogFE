@@ -32,7 +32,7 @@ export default {
             intro: [
                 { key: '姓名', value: '徐博勋' },
                 { key: '属性', value: '程序猿, 文艺青年' },
-                { key: '性别', value: '男, 单身求撩o((>ω<))o' },
+                { key: '性别', value: '男' },
                 { key: '生日', value: '1997年1月19日' },
                 { key: '邮箱', value: 'ixuboxun@163.com' },
                 { key: '童年', value: '江南水乡, 安徽铜陵' },
