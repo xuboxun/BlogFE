@@ -8,11 +8,10 @@ module.exports = merge(base, {
     mode: 'development',
     devtool: 'source-map',
     devServer: {
-        host: '0.0.0.0',
+        host: 'localhost',
         port: 9000,
         proxy: {
-            // '/api': 'http://localhost:3000/api'
-            '/api': 'http://blogapi.test.xuboxun.site'
+            '/api': 'http://xuboxun.site:4000'
         },
         hot: true,
         inline: true,
