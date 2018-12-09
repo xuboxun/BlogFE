@@ -6,20 +6,9 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-
 const devMode = process.env.NODE_ENV !== 'production';
-console.log(devMode);
-
-if (process.env.NODE_ENV === 'production') {
-    console.log('production');
-} else if (process.env.NODE_ENV === 'development') {
-    console.log('development');
-} else if (process.env.NODE_ENV === 'none') {
-    console.log('none');
-} else {
-    console.log('unknown');
-}
-
+console.log('devMode: ', devMode);
+console.log(process.env.NODE_ENV);
 
 module.exports = {
     mode: 'production',

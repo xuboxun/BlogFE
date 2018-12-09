@@ -1,9 +1,9 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const base = require('./webpack.base.config.js');
-// const mock = require('../mock/mock');
+const localMock = require('../mock/mock');
 
-
+console.log(process.env.NODE_ENV);
 module.exports = merge(base, {
     mode: 'development',
     devtool: 'source-map',
@@ -17,7 +17,7 @@ module.exports = merge(base, {
         inline: true,
         historyApiFallback: true,
         open: true,
-        // before: mock,
+        before: process.env.NODE_ENV === 'mock:local' ? localMock : () => {},
     },
     plugins: [
         new webpack.NamedModulesPlugin(),
