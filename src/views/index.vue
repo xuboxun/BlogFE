@@ -14,7 +14,7 @@
                 <div class="link">
                     <p class="title">快捷链接</p>
                     <ul>
-                        <li><a href="https://github.com/xbx0119">github</a></li>
+                        <li><a href="https://github.com/xuboxun">github</a></li>
                         <li><a href="https://www.zhihu.com/">知乎</a></li>
                         <li><a href="https://www.squarespace.com/">squarespace</a></li>
                     </ul>
