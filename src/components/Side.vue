@@ -5,7 +5,7 @@
             <h2 class="name">徐博勋</h2>
             <p class="word">你心中的火焰，灼烧的不仅是你的内心，还会成为照亮世界的光，温暖他人。</p>
             <div class="accounts">
-                <a class="brand" href="https://github.com/xbx0119" target="blanket" title="https://github.com/xbx0119">
+                <a class="brand" href="https://github.com/xuboxun" target="blanket" title="https://github.com/xuboxun">
                     <!--<Icon name="brands/github" scale="2" />-->
                     <!-- TODO: 图标优化， 减少http请求 -->
                     <img src="/assets/images/github.webp" alt="github" />
