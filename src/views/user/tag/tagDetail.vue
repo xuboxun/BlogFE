@@ -21,6 +21,8 @@
 <script>
 import Filter from '@/utils/filter';
 import { getTagDetail } from '@/service/tag';
+import { mapMutations } from 'vuex';
+
 export default {
     data() {
         return {
@@ -29,11 +31,16 @@ export default {
         };
     },
     methods: {
+        ...mapMutations('system', [
+            'setLoading'
+        ]),
         searchTagDetail() {
+            this.setLoading(true);
             getTagDetail(this.$route.params.name).then(res => {
                 if (res.data.code === 200) {
                     this.tag = res.data.result;
                 }
+                this.setLoading(false);
             });
         }
     },

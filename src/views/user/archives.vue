@@ -27,6 +27,8 @@ import Selection from '@/units/Selection.vue';
 import NoResult from '@/components/NoResult.vue';
 import Filter from '@/utils/filter.js';
 import { getArchives } from '@/service/others';
+import { mapMutations } from 'vuex';
+
 // 按时间顺序归档
 export default {
     components: {
@@ -104,7 +106,11 @@ export default {
         }
     },
     methods: {
+        ...mapMutations('system', [
+            'setLoading'
+        ]),
         searchArchives() {
+            this.setLoading(true);
             getArchives().then(res => {
                 if (res.data.code === 200) {
                     this.blogs = res.data.result.items.map(blog => {
@@ -114,6 +120,7 @@ export default {
                         };
                     });
                 }
+                this.setLoading(false);
             });
         }
     },

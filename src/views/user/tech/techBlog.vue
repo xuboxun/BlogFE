@@ -16,6 +16,8 @@
 import MarkdownView from '@/units/MarkdownView.vue';
 import { getBlogDetail } from '@/service/blog';
 import Filter from '@/utils/filter';
+import { mapMutations } from 'vuex';
+
 export default {
     components: {
         MarkdownView,
@@ -27,11 +29,16 @@ export default {
         };
     },
     methods: {
+        ...mapMutations('system', [
+            'setLoading'
+        ]),
         searchBlog() {
+            this.setLoading(true);
             getBlogDetail(this.$route.params.name).then(res => {
                 if (res.data.code === 200) {
                     this.blog = res.data.result;
                 }
+                this.setLoading(false);
             });
         }
     },

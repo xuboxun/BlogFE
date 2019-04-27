@@ -17,6 +17,8 @@ import BlogItem from '@/components/BlogItem';
 import Pager from '@/units/Pager.vue';
 import Side from '@/components/Side.vue';
 import { getBlogList } from '@/service/blog';
+import { mapMutations } from 'vuex';
+
 export default{
     components: {
         BlogItem,
@@ -34,7 +36,11 @@ export default{
         };
     },
     methods: {
+        ...mapMutations('system', [
+            'setLoading'
+        ]),
         searchList() {
+            this.setLoading(true);
             getBlogList({
                 type: 'culture',
                 pageNum: this.pager.num,
@@ -46,6 +52,7 @@ export default{
                 } else {
                     this.blogs = [];
                 }
+                this.setLoading(false);
             });
         }
     },

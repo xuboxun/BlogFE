@@ -32,6 +32,7 @@
 import Side from '@/components/Side';
 import Filter from '@/utils/filter';
 import { getBlogList } from '@/service/blog';
+import { mapMutations } from 'vuex';
 
 export default {
     components: {
@@ -54,7 +55,11 @@ export default {
         }
     },
     methods: {
+        ...mapMutations('system', [
+            'setLoading',
+        ]),
         searchRecent() {
+            this.setLoading(true);
             getBlogList({
                 pageSize: this.pager.size,
                 pageNum: this.pager.num
@@ -64,6 +69,7 @@ export default {
                 } else {
                     this.recent = [];
                 }
+                this.setLoading(false);
             });
         },
         searchMostView() {

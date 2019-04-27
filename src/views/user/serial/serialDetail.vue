@@ -27,6 +27,8 @@
 <script>
 import Filter from '@/utils/filter';
 import { getSerialDetail } from '@/service/serial';
+import { mapMutations } from 'vuex';
+
 export default {
     data() {
         return {
@@ -35,11 +37,16 @@ export default {
         };
     },
     methods: {
+        ...mapMutations('system', [
+            'setLoading'
+        ]),
         searchSerial() {
+            this.setLoading(true);
             getSerialDetail(this.$route.params.name).then(res => {
                 if (res.data.code === 200) {
                     this.serial = res.data.result;
                 }
+                this.setLoading(false);
             });
         }
     },

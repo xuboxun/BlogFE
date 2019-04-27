@@ -28,6 +28,8 @@
 <script>
 import Side from '@/components/Side.vue';
 import { getSerialList } from '@/service/serial';
+import { mapMutations } from 'vuex';
+
 export default{
     components: {
         Side,
@@ -38,13 +40,18 @@ export default{
         };
     },
     methods: {
+        ...mapMutations('system', [
+            'setLoading'
+        ]),
         searchSerial() {
+            this.setLoading(true);
             getSerialList().then(res => {
                 if (res.data.code === 200) {
                     this.serialList = res.data.result.items;
                 } else {
                     this.serialList = [];
                 }
+                this.setLoading(false);
             });
         }
     },

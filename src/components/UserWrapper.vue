@@ -1,5 +1,6 @@
 <template>
     <div class="m-userwrapper">
+        <Loading :show="loading"></Loading>
         <div class="head">
             <TopMenu></TopMenu>
         </div>
@@ -16,11 +17,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import Loading from '@/components/Loading';
 import TopMenu from '@/components/Menu';
 export default {
     name: 'UserWrapper',
     components: {
         TopMenu,
+        Loading,
+    },
+    computed: {
+        ...mapState('system', {
+            loading: state => state.loading,
+        })
     },
     methods: {
         createAnalyse() {

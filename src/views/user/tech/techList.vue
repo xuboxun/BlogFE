@@ -17,6 +17,7 @@ import BlogItem from '@/components/BlogItem';
 import Pager from '@/units/Pager';
 import Side from '@/components/Side';
 import { getBlogList } from '@/service/blog';
+import { mapMutations } from 'vuex';
 
 export default {
     components: {
@@ -35,7 +36,11 @@ export default {
         };
     },
     methods: {
+        ...mapMutations('system', [
+            'setLoading'
+        ]),
         searchList() {
+            this.setLoading(true);
             getBlogList({
                 type: 'tech',
                 pageNum: this.pager.num,
@@ -45,6 +50,7 @@ export default {
                     this.blogs = res.data.result.items;
                     this.pager.total = res.data.result.total;
                 }
+                this.setLoading(false);
             });
         }
     },

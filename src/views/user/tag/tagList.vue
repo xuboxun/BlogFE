@@ -23,6 +23,7 @@ import Tag from '@/units/Tag';
 import NoResult from '@/components/NoResult.vue';
 import Side from '@/components/Side.vue';
 import { getTagList } from '@/service/tag';
+import { mapMutations } from 'vuex';
 
 export default {
     components: {
@@ -43,17 +44,22 @@ export default {
         }
     },
     methods: {
+        ...mapMutations('system', [
+            'setLoading'
+        ]),
         filter() {
             this.filterTags = this.tags.filter(tag => {
                 return tag.title.indexOf(this.query) > -1;
             });
         },
         searchTagList() {
+            this.setLoading(true);
             getTagList().then(res => {
                 if (res.data.code === 200) {
                     this.tags = res.data.result.items;
                     this.filterTags = this.tags;
                 }
+                this.setLoading(false);
             });
         }
     },
