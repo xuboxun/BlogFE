@@ -14,12 +14,10 @@ module.exports = {
     mode: 'production',
     entry: {
         main: './src/main',
-        vendors: './src/vendors'
     },
     output: {
         publicPath: '/', // 文件路径
         path: path.resolve(__dirname, '../dist'), // 打包路径
-        filename: '[name].bundle.[hash].js'
     },
     module: {
         rules: [
@@ -65,7 +63,7 @@ module.exports = {
         }),
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
-            filename: 'bundle.css'
+            filename: 'index.[hash].css'
         }),
         new CopyWebpackPlugin([
             {

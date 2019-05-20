@@ -6,10 +6,12 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = merge(base, {
     mode: 'production',
+    output: {
+        filename: '[name].bundle.[hash].js',
+        chunkFilename: '[name].chunk.[hash].js',
+    },
     plugins: [
-        new CleanWebpackPlugin(['dist'], {
-            root: path.resolve(__dirname, '../'),
-        }),
+        new CleanWebpackPlugin(),
         // new BundleAnalyzerPlugin(),
     ],
     stats: {
