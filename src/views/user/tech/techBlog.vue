@@ -2,9 +2,12 @@
     <div class="v-tech-blog">
         <div class="view-wrapper">
             <div class="view-body">
-                <h1 class="title">{{ blog.title }}</h1>
-                <p class="time">{{ Filter.time(blog.createTime) }}</p>
-                <MarkdownView :article="blog.content" />
+                <MarkdownView :article="blog.content">
+                    <template slot="header">
+                        <h1 class="title">{{ blog.title }}</h1>
+                        <p class="time">{{ Filter.time(blog.createTime) }}</p>
+                    </template>
+                </MarkdownView>
             </div>
             <!--<div class="view-side">-->
             <!--</div>-->

@@ -58,18 +58,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../styles/variable';
 .m-menu {
-    width: 100%;
+    width: $minWidth;
     height: 56px;
-    padding: 8px 50px;
-    background: #fff;
-    box-shadow: 5px 0px 5px #e0e0e0;
+    padding: 8px 20px;
 
     display: flex;
     justify-content: space-between;
-
-    position: fixed;
-    z-index: 99999;
 
 
     .title {
@@ -178,6 +174,7 @@ export default {
 }
 @media screen and (max-width: 480px) {
     .m-menu {
+        width: 100%;
         padding: 8px 20px;
     }
 }

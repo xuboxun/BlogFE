@@ -47,15 +47,28 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../styles/variable';
 .m-userwrapper {
     width: 100%;
+    padding-top: 56px;
 
     .body-width-responsive {
-        width: 1040px;
+        width: $minWidth;
     }
 
     & > .head {
+        width: 100%;
         height: 56px;
+        background: #fff;
+        box-shadow: 5px 0 5px #e0e0e0;
+
+        display: flex;
+        justify-content: center;
+
+        position: fixed;
+        z-index: 99999;
+        top: 0;
+        left: 0;
     }
     & > .body {
         margin: 0 auto;

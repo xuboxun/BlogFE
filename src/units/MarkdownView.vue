@@ -1,5 +1,8 @@
 <template>
     <div class="u-markdown-view">
+        <div class="markdown-header">
+            <slot name="header"></slot>
+        </div>
         <div v-html="renderHTML" class="markdown-body"></div>
     </div>
 </template>
@@ -44,6 +47,11 @@ export default {
 
 <style lang="scss">
 .u-markdown-view {
+    width: 800px;
+    margin: 0 auto;
+    .markdown-header {
+        padding-top: 50px;
+    }
     .markdown-body {
 		box-sizing: border-box;
 		min-width: 200px;
