@@ -50,7 +50,7 @@ export default {
         border-radius: 3px;
         background: #fafafa;
         margin-right: 8px;
-        margin-bottom: 5px;
+        margin-bottom: 4px;
         padding: 0 10px;
         transition: all 0.5s ease;
         position: relative;

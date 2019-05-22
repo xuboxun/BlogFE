@@ -125,24 +125,32 @@ export default {
     .select-value {
         width: 100%;
         height: 35px;
-        line-height: 35px;
+        overflow: auto;
+        line-height: 33px;
         padding: 0 5px;
         color: #515a6e;
+        box-sizing: border-box;
         border: 1px solid #dcdee2;
         border-radius: 3px;
         background: #fff;
         cursor: pointer;
+        .select-input {
+            width: 100%;
+            height: 100%;
+            padding: 0 5px;
+        }
         .select-placement {
             color: #ccc;
         }
     }
     .select-option {
         width: 100%;
-        max-height: 500px;
+        max-height: 300px;
         position: absolute;
         top: 38px;
         left: 0;
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: auto;
         box-shadow: 0 0 5px #ccc;
         border-radius: 3px;
         background: #fff;

@@ -47,7 +47,8 @@ export default {
 
 <style lang="scss">
 .u-markdown-view {
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
     margin: 0 auto;
     .markdown-header {
         padding-top: 50px;
