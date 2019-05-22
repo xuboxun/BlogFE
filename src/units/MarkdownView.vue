@@ -54,6 +54,7 @@ export default {
         padding-top: 50px;
     }
     .markdown-body {
+        color: #595959;
 		box-sizing: border-box;
 		min-width: 200px;
 		max-width: 980px;
@@ -91,7 +92,7 @@ export default {
 
 	@media (max-width: 767px) {
 		.markdown-body {
-			padding: 0px;
+			padding: 0;
 		}
 	}
 }

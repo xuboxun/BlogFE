@@ -31,6 +31,14 @@ export default {
             loading: state => state.loading,
         })
     },
+    watch: {
+        '$route.name': function() {
+            this.$nextTick(() => {
+                // todo: 回到上次浏览的位置
+                window.scrollTo(0, 0);
+            });
+        }
+    },
     methods: {
         createAnalyse() {
             const wrapper = document.getElementById('cnzz_stat_icon_1275502621');
@@ -73,6 +81,7 @@ export default {
     & > .body {
         margin: 0 auto;
         padding: 20px 20px;
+        background: #fff;
     }
     @media screen and (max-width: 480px) {
         .body-width-responsive {
