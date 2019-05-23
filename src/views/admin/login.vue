@@ -1,6 +1,6 @@
 <template>
     <div class="v-admin-login">
-        <div class="login-bg"></div>
+        <div class="login-bg" :class="isSupportWebp ? 'webp' : ''"></div>
         <div class="login-block">
             <h2 class="title">主人，请登录</h2>
             <FormItem>
@@ -35,7 +35,8 @@ export default {
             account: '',
             password: '',
             code: '',
-            info: ''
+            info: '',
+            isSupportWebp: window.isSupportWebp
         };
     },
     methods: {
@@ -74,8 +75,11 @@ export default {
         position: fixed;
         left: 0;
         top: 0;
-        background-image: url("/assets/images/loginbg.webp");
+        background-image: url("/assets/images/loginbg.jpg");
         background-position: center center;
+    }
+    .login-bg.webp {
+        background-image: url("/assets/images/loginbg.webp");
     }
     .login-block {
         width: 400px;

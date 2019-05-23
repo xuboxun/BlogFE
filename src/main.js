@@ -9,6 +9,7 @@ import { routes } from './routes';
 import './directives';
 import '@/units';
 import '@/styles/base.css';
+import '@/utils/env';
 import App from './App';
 
 

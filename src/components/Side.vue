@@ -6,15 +6,14 @@
             <p class="word">你心中的火焰，灼烧的不仅是你的内心，还会成为照亮世界的光，温暖他人。</p>
             <div class="accounts">
                 <a class="brand" href="https://github.com/xuboxun" target="blanket" title="https://github.com/xuboxun">
-                    <!--<Icon name="brands/github" scale="2" />-->
                     <!-- TODO: 图标优化， 减少http请求 -->
-                    <img src="/assets/images/github.webp" alt="github" />
+                    <img :src="wrapWebpLink('/assets/images/github.png')" alt="github" />
                 </a>
                 <a class="brand" href="https://www.zhihu.com/people/xuboxun/activities" target="blanket" title="https://www.zhihu.com/people/xuboxun/activities">
-                    <img src="/assets/images/zhihu.webp" alt="知乎" />
+                    <img :src="wrapWebpLink('/assets/images/zhihu.png')" alt="知乎" />
                 </a>
                 <a class="brand" href="mailto:ixuboxun@163.com" target="blanket" title="ixuboxun@163.com">
-                    <img src="/assets/images/email.webp" alt="邮箱" />
+                    <img :src="wrapWebpLink('/assets/images/email.png')" alt="邮箱" />
                 </a>
             </div>
         </div>
@@ -22,12 +21,16 @@
 </template>
 
 <script>
+import { wrapWebpLink } from '@/utils/tools';
 export default {
     name: 'Side',
     data() {
         return {
 
         };
+    },
+    methods: {
+        wrapWebpLink,
     }
 };
 </script>

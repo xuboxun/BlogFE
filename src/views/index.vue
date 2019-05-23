@@ -1,6 +1,6 @@
 <template>
     <div class="v-index">
-        <div class="background"></div>
+        <div class="background" :class="isSupportWebp ? 'webp' : ''"></div>
         <div class="content-wrapper" :class="animate ? 'content-wrapper-animate' : ''">
             <span class="toggle" @click="toggle"></span>
             <div class="content">
@@ -29,7 +29,8 @@
 export default {
     data() {
         return {
-            animate: false
+            animate: false,
+            isSupportWebp: window.isSupportWebp
         };
     },
     methods: {
@@ -54,9 +55,12 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background-image: url('/assets/images/sing.webp');
+        background-image: url('/assets/images/sing.jpg');
         background-repeat: no-repeat;
         background-position: center;
+    }
+    .background.webp {
+        background-image: url('/assets/images/sing.webp');
     }
     .content-wrapper {
         display: inline-block;
@@ -161,6 +165,9 @@ export default {
         .background {
             background-size: auto 100%;
             background-image: url('/assets/images/index_mb_bg.jpg');
+        }
+        .background.webp {
+            background-image: url('/assets/images/index_mb_bg.webp');
         }
         .content-wrapper {
             width: 80%;

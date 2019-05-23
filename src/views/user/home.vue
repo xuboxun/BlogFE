@@ -2,7 +2,7 @@
     <div class="v-home">
         <div class="home-banner">
             <div class="img-wrapper">
-                <img src="/assets/images/book.webp" alt="" />
+                <img :src="wrapWebpLink('/assets/images/book.jpg')" alt="" />
             </div>
         </div>
         <div class="view-wrapper">
@@ -33,6 +33,7 @@ import Side from '@/components/Side';
 import Filter from '@/utils/filter';
 import { getBlogList } from '@/service/blog';
 import { mapMutations } from 'vuex';
+import { wrapWebpLink } from '@/utils/tools';
 
 export default {
     components: {
@@ -55,6 +56,7 @@ export default {
         }
     },
     methods: {
+        wrapWebpLink,
         ...mapMutations('system', [
             'setLoading',
         ]),
