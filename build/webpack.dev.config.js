@@ -14,7 +14,10 @@ module.exports = merge(base, {
         host: '0.0.0.0',
         port: 8888,
         proxy: {
-            '/api': 'http://localhost:3000'
+            '/api': {
+                target: process.env.data === 'remote' ? 'https://www.xuboxun.site' : 'http://localhost:3000',
+                changeOrigin: true
+            }
         },
         hot: true,
         inline: true,
@@ -23,6 +26,9 @@ module.exports = merge(base, {
     },
     plugins: [
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            remote: JSON.stringify(process.env.remote)
+        })
     ]
 });
