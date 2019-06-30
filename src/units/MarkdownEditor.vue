@@ -6,7 +6,8 @@
             </div>
             <div class="body-bar">
                 <div class="editor-area" v-show="config.editor">
-                    <textarea id="editor-area-textarea" v-model="writeContent" spellcheck="false"></textarea>
+<!--                    <textarea id="editor-area-textarea" v-model="writeContent" spellcheck="false"></textarea>-->
+                    <codemirror id="editor-area-textarea" v-model="writeContent" :options="cmOptions"></codemirror>
                 </div>
                 <div class="preview-area" v-show="config.preview">
                     <MarkdownView :article="writeContent"></MarkdownView>
@@ -17,11 +18,14 @@
 </template>
 
 <script>
+import { codemirror } from 'vue-codemirror';
+import 'codemirror/lib/codemirror.css';
 import MarkdownView from '@/units/MarkdownView';
 export default {
     name: 'MarkdownEditor',
     components: {
-        MarkdownView
+        MarkdownView,
+        codemirror
     },
     model: {
         prop: 'content',
@@ -50,7 +54,14 @@ export default {
                 preview: true,
                 fullScreen: false
             },
-            writeContent: ''
+            writeContent: '',
+            cmOptions: {
+                tabSize: 4,
+                mode: 'markdown',
+                theme: 'default',
+                lineNumbers: true,
+                line: true,
+            }
         };
     },
     methods: {
@@ -111,6 +122,8 @@ export default {
             height: 100%;
             width: 50%;
             flex: 1 1 auto;
+        }
+        .preview-area {
             padding: 10px;
         }
         .editor-area {
@@ -128,6 +141,10 @@ export default {
         resize: none;
         border: 0;
         line-height: 25px;
+        .CodeMirror {
+            width: 100%;
+            height: 100%;
+        }
     }
 }
 .editor-fullScreen {

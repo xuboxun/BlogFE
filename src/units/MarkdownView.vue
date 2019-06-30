@@ -8,11 +8,32 @@
 </template>
 
 <script>
-import 'github-markdown-css';
+import '@/styles/github-markdown.css';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-dark.css'; // 黑色背景
+// import 'highlight.js/styles/github.css'; // 白色背景
 import MarkdownIt from 'markdown-it';
 import anchor from 'markdown-it-anchor';
 import toc from 'markdown-it-table-of-contents';
-const md = new MarkdownIt();
+
+hljs.configure({
+    tabReplace: '  ', // 2 spaces
+    classPrefix: 'hljs-'
+});
+const md = new MarkdownIt({
+    html:         true,
+    xhtmlOut:     true,
+    highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+            try {
+                return `<pre class="hljs"><code>${hljs.highlight(lang, str, true).value}</code></pre>`;
+            } catch (__) {
+                //
+            }
+        }
+        return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`;
+    }
+});
 md.use(anchor);
 md.use(toc, {
     includeLevel: [1,2,3],
@@ -36,6 +57,9 @@ export default {
         renderHTML: function() {
             return this.render();
         }
+    },
+    mounted() {
+        hljs.initHighlighting();
     },
     methods: {
         render() {
