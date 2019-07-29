@@ -3,11 +3,12 @@
         <div class="markdown-header">
             <slot name="header"></slot>
         </div>
-        <div v-html="renderHTML" class="markdown-body"></div>
+        <div v-html="renderHTML" class="markdown-body" @click="handleClickMarkdown"></div>
     </div>
 </template>
 
 <script>
+import Vue from 'vue';
 import '@/styles/github-markdown.css';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css'; // 黑色背景
@@ -15,6 +16,7 @@ import 'highlight.js/styles/atom-one-dark.css'; // 黑色背景
 import MarkdownIt from 'markdown-it';
 import anchor from 'markdown-it-anchor';
 import toc from 'markdown-it-table-of-contents';
+import ImgViewer from '@/units/ImgViewer';
 
 hljs.configure({
     tabReplace: '  ', // 2 spaces
@@ -42,16 +44,14 @@ md.use(toc, {
 });
 export default {
     name: 'MarkdownView',
+    components: {
+        ImgViewer
+    },
     props: {
         article: {
             type: String,
             default: ''
         }
-    },
-    data() {
-        return {
-
-        };
     },
     computed: {
         renderHTML: function() {
@@ -64,6 +64,19 @@ export default {
     methods: {
         render() {
             return md.render(this.article);
+        },
+        handleClickMarkdown(e) {
+            const target = e.target;
+            const tagName = target && target.tagName && target.tagName.toLowerCase();
+            if (tagName === 'img') {
+                const { src, alt } = target;
+                this.showImgViewer(src, alt);
+            }
+        },
+        showImgViewer(src, alt) {
+            let ImgViewerClass = Vue.extend(ImgViewer);
+            const imgViewer = new ImgViewerClass().$mount();
+            imgViewer.zoomIn(src, alt);
         }
     }
 };
@@ -93,6 +106,9 @@ export default {
 
         li {
             list-style-type: inherit;
+        }
+        img {
+            cursor: zoom-in;
         }
         .markdown-toc-container {
             width: 100%;

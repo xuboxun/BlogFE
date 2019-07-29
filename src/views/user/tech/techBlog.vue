@@ -19,6 +19,7 @@
 import MarkdownView from '@/units/MarkdownView.vue';
 import { getBlogDetail } from '@/service/blog';
 import Filter from '@/utils/filter';
+import { setTitle } from '@/utils/tools';
 import { mapMutations } from 'vuex';
 
 export default {
@@ -40,6 +41,7 @@ export default {
             getBlogDetail(this.$route.params.name).then(res => {
                 if (res.data.code === 200) {
                     this.blog = res.data.result;
+                    setTitle(this.blog.title);
                 }
                 this.setLoading(false);
             });
@@ -47,6 +49,9 @@ export default {
     },
     created() {
         this.searchBlog();
+    },
+    beforeDestroy() {
+        setTitle();
     }
 };
 </script>

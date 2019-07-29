@@ -20,6 +20,7 @@ import Input from '@/units/Input';
 import Select from '@/units/Select';
 import FormItem from '@/units/FormItem';
 import Verify from '@/units/Verify';
+import ImgViewer from '@/units/ImgViewer';
 
 
 const components = {
@@ -40,7 +41,8 @@ const components = {
     Input,
     Select,
     FormItem,
-    Verify
+    Verify,
+    ImgViewer
 };
 
 

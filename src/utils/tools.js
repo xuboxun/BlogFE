@@ -7,3 +7,10 @@ export const wrapWebpLink = function(link) {
     return link;
 };
 
+export const setTitle = function(title) {
+    if (title) {
+        document.title = title + ' by 思吾轩-徐博勋的个人博客';
+    } else {
+        document.title = '思吾轩-徐博勋的个人博客';
+    }
+};
