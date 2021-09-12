@@ -22,6 +22,7 @@
                 </div>
             </div>
         </div>
+        <div class="beian"><a href="https://beian.miit.gov.cn" target="blanket">备案号：皖ICP备16002370号-3</a></div>
         <!--<div class="music"></div>-->
     </div>
 </template>
@@ -216,6 +217,20 @@ export default {
         top: 20px;
         .content {
             opacity: 0;
+        }
+    }
+    .beian {
+        width: 100%;
+        position: absolute;
+        bottom: 20px;
+        text-align: center;
+
+        a {
+            color: #fff;
+
+            &:hover {
+                color: #2d8cf0;
+            }
         }
     }
 }
