@@ -23,7 +23,7 @@
     "markdown-it-anchor": "^5.0.2",
     "markdown-it-table-of-contents": "^0.4.3",
     "md5": "^2.2.1",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "vue": "^2.5.17",
     "vue-awesome": "^3.1.2",
     "vue-axios": "^2.1.3",
